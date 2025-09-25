@@ -1,0 +1,1 @@
+curl -XPOST -H "Content-Type: application/json" http://Titan18:11434/v1/chat/completions -d "{""model"": ""mistral:latest"", ""messages"": [{""role"": ""user"", ""content"": ""How are you today?""}]}"
