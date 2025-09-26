@@ -46,6 +46,19 @@ After installing **Ollama** no **LLM** gets installed automatically so install i
 where <b>*model*</b> is a **LLM** supported by **Ollama**, e.g. <b>*gpt-oss:latest*</b>.
 What **LLM**s are available can be found on **[Ollama](https://ollama.com/library)**.
 
+### Curl
+
+Of course **Curl** can also be used to interact with a **LLM** installed to **Ollama** by performing **OpenAI API** calls:
+
+```
+curl -XPOST -H "Content-Type: application/json" http://<server>:11434/v1/chat/completions -d "{""model"": ""granite3.1-dense:8b"", ""messages"": [{""role"": ""user"", ""content"": ""How are you today?""}]}"
+curl -XPOST -H "Content-Type: application/json" http://<server>:11434/v1/chat/completions -d "{""model"": ""mistral:latest"", ""messages"": [{""role"": ""user"", ""content"": ""How are you today?""}]}"
+```
+
+For the example above replace <b>*<server>*</b> with e.g. <b>*localhost*</b> if **Ollama** is running locally.
+Assuming that the <b>*Granite3.1-dense:8b*</b> and <b>*Mistral:latest*</b> **LLM**s are installed you can use those calls
+as a chat conversation start topic.
+
 ## GUI
 
 ### Ollama
