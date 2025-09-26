@@ -4,32 +4,42 @@
 
 ### Llama.cpp
 
-Create the batch script <b>*SetupEnvLlama.cmd*</b> to allow **Llama.cpp** running in a portable way (and create the required directories):
+Use the batch script <b>*SetupEnvLlama.cmd*</b> to allow **Llama.cpp** running in a portable way (and create the required directories):
 
 ```
 @ECHO OFF
 SET CURRENTDIR=%~dp0
-SET USERPROFILE=%CURRENTDIR%Users\\Llama
-SET LOCALAPPDATA=%CURRENTDIR%Users\\Llama\\data\\AppData\\Local
+SET USERPROFILE=%CURRENTDIR%Llama.cpp\Users\Llama
+SET LOCALAPPDATA=%CURRENTDIR%Llama.cpp\Users\Llama\data\AppData\Local
+IF NOT EXIST %USERPROFILE% DO MKDIR %USERPROFILE% >NUL
+IF NOT EXIST %USERPROFILE% DO MKDIR %LOCALAPPDATA% >NUL
+IF NOT EXIST %USERPROFILE%Llama.cpp\models DO MKDIR %USERPROFILE%Llama.cpp\models >NUL
+
+ECHO If either Llama.cpp or an LLM has not been downloaded yet, refer to ReadMe.md on how to proceed.
+ECHO.
+ECHO Then select a LLM and serve it with Llamap.cpp by execution the corresponding batch, e.g. Server.Mistral7b.cmd.
+ECHO Available LLM servers:
+@DIR /B Server.*.cmd
 ```
 
-From the **[Llama.cpp](https://github.com/ggml-org/llama.cpp/releases)** download the version that supports <b>*NVIDIA GPU*</b>s (which automatically include <b>*CPU*</b> support), e.g. **[llama-b6367-bin-win-cuda-12.4-x64.zip](https://github.com/ggml-org/llama.cpp/releases/download/b6367/llama-b6367-bin-win-cuda-12.4-x64.zip)**.
+To install **[Llama.cpp](https://github.com/ggml-org/llama.cpp/releases)** download the version that supports <b>*NVIDIA GPU*</b>s (which automatically include <b>*CPU*</b> support), e.g. **[llama-b6367-bin-win-cuda-12.4-x64.zip](https://github.com/ggml-org/llama.cpp/releases/download/b6367/llama-b6367-bin-win-cuda-12.4-x64.zip)**.
+Unpack the archive into the subdirectory <b>*./Llamap.cpp/*</b>.
 
 **Llama.cpp** contains multiple programs, the most important for running an **LLM** are:
 
 - <b>*llama-server*</b>: This will start an **OpenAI API** compatible server that can be used by any client supporting that API.
-- <b>*llama-cli*</b>: This load the specified **LLM** and directly execute a chat, e.g. <b>*llama-cli --model "./models/Mistral 7B Instruct v0.3/Mistral-7B-Instruct-v0.3-Q4_K_M.gguf" --ctx-size 32768 --n-gpu-layers 40 --jinja -p "Why is the sky blue?"*</b>. 
+- <b>*llama-cli*</b>: This load the specified **LLM** and directly execute a chat, e.g. <b>*./Llamap.cpp/llama-cli --model "./Llamap.cpp/models/Mistral 7B Instruct v0.3/Mistral-7B-Instruct-v0.3-Q4_K_M.gguf" --ctx-size 32768 --n-gpu-layers 40 --jinja -p "Why is the sky blue?"*</b>. 
 
 ### LLM
 
-From **HuggingFace** download a model in <b>*GGUF*</b> format into the <b>*./Models*</b> subdirectory, e.g. **Mistral 7B Instruct v0.3** in <b>*4 Bit quantization*</b>, that is **[Q4\_K\_M](https://huggingface.co/lmstudio-community/Mistral-7B-Instruct-v0.3-GGUF/resolve/main/Mistral-7B-Instruct-v0.3-Q4\_K\_M.gguf?download=true)**.
+From **HuggingFace** download a model in <b>*GGUF*</b> format into the <b>*./Llamap.cpp/Models*</b> subdirectory, e.g. **Mistral 7B Instruct v0.3** in <b>*4 Bit quantization*</b>, that is **[Q4_K_M](https://huggingface.co/lmstudio-community/Mistral-7B-Instruct-v0.3-GGUF/resolve/main/Mistral-7B-Instruct-v0.3-Q4_K_M.gguf?download=true)**.
 
-- Download this model into the directory <b>*./models/Mistral 7B Instruct v0.3*</b>
+- Download this model into the directory <b>*./Llama.cpp&models/Mistral 7B Instruct v0.3*</b>
 - Create the batch script <b>*Server.Mistral7b.cmd*</b> to run it with **Llama.cpp**:
 
 ```
 @ECHO OFF
-START "Llama.cpp Mistral 7B" ./llama-server --model "./models/Mistral 7B Instruct v0.3/Mistral-7B-Instruct-v0.3-Q4\_K\_M.gguf" --port 10000 --ctx-size 32768 --n-gpu-layers 40 --jinja
+START "Llama.cpp Mistral 7B" ./Llama.cpp&llama-server --model "./Llama.cpp/models/Mistral 7B Instruct v0.3/Mistral-7B-Instruct-v0.3-Q4\_K\_M.gguf" --port 10000 --ctx-size 32768 --n-gpu-layers 40 --jinja
 ECHO Please be patient for Llama.cpp to initialize ...
 timeout 30
 START http://127.0.0.1:10000
