@@ -1,0 +1,61 @@
+# Ollama
+
+## Installation
+
+To create a portable installation of **Ollama**:
+
+1. Install **[Ollama](https://ollama.com/download/OllamaSetup.exe)** with the downloaded installer.
+**Ollama** automatically downloads updates which also can be run as an installer.
+2. Copy the **Ollama** program and configuration to this repository folder (replace <b>*User*</b> with your username):
+
+   ```
+   COPY X:\Users\<User>\AppData\Local\Programs\Ollama .\Ollama\ /v
+   COPY X:\Users\<User>\.ollama\id* .\Ollama\Users\Ollama\.ollama /v 
+   ```
+
+3. Deinstall **Ollama** again
+
+## Usage
+
+Initialize the portable **Ollama** environment and launch it with <b>*SetupEnvOllama.cmd*</b>:
+
+```
+@ECHO OFF
+SET CURRENTDIR=%~dp0
+SET OLLAMA_ORIGINS=*
+SET OLLAMA_HOST=0.0.0.0
+SET OLLAMA_MODELS=%CURRENTDIR%Ollama\Models
+SET USERPROFILE=%CURRENTDIR%Ollama\Users\Ollama
+IF NOT EXIST %USERPROFILE% DO MKDIR %USERPROFILE% >NUL
+IF NOT EXIST %OLLAMA_MODELS% DO MKDIR %OLLAMA_MODELS% >NUL
+
+ECHO If either Ollama or an LLM has not been downloaded yet, refer to ReadMe.md on how to proceed.
+ECHO.
+START "Ollama Service" .\Ollama\ollama serve
+timeout 5
+ECHO Running with Models in: %OLLAMA_MODELS%
+.\Ollama\ollama list
+```
+
+After installing **Ollama** no **LLM** gets installed automatically so install it manually by:
+
+```
+.\Ollama\ollama pull <model>
+```
+
+where <b>*model*</b> is a **LLM** supported by **Ollama**, e.g. <b>*gpt-oss:latest*</b>.
+What **LLM**s are available can be found on **[Ollama](https://ollama.com/library)**.
+
+## GUI
+
+### Ollama
+
+**Ollama** also includes a simple **GUI** which can be used for basic interaction with **LLM**s:
+
+```
+.\Ollama\ollama app.exe
+```
+
+### Others
+
+Of course other **GUI**s can be used also like e.g. **[Msty](https://msty.ai/)**.
