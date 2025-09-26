@@ -19,7 +19,7 @@ To run **Node** adapt the following template batch script <b>*SetupEnvNode.cmd*<
 
 ### Installation
 
-Install **GeminiCli** with the Node Package Manager:
+Install **Gemini Cli** with the Node Package Manager:
 
 ```
 npm install -g @google/gemini-cli
