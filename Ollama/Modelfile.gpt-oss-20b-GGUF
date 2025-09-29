@@ -1,0 +1,15 @@
+# Import GPTOSS-20B downloaded with LMStudio
+FROM ..\LMStudio\Users\.lmstudio\models\lmstudio-community\gpt-oss-20b-GGUF\gpt-oss-20b-MXFP4.gguf
+
+# Sets the context window size
+PARAMETER num_ctx 131072
+
+# Create Ollama LLM by (this makes a copy):
+#   .\ollama\ollama create gpt-oss-20b-GGUF -f .\Modelfile.gpt-oss-20b-GGUF
+# Show hash
+#   .\ollama\ollama show gpt-oss-20b-GGUF --modelfile
+# Replace copy with original GGUF symlink
+#   rm .\Ollama\Models\blobs\sha256-<HASH>
+#   mklink .\Ollama\Models\blobs\sha256-<HASH> ..\LMStudio\Users\.lmstudio\models\lmstudio-community\gpt-oss-20b-GGUF\gpt-oss-20b-MXFP4.gguf 
+
+
