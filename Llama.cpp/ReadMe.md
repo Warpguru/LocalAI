@@ -4,16 +4,25 @@
 
 ### Llama.cpp
 
+To install **[Llama.cpp](https://github.com/ggml-org/llama.cpp/releases)** download the version that supports <b>*NVIDIA GPU*</b>s (which automatically include <b>*CPU*</b> support), e.g. **[llama-b6367-bin-win-cuda-12.4-x64.zip](https://github.com/ggml-org/llama.cpp/releases/download/b6367/llama-b6367-bin-win-cuda-12.4-x64.zip)**.
+Unpack the archive into the subdirectory <b>*./Llamap.cpp/*</b>.
+
+**Llama.cpp** contains multiple programs, the most important for running an **LLM** are:
+
+- <b>*llama-server*</b>: This will start an **OpenAI API** compatible server that can be used by any client supporting that API.
+- <b>*llama-cli*</b>: This load the specified **LLM** and directly execute a chat, e.g. <b>*./Llamap.cpp/llama-cli --model "./Llamap.cpp/models/Mistral 7B Instruct v0.3/Mistral-7B-Instruct-v0.3-Q4_K_M.gguf" --ctx-size 32768 --n-gpu-layers 40 --jinja -p "Why is the sky blue?"*</b>. 
+
 Use the batch script <b>*SetupEnvLlama.cmd*</b> to allow **Llama.cpp** running in a portable way (and create the required directories):
 
 ```
 @ECHO OFF
 SET CURRENTDIR=%~dp0
-SET USERPROFILE=%CURRENTDIR%Llama.cpp\Users\Llama
-SET LOCALAPPDATA=%CURRENTDIR%Llama.cpp\Users\Llama\data\AppData\Local
-IF NOT EXIST %USERPROFILE% DO MKDIR %USERPROFILE% >NUL
-IF NOT EXIST %USERPROFILE% DO MKDIR %LOCALAPPDATA% >NUL
-IF NOT EXIST %USERPROFILE%Llama.cpp\models DO MKDIR %USERPROFILE%Llama.cpp\models >NUL
+SET LLAMA_MODELS=%CURRENTDIR%\Models
+SET USERPROFILE=%CURRENTDIR%\Users\Llama
+SET LOCALAPPDATA=%CURRENTDIR%\Users\Llama\data\AppData\Local
+IF NOT EXIST %USERPROFILE% MKDIR %USERPROFILE% >NUL
+IF NOT EXIST %LOCALAPPDATA% MKDIR %LOCALAPPDATA% >NUL
+IF NOT EXIST %LLAMA_MODELS% MKDIR %LLAMA_MODELS% >NUL
 
 ECHO If either Llama.cpp or an LLM has not been downloaded yet, refer to ReadMe.md on how to proceed.
 ECHO.
@@ -22,13 +31,7 @@ ECHO Available LLM servers:
 @DIR /B Server.*.cmd
 ```
 
-To install **[Llama.cpp](https://github.com/ggml-org/llama.cpp/releases)** download the version that supports <b>*NVIDIA GPU*</b>s (which automatically include <b>*CPU*</b> support), e.g. **[llama-b6367-bin-win-cuda-12.4-x64.zip](https://github.com/ggml-org/llama.cpp/releases/download/b6367/llama-b6367-bin-win-cuda-12.4-x64.zip)**.
-Unpack the archive into the subdirectory <b>*./Llamap.cpp/*</b>.
-
-**Llama.cpp** contains multiple programs, the most important for running an **LLM** are:
-
-- <b>*llama-server*</b>: This will start an **OpenAI API** compatible server that can be used by any client supporting that API.
-- <b>*llama-cli*</b>: This load the specified **LLM** and directly execute a chat, e.g. <b>*./Llamap.cpp/llama-cli --model "./Llamap.cpp/models/Mistral 7B Instruct v0.3/Mistral-7B-Instruct-v0.3-Q4_K_M.gguf" --ctx-size 32768 --n-gpu-layers 40 --jinja -p "Why is the sky blue?"*</b>. 
+You also need to download at least one **LLM** in <b>*GGUF*</b> format.
 
 ### LLM
 
@@ -39,7 +42,7 @@ From **HuggingFace** download a model in <b>*GGUF*</b> format into the <b>*./Lla
 
 ```
 @ECHO OFF
-START "Llama.cpp Mistral 7B" ./Llama.cpp&llama-server --model "./Llama.cpp/models/Mistral 7B Instruct v0.3/Mistral-7B-Instruct-v0.3-Q4\_K\_M.gguf" --port 10000 --ctx-size 32768 --n-gpu-layers 40 --jinja
+START "Llama.cpp Mistral 7B" ./Llama.cpp/llama-server --model "./Llama.cpp/models/Mistral 7B Instruct v0.3/Mistral-7B-Instruct-v0.3-Q4_K_M.gguf" --port 10000 --ctx-size 32768 --n-gpu-layers 40 --jinja
 ECHO Please be patient for Llama.cpp to initialize ...
 timeout 30
 START http://127.0.0.1:10000
@@ -51,7 +54,12 @@ You might want to fine-tune the parameters in both the batch script and in the *
 A message like <b>*tools param requires --jinja flag*</b> in the **LLM**s response clearly hints that running the model requires this flag.
 It's also required for full **OpenAI API** compatibility in <b>*llama-server*</b>.
 
-### Proxy
+## Usage
+
+Execute one of the server batch script, e.g. <b>*Server.Mistral7b.cmd*</b>, a basic browser based user interface will be opened.
+Alternatively you can use the **OpenAI API** compatible interface at <b>*http://127.0.0.1:10000/v1*</b>. 
+
+## Proxy
 
 You can run a reverse proxy between the **Llama.cpp** server and the client that forward the requests while also logging them.
 

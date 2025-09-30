@@ -1,5 +1,11 @@
 # Ollama
 
+## Warning
+
+The industry standard file format for **LLM**s is **[GGUF](https://github.com/ggml-org/ggml/blob/master/docs/gguf.md)**.
+**Ollama** uses a different file format, which can be imported from a **GGUF** file, but currently no out-of-the-box tools exist to do that painlessly,
+thus **Ollama** may not be the best choice for more advanced **AI** use cases.
+
 ## Installation
 
 To create a portable installation of **Ollama**:
@@ -12,7 +18,7 @@ To create a portable installation of **Ollama**:
    XCOPY X:\Users\<User>\AppData\Local\Programs\Ollama .\Ollama\ /s /e /v
    XCOPY X:\Users\<User>\.ollama\id* .\Users\Ollama\.ollama /s /e /v 
    ```
-
+   
 3. Deinstall **Ollama** again
 
 ## Usage

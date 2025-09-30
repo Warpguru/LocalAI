@@ -1,7 +1,10 @@
 # Import GPTOSS-20B downloaded with LMStudio
 FROM ..\LMStudio\Users\.lmstudio\models\lmstudio-community\gpt-oss-20b-GGUF\gpt-oss-20b-MXFP4.gguf
 
-# Sets the context window size
+# Template: Here the chat_template from the gguf file needs to be added, otherwise the LLM won't understand you
+# ...
+
+# Parameters: E.g. set the context window size
 PARAMETER num_ctx 131072
 
 # Create Ollama LLM by (this makes a copy):

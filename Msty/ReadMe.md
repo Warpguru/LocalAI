@@ -11,7 +11,6 @@ To create a portable installation of **MstyStudio**:
    XCOPY X:\Users\<User>\AppData\Local\Programs\MstyStudio .\MstyStudio\ /s /e /v
    XCOPY X:\Users\<User>\AppData\Roaming\MstyStudio .\Users\MstyStudio\AppData\Roaming\MstyStudio\ /s /e /v
    ```
-
 3. Deinstall **MstyStudio** again
 
 ## Usage
