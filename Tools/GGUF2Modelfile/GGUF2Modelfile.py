@@ -45,7 +45,7 @@ def main():
             break
 
     if not chat_template:
-        print("??  No chat_template found in this GGUF file.")
+        print("⚠️  No chat_template found in this GGUF file.")
         print("   (This may be a base model or fine-tuned model without chat formatting.)")
         sys.exit(1)
 
@@ -56,8 +56,8 @@ def main():
         f.write(chat_template.strip() + "\n")
         f.write("\"\"\"\n")
 
-    print(f"? Modelfile created successfully: {output_path}")
-    print("?? You can now run:\n   ollama create mymodel -f Modelfile")
+    print(f"✅ Modelfile created successfully: {output_path}")
+    print("👉 You can now run:\n   ollama create mymodel -f Modelfile")
 
 if __name__ == "__main__":
     main()
