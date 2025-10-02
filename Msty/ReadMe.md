@@ -30,7 +30,10 @@ ECHO You may need to register local LLM providers (like e.g.: Ollama, Llama.cpp)
 ```
 
 After installing **MstyStudio** your local **LLM** providers need to be added as <b>*Remote Model Providers*</b>.
-To add e.g. **Ollama** as a local **LLM** provider add an entry e.g. <b>*Ollama@localhost*</b> with the default Url <b>*http://127.0.0.1:11434/*</b>.
+When adding a **LLM** provider to the <b>*Model hub*</b> consider the providers:
+
+  - For **Ollama** add an <b>*Ollama*</b> provider entry e.g. <b>*Ollama@localhost*</b> with the Url <b>*http://127.0.0.1:11434/*</b>.
+  - For **Llama.cpp** add an <b>*Open AI compatible*</b> provider entry e.g. <b>*Llama.cpp@localhost*</b> with the Url <b>*http://127.0.0.1:10000/*</b>
 
 ## Proxy
 
@@ -49,12 +52,30 @@ The communication between **MstyStudio** and the **LLM** exposed by **Ollama** w
 
 ### Fiddler
 
-Alternatively you can add the following rule to **[Fiddler](https://www.telerik.com/fiddler)** by invoking the editor for the <b>*OnBeforeRequest*</b> handler from <b>*Rules*</b> <b>*Customize Rules...*</b> to add as the first line:
+Alternatively you can add another <b>*Remote Model Providers*</b> to **MstyStudio**, e.g. <b>*Ollama@Fiddler*</b> with the default Url <b>*http://localhost:8888/*</b> (<b>*localhost*</b> must match the hostname or IP address used in the rules editor as shown below).
+**Fiddler** will now log the communication between **MstyStudio** and the **LLM** exposed by e.g. **Ollama**, which can be verified best by switching the viewer to format the body to **Json** format.
+
+In order for **[Fiddler](https://www.telerik.com/fiddler)** to reverse proxy the request invoke the rules editor from <b>*Rules*</b>→<b>*Customize Rules...*</b> and add as the first lines to the <b>*OnBeforeRequest*</b> handler:
+
+**Note!** If the **LLM** provider is on a remote host change <b>*localhost*</b> to the remote hosts hostname accordingly. 
+
+#### Ollama
 
 ```
 // Forward traffic to Ollama server
 if (oSession.host.toLowerCase() == "localhost:8888") oSession.host = "localhost:11434"; 
 ```
 
-and adding another <b>*Remote Model Providers*</b> to **MstyStudio**, e.g. <b>*Ollama@Fiddler*</b> with the default Url <b>*http://127.0.0.1:8888/*</b>.
-**Fiddler** will now log the communication between **MstyStudio** and the **LLM** exposed by **Ollama**, which can be verified best by switching the viewer to format the body to **Json** format.
+#### Llama.cpp
+
+```
+// Forward traffic to Llama.cpp server
+if (oSession.host.toLowerCase() == "localhost:8888") oSession.host = "localhost:10000"; 
+```
+
+#### LM Studio
+
+```
+// Forward traffic to LMStudio llama.cpp server
+if (oSession.host.toLowerCase() == "localhost:8888") oSession.host = "localhost:1234"; 
+```
