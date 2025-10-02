@@ -36,7 +36,7 @@ An example how to convert a **LLM** in **GGUF** file format is shown in the **[O
 A few words on how a <b>*user message*</b> such as e.g. <b>*Why is the sky blue?*</b> gets processed to an answer such as e.g. <b>*Because of Rayleigh scattering.*</b>.
 This is important to understand how a **LLM** represents the input internally to process it, especially in conjunction with a **Modelfile** or **chat_template** as they may contain a default <b>*system message*</b> such as <b>*You are a helpful assistant!*</b>. 
 
-![Message processing](.\doc\LLM.png "Message Processing")
+![Message processing](./doc/LLM.png "Message Processing")
 
 The <b>*user message*</b>, which may be multi-media not just text, is sent to the **LLM**:
 
