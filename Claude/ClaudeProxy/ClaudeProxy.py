@@ -1,0 +1,227 @@
+"""
+Claude to OpenAI API Proxy Server.
+
+This script creates a Flask-based proxy server that translates API requests
+from the Claude format to the OpenAI API format. It allows tools that are
+compatible with the Claude API to work with OpenAI-compatible models.
+
+The proxy handles both streaming and non-streaming requests, and it mimics
+the necessary Claude API endpoints like `/v1/messages` and `/v1/models`.
+
+Based on the method described here:
+https://medium.com/@joe.njenga/how-i-tricked-claude-code-to-use-gpt-oss-the-new-openai-model-it-worked-5b7ee0483c22
+
+Test with:
+http://localhost:8000/health
+http://localhost:8000/v1/models
+curl -X POST http://localhost:8000/v1/messages -H "Content-Type: application/json" -d "{""model"":""claude-3-sonnet-20240229"",""messages"":[{""role"":""user"",""content"":""Write a simple hello world function in Python""}]}"
+"""
+
+from flask import Flask, request, jsonify, Response
+import requests
+import json
+import time
+from typing import Dict, Any
+
+app = Flask(__name__)
+
+# Configuration
+OPENAIAPI_BASE_URL = "http://localhost:8888"  # Use Ollama, Llama.cpp or Fiddler reverse proxy url
+OPENAIAPI_MODEL = "gpt-oss:20b"  # Change to your model
+
+
+class ClaudeOpenAiApiProxy:
+    """
+    A proxy to handle the conversion between Claude and OpenAI API formats.
+
+    This class encapsulates the logic for transforming request and response
+    payloads between the two different API structures. It maintains conversation
+    history if needed (though not used in the current implementation).
+    """
+
+    def __init__(self):
+        self.conversation_history = {}
+
+    def claude_to_openaiapi_format(self, claude_request: Dict[str, Any]) -> Dict[str, Any]:
+        """
+        Converts a Claude API request to the OpenAI API format.
+
+        Args:
+            claude_request: A dictionary representing the JSON request from a
+                            Claude-compatible client.
+
+        Returns:
+            A dictionary representing the JSON request in the OpenAI API format.
+        """
+
+        messages = claude_request.get('messages', [])
+        openaiapi_messages = []
+
+        for msg in messages:
+            role = msg.get('role', 'user')
+            content = msg.get('content', '')
+
+            # Handle Claude's content format (can be string or list of blocks)
+            if isinstance(content, list):
+                text_content = ""
+                for block in content:
+                    if block.get('type') == 'text':
+                        text_content += block.get('text', '')
+                content = text_content
+
+            openaiapi_messages.append({
+                "role": role,
+                "content": content
+            })
+
+        return {
+            "model": OPENAIAPI_MODEL,
+            "messages": openaiapi_messages,
+            "stream": claude_request.get('stream', False)
+        }
+
+    def openaiapi_to_claude_format(self, openaiapi_response: Dict[str, Any]) -> Dict[str, Any]:
+        """
+        Converts an OpenAI API response to the Claude API format.
+
+        Args:
+            openaiapi_response: A dictionary representing the JSON response
+                                from the OpenAI API.
+
+        Returns:
+            A dictionary representing the JSON response in the Claude API format.
+        """
+
+        if 'message' in openaiapi_response:
+            content = openaiapi_response['message'].get('content', '')
+
+            return {
+                "id": f"msg_{int(time.time())}",
+                "type": "message",
+                "role": "assistant",
+                "content": [
+                    {
+                        "type": "text",
+                        "text": content
+                    }
+                ],
+                "model": "claude-3-sonnet-20240229",  # Mimic Claude model
+                "stop_reason": "end_turn",
+                "stop_sequence": None,
+                "usage": {
+                    "input_tokens": 0,  # Placeholder, as this isn't provided
+                    "output_tokens": 0  # Placeholder, as this isn't provided
+                }
+            }
+
+        return openaiapi_response
+
+
+@app.route('/v1/messages', methods=['POST'])
+def handle_messages():
+    """
+    Main endpoint for handling incoming Claude API messages.
+
+    This function receives requests, converts them from Claude to OpenAI format,
+    and then dispatches them to either a streaming or non-streaming handler.
+
+    Returns:
+        A Flask Response object, which is either a streaming response or a
+        JSON response.
+    """
+    try:
+        claude_request = request.get_json()
+        proxy = ClaudeOpenAiApiProxy()
+
+        # Convert the incoming request to OpenAI format
+        openaiapi_request = proxy.claude_to_openaiapi_format(claude_request)
+
+        # Handle streaming or non-streaming requests based on the 'stream' flag
+        if openaiapi_request.get('stream', False):
+            return handle_streaming_request(openaiapi_request, proxy)
+        else:
+            return handle_non_streaming_request(openaiapi_request, proxy)
+
+    except Exception as e:
+        # Return a generic error response if something goes wrong
+        return jsonify({"error": str(e)}), 500
+
+
+def handle_non_streaming_request(openaiapi_request: Dict[str, Any], proxy: ClaudeOpenAiApiProxy):
+    """
+    Handles non-streaming (regular) requests to the OpenAI API.
+
+    Args:
+        openaiapi_request: The request payload in OpenAI API format.
+        proxy: An instance of the ClaudeOpenAiApiProxy class.
+
+    Returns:
+        A Flask JSON response containing the converted Claude API response.
+    """
+    try:
+        response = requests.post(
+            f"{OPENAIAPI_BASE_URL}/api/chat",
+            json=openaiapi_request,
+            timeout=60
+        )
+        response.raise_for_status()
+
+        openaiapi_response = response.json()
+        claude_response = proxy.openaiapi_to_claude_format(openaiapi_response)
+
+        return jsonify(claude_response)
+
+    except requests.exceptions.RequestException as e:
+        return jsonify({"error": f"OpenAI API request failed: {str(e)}"}), 500
+
+
+@app.route('/v1/models', methods=['GET'])
+def list_models():
+    """
+    Mimics the Claude API endpoint for listing available models.
+
+    Returns:
+        A Flask JSON response with a list of hardcoded model information to
+        satisfy Claude-compatible clients.
+    """
+    return jsonify({
+        "data": [
+            {
+                "id": "claude-3-sonnet-20240229",
+                "object": "model",
+                "created": int(time.time()),
+                "owned_by": "anthropic"
+            }
+        ]
+    })
+
+
+@app.route('/health', methods=['GET'])
+def health_check():
+    """
+    Provides a health check endpoint for monitoring the proxy.
+
+    This endpoint checks the connection to the downstream OpenAI API and
+    reports the status.
+
+    Returns:
+        A Flask JSON response indicating the health status of the proxy and
+        its connection to the OpenAI API.
+    """
+    try:
+        response = requests.get(f"{OPENAIAPI_BASE_URL}/api/tags", timeout=5)
+        if response.status_code == 200:
+            return jsonify({"Status": "healthy", "OpenAI API": "connected"})
+        else:
+            return jsonify({"Status": "unhealthy", "OpenAI API": "disconnected"}), 500
+    except:
+        return jsonify({"Status": "error", "OpenAI API": "unreachable"}), 500
+
+
+if __name__ == "__main__":
+    print("Starting Claude Code → OpenAI API Proxy Server")
+    print(f"OpenAI API URL: {OPENAIAPI_BASE_URL}")
+    print(f"Using model: {OPENAIAPI_MODEL}")
+    print("Proxy running on http://localhost:8000")
+
+    app.run(host='0.0.0.0', port=8000, debug=True)

@@ -1,0 +1,2844 @@
+ggml_cuda_init: GGML_CUDA_FORCE_MMQ:    no
+ggml_cuda_init: GGML_CUDA_FORCE_CUBLAS: no
+ggml_cuda_init: found 1 CUDA devices:
+  Device 0: Quadro P1000, compute capability 6.1, VMM: yes
+load_backend: loaded CUDA backend from D:\LocalAI\Llama.cpp\Llama.cpp\ggml-cuda.dll
+load_backend: loaded RPC backend from D:\LocalAI\Llama.cpp\Llama.cpp\ggml-rpc.dll
+load_backend: loaded CPU backend from D:\LocalAI\Llama.cpp\Llama.cpp\ggml-cpu-haswell.dll
+build: 6365 (5eae9348) with clang version 19.1.5 for x86_64-pc-windows-msvc
+main: llama backend init
+main: load the model and apply lora adapter, if any
+llama_model_load_from_file_impl: using device CUDA0 (Quadro P1000) - 3365 MiB free
+llama_model_loader: loaded meta data with 33 key-value pairs and 459 tensors from .\Models\gpt-oss-20b\gpt-oss-20b-MXFP4.gguf (version GGUF V3 (latest))
+llama_model_loader: Dumping metadata keys/values. Note: KV overrides do not apply in this output.
+llama_model_loader: - kv   0:                       general.architecture str              = gpt-oss
+llama_model_loader: - kv   1:                               general.type str              = model
+llama_model_loader: - kv   2:                               general.name str              = Openai_Gpt Oss 20b
+llama_model_loader: - kv   3:                           general.basename str              = openai_gpt-oss
+llama_model_loader: - kv   4:                         general.size_label str              = 20B
+llama_model_loader: - kv   5:                        gpt-oss.block_count u32              = 24
+llama_model_loader: - kv   6:                     gpt-oss.context_length u32              = 131072
+llama_model_loader: - kv   7:                   gpt-oss.embedding_length u32              = 2880
+llama_model_loader: - kv   8:                gpt-oss.feed_forward_length u32              = 2880
+llama_model_loader: - kv   9:               gpt-oss.attention.head_count u32              = 64
+llama_model_loader: - kv  10:            gpt-oss.attention.head_count_kv u32              = 8
+llama_model_loader: - kv  11:                     gpt-oss.rope.freq_base f32              = 150000.000000
+llama_model_loader: - kv  12:   gpt-oss.attention.layer_norm_rms_epsilon f32              = 0.000010
+llama_model_loader: - kv  13:                       gpt-oss.expert_count u32              = 32
+llama_model_loader: - kv  14:                  gpt-oss.expert_used_count u32              = 4
+llama_model_loader: - kv  15:               gpt-oss.attention.key_length u32              = 64
+llama_model_loader: - kv  16:             gpt-oss.attention.value_length u32              = 64
+llama_model_loader: - kv  17:           gpt-oss.attention.sliding_window u32              = 128
+llama_model_loader: - kv  18:         gpt-oss.expert_feed_forward_length u32              = 2880
+llama_model_loader: - kv  19:                  gpt-oss.rope.scaling.type str              = yarn
+llama_model_loader: - kv  20:                gpt-oss.rope.scaling.factor f32              = 32.000000
+llama_model_loader: - kv  21: gpt-oss.rope.scaling.original_context_length u32              = 4096
+llama_model_loader: - kv  22:                       tokenizer.ggml.model str              = gpt2
+llama_model_loader: - kv  23:                         tokenizer.ggml.pre str              = gpt-4o
+llama_model_loader: - kv  24:                      tokenizer.ggml.tokens arr[str,201088]  = ["!", "\"", "#", "$", "%", "&", "'", ...
+llama_model_loader: - kv  25:                  tokenizer.ggml.token_type arr[i32,201088]  = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, ...
+llama_model_loader: - kv  26:                      tokenizer.ggml.merges arr[str,446189]  = ["Ġ Ġ", "Ġ ĠĠĠ", "ĠĠ ĠĠ", "...
+llama_model_loader: - kv  27:                tokenizer.ggml.bos_token_id u32              = 199998
+llama_model_loader: - kv  28:                tokenizer.ggml.eos_token_id u32              = 200002
+llama_model_loader: - kv  29:            tokenizer.ggml.padding_token_id u32              = 199999
+llama_model_loader: - kv  30:                    tokenizer.chat_template str              = {#-\n  In addition to the normal input...
+llama_model_loader: - kv  31:               general.quantization_version u32              = 2
+llama_model_loader: - kv  32:                          general.file_type u32              = 38
+llama_model_loader: - type  f32:  289 tensors
+llama_model_loader: - type q8_0:   98 tensors
+llama_model_loader: - type mxfp4:   72 tensors
+print_info: file format = GGUF V3 (latest)
+print_info: file type   = MXFP4 MoE
+print_info: file size   = 11.27 GiB (4.63 BPW) 
+init_tokenizer: initializing tokenizer for type 2
+load: control token: 200003 '<|constrain|>' is not marked as EOG
+load: control token: 200008 '<|message|>' is not marked as EOG
+load: control token: 200000 '<|reserved_200000|>' is not marked as EOG
+load: control token: 200004 '<|reserved_200004|>' is not marked as EOG
+load: control token: 200013 '<|reserved_200013|>' is not marked as EOG
+load: control token: 200009 '<|reserved_200009|>' is not marked as EOG
+load: control token: 199998 '<|startoftext|>' is not marked as EOG
+load: control token: 200014 '<|reserved_200014|>' is not marked as EOG
+load: control token: 200011 '<|reserved_200011|>' is not marked as EOG
+load: control token: 200015 '<|reserved_200015|>' is not marked as EOG
+load: control token: 200001 '<|reserved_200001|>' is not marked as EOG
+load: control token: 200005 '<|channel|>' is not marked as EOG
+load: control token: 200006 '<|start|>' is not marked as EOG
+load: control token: 200010 '<|reserved_200010|>' is not marked as EOG
+load: control token: 200016 '<|reserved_200016|>' is not marked as EOG
+load: control token: 200017 '<|reserved_200017|>' is not marked as EOG
+load: control token: 200018 '<|endofprompt|>' is not marked as EOG
+load: printing all EOG tokens:
+load:   - 199999 ('<|endoftext|>')
+load:   - 200002 ('<|return|>')
+load:   - 200007 ('<|end|>')
+load:   - 200012 ('<|call|>')
+load: special_eog_ids contains both '<|return|>' and '<|call|>' tokens, removing '<|end|>' token from EOG list
+load: special tokens cache size = 21
+load: token to piece cache size = 1.3332 MB
+print_info: arch             = gpt-oss
+print_info: vocab_only       = 0
+print_info: n_ctx_train      = 131072
+print_info: n_embd           = 2880
+print_info: n_layer          = 24
+print_info: n_head           = 64
+print_info: n_head_kv        = 8
+print_info: n_rot            = 64
+print_info: n_swa            = 128
+print_info: is_swa_any       = 1
+print_info: n_embd_head_k    = 64
+print_info: n_embd_head_v    = 64
+print_info: n_gqa            = 8
+print_info: n_embd_k_gqa     = 512
+print_info: n_embd_v_gqa     = 512
+print_info: f_norm_eps       = 0.0e+00
+print_info: f_norm_rms_eps   = 1.0e-05
+print_info: f_clamp_kqv      = 0.0e+00
+print_info: f_max_alibi_bias = 0.0e+00
+print_info: f_logit_scale    = 0.0e+00
+print_info: f_attn_scale     = 0.0e+00
+print_info: n_ff             = 2880
+print_info: n_expert         = 32
+print_info: n_expert_used    = 4
+print_info: causal attn      = 1
+print_info: pooling type     = 0
+print_info: rope type        = 2
+print_info: rope scaling     = yarn
+print_info: freq_base_train  = 150000.0
+print_info: freq_scale_train = 0.03125
+print_info: n_ctx_orig_yarn  = 4096
+print_info: rope_finetuned   = unknown
+print_info: model type       = 20B
+print_info: model params     = 20.91 B
+print_info: general.name     = Openai_Gpt Oss 20b
+print_info: n_ff_exp         = 2880
+print_info: vocab type       = BPE
+print_info: n_vocab          = 201088
+print_info: n_merges         = 446189
+print_info: BOS token        = 199998 '<|startoftext|>'
+print_info: EOS token        = 200002 '<|return|>'
+print_info: EOT token        = 199999 '<|endoftext|>'
+print_info: PAD token        = 199999 '<|endoftext|>'
+print_info: LF token         = 198 'Ċ'
+print_info: EOG token        = 199999 '<|endoftext|>'
+print_info: EOG token        = 200002 '<|return|>'
+print_info: EOG token        = 200012 '<|call|>'
+print_info: max token length = 256
+load_tensors: loading model tensors, this can take a while... (mmap = true)
+load_tensors: layer   0 assigned to device CUDA0, is_swa = 1
+load_tensors: layer   1 assigned to device CUDA0, is_swa = 0
+load_tensors: layer   2 assigned to device CUDA0, is_swa = 1
+load_tensors: layer   3 assigned to device CUDA0, is_swa = 0
+load_tensors: layer   4 assigned to device CUDA0, is_swa = 1
+load_tensors: layer   5 assigned to device CUDA0, is_swa = 0
+load_tensors: layer   6 assigned to device CUDA0, is_swa = 1
+load_tensors: layer   7 assigned to device CUDA0, is_swa = 0
+load_tensors: layer   8 assigned to device CUDA0, is_swa = 1
+load_tensors: layer   9 assigned to device CUDA0, is_swa = 0
+load_tensors: layer  10 assigned to device CUDA0, is_swa = 1
+load_tensors: layer  11 assigned to device CUDA0, is_swa = 0
+load_tensors: layer  12 assigned to device CUDA0, is_swa = 1
+load_tensors: layer  13 assigned to device CUDA0, is_swa = 0
+load_tensors: layer  14 assigned to device CUDA0, is_swa = 1
+load_tensors: layer  15 assigned to device CUDA0, is_swa = 0
+load_tensors: layer  16 assigned to device CUDA0, is_swa = 1
+load_tensors: layer  17 assigned to device CUDA0, is_swa = 0
+load_tensors: layer  18 assigned to device CUDA0, is_swa = 1
+load_tensors: layer  19 assigned to device CUDA0, is_swa = 0
+load_tensors: layer  20 assigned to device CUDA0, is_swa = 1
+load_tensors: layer  21 assigned to device CUDA0, is_swa = 0
+load_tensors: layer  22 assigned to device CUDA0, is_swa = 1
+load_tensors: layer  23 assigned to device CUDA0, is_swa = 0
+load_tensors: layer  24 assigned to device CUDA0, is_swa = 0
+create_tensor: loading tensor token_embd.weight
+create_tensor: loading tensor output_norm.weight
+create_tensor: loading tensor output.weight
+create_tensor: loading tensor blk.0.attn_norm.weight
+create_tensor: loading tensor blk.0.post_attention_norm.weight
+create_tensor: loading tensor blk.0.attn_q.weight
+create_tensor: loading tensor blk.0.attn_k.weight
+create_tensor: loading tensor blk.0.attn_v.weight
+create_tensor: loading tensor blk.0.attn_output.weight
+create_tensor: loading tensor blk.0.attn_sinks.weight
+create_tensor: loading tensor blk.0.ffn_gate_inp.weight
+create_tensor: loading tensor blk.0.ffn_gate_exps.weight
+create_tensor: loading tensor blk.0.ffn_down_exps.weight
+create_tensor: loading tensor blk.0.ffn_up_exps.weight
+create_tensor: loading tensor blk.0.attn_q.bias
+create_tensor: loading tensor blk.0.attn_k.bias
+create_tensor: loading tensor blk.0.attn_v.bias
+create_tensor: loading tensor blk.0.attn_output.bias
+create_tensor: loading tensor blk.0.ffn_gate_inp.bias
+create_tensor: loading tensor blk.0.ffn_gate_exps.bias
+create_tensor: loading tensor blk.0.ffn_down_exps.bias
+create_tensor: loading tensor blk.0.ffn_up_exps.bias
+create_tensor: loading tensor blk.1.attn_norm.weight
+create_tensor: loading tensor blk.1.post_attention_norm.weight
+create_tensor: loading tensor blk.1.attn_q.weight
+create_tensor: loading tensor blk.1.attn_k.weight
+create_tensor: loading tensor blk.1.attn_v.weight
+create_tensor: loading tensor blk.1.attn_output.weight
+create_tensor: loading tensor blk.1.attn_sinks.weight
+create_tensor: loading tensor blk.1.ffn_gate_inp.weight
+create_tensor: loading tensor blk.1.ffn_gate_exps.weight
+create_tensor: loading tensor blk.1.ffn_down_exps.weight
+create_tensor: loading tensor blk.1.ffn_up_exps.weight
+create_tensor: loading tensor blk.1.attn_q.bias
+create_tensor: loading tensor blk.1.attn_k.bias
+create_tensor: loading tensor blk.1.attn_v.bias
+create_tensor: loading tensor blk.1.attn_output.bias
+create_tensor: loading tensor blk.1.ffn_gate_inp.bias
+create_tensor: loading tensor blk.1.ffn_gate_exps.bias
+create_tensor: loading tensor blk.1.ffn_down_exps.bias
+create_tensor: loading tensor blk.1.ffn_up_exps.bias
+create_tensor: loading tensor blk.2.attn_norm.weight
+create_tensor: loading tensor blk.2.post_attention_norm.weight
+create_tensor: loading tensor blk.2.attn_q.weight
+create_tensor: loading tensor blk.2.attn_k.weight
+create_tensor: loading tensor blk.2.attn_v.weight
+create_tensor: loading tensor blk.2.attn_output.weight
+create_tensor: loading tensor blk.2.attn_sinks.weight
+create_tensor: loading tensor blk.2.ffn_gate_inp.weight
+create_tensor: loading tensor blk.2.ffn_gate_exps.weight
+create_tensor: loading tensor blk.2.ffn_down_exps.weight
+create_tensor: loading tensor blk.2.ffn_up_exps.weight
+create_tensor: loading tensor blk.2.attn_q.bias
+create_tensor: loading tensor blk.2.attn_k.bias
+create_tensor: loading tensor blk.2.attn_v.bias
+create_tensor: loading tensor blk.2.attn_output.bias
+create_tensor: loading tensor blk.2.ffn_gate_inp.bias
+create_tensor: loading tensor blk.2.ffn_gate_exps.bias
+create_tensor: loading tensor blk.2.ffn_down_exps.bias
+create_tensor: loading tensor blk.2.ffn_up_exps.bias
+create_tensor: loading tensor blk.3.attn_norm.weight
+create_tensor: loading tensor blk.3.post_attention_norm.weight
+create_tensor: loading tensor blk.3.attn_q.weight
+create_tensor: loading tensor blk.3.attn_k.weight
+create_tensor: loading tensor blk.3.attn_v.weight
+create_tensor: loading tensor blk.3.attn_output.weight
+create_tensor: loading tensor blk.3.attn_sinks.weight
+create_tensor: loading tensor blk.3.ffn_gate_inp.weight
+create_tensor: loading tensor blk.3.ffn_gate_exps.weight
+create_tensor: loading tensor blk.3.ffn_down_exps.weight
+create_tensor: loading tensor blk.3.ffn_up_exps.weight
+create_tensor: loading tensor blk.3.attn_q.bias
+create_tensor: loading tensor blk.3.attn_k.bias
+create_tensor: loading tensor blk.3.attn_v.bias
+create_tensor: loading tensor blk.3.attn_output.bias
+create_tensor: loading tensor blk.3.ffn_gate_inp.bias
+create_tensor: loading tensor blk.3.ffn_gate_exps.bias
+create_tensor: loading tensor blk.3.ffn_down_exps.bias
+create_tensor: loading tensor blk.3.ffn_up_exps.bias
+create_tensor: loading tensor blk.4.attn_norm.weight
+create_tensor: loading tensor blk.4.post_attention_norm.weight
+create_tensor: loading tensor blk.4.attn_q.weight
+create_tensor: loading tensor blk.4.attn_k.weight
+create_tensor: loading tensor blk.4.attn_v.weight
+create_tensor: loading tensor blk.4.attn_output.weight
+create_tensor: loading tensor blk.4.attn_sinks.weight
+create_tensor: loading tensor blk.4.ffn_gate_inp.weight
+create_tensor: loading tensor blk.4.ffn_gate_exps.weight
+create_tensor: loading tensor blk.4.ffn_down_exps.weight
+create_tensor: loading tensor blk.4.ffn_up_exps.weight
+create_tensor: loading tensor blk.4.attn_q.bias
+create_tensor: loading tensor blk.4.attn_k.bias
+create_tensor: loading tensor blk.4.attn_v.bias
+create_tensor: loading tensor blk.4.attn_output.bias
+create_tensor: loading tensor blk.4.ffn_gate_inp.bias
+create_tensor: loading tensor blk.4.ffn_gate_exps.bias
+create_tensor: loading tensor blk.4.ffn_down_exps.bias
+create_tensor: loading tensor blk.4.ffn_up_exps.bias
+create_tensor: loading tensor blk.5.attn_norm.weight
+create_tensor: loading tensor blk.5.post_attention_norm.weight
+create_tensor: loading tensor blk.5.attn_q.weight
+create_tensor: loading tensor blk.5.attn_k.weight
+create_tensor: loading tensor blk.5.attn_v.weight
+create_tensor: loading tensor blk.5.attn_output.weight
+create_tensor: loading tensor blk.5.attn_sinks.weight
+create_tensor: loading tensor blk.5.ffn_gate_inp.weight
+create_tensor: loading tensor blk.5.ffn_gate_exps.weight
+create_tensor: loading tensor blk.5.ffn_down_exps.weight
+create_tensor: loading tensor blk.5.ffn_up_exps.weight
+create_tensor: loading tensor blk.5.attn_q.bias
+create_tensor: loading tensor blk.5.attn_k.bias
+create_tensor: loading tensor blk.5.attn_v.bias
+create_tensor: loading tensor blk.5.attn_output.bias
+create_tensor: loading tensor blk.5.ffn_gate_inp.bias
+create_tensor: loading tensor blk.5.ffn_gate_exps.bias
+create_tensor: loading tensor blk.5.ffn_down_exps.bias
+create_tensor: loading tensor blk.5.ffn_up_exps.bias
+create_tensor: loading tensor blk.6.attn_norm.weight
+create_tensor: loading tensor blk.6.post_attention_norm.weight
+create_tensor: loading tensor blk.6.attn_q.weight
+create_tensor: loading tensor blk.6.attn_k.weight
+create_tensor: loading tensor blk.6.attn_v.weight
+create_tensor: loading tensor blk.6.attn_output.weight
+create_tensor: loading tensor blk.6.attn_sinks.weight
+create_tensor: loading tensor blk.6.ffn_gate_inp.weight
+create_tensor: loading tensor blk.6.ffn_gate_exps.weight
+create_tensor: loading tensor blk.6.ffn_down_exps.weight
+create_tensor: loading tensor blk.6.ffn_up_exps.weight
+create_tensor: loading tensor blk.6.attn_q.bias
+create_tensor: loading tensor blk.6.attn_k.bias
+create_tensor: loading tensor blk.6.attn_v.bias
+create_tensor: loading tensor blk.6.attn_output.bias
+create_tensor: loading tensor blk.6.ffn_gate_inp.bias
+create_tensor: loading tensor blk.6.ffn_gate_exps.bias
+create_tensor: loading tensor blk.6.ffn_down_exps.bias
+create_tensor: loading tensor blk.6.ffn_up_exps.bias
+create_tensor: loading tensor blk.7.attn_norm.weight
+create_tensor: loading tensor blk.7.post_attention_norm.weight
+create_tensor: loading tensor blk.7.attn_q.weight
+create_tensor: loading tensor blk.7.attn_k.weight
+create_tensor: loading tensor blk.7.attn_v.weight
+create_tensor: loading tensor blk.7.attn_output.weight
+create_tensor: loading tensor blk.7.attn_sinks.weight
+create_tensor: loading tensor blk.7.ffn_gate_inp.weight
+create_tensor: loading tensor blk.7.ffn_gate_exps.weight
+create_tensor: loading tensor blk.7.ffn_down_exps.weight
+create_tensor: loading tensor blk.7.ffn_up_exps.weight
+create_tensor: loading tensor blk.7.attn_q.bias
+create_tensor: loading tensor blk.7.attn_k.bias
+create_tensor: loading tensor blk.7.attn_v.bias
+create_tensor: loading tensor blk.7.attn_output.bias
+create_tensor: loading tensor blk.7.ffn_gate_inp.bias
+create_tensor: loading tensor blk.7.ffn_gate_exps.bias
+create_tensor: loading tensor blk.7.ffn_down_exps.bias
+create_tensor: loading tensor blk.7.ffn_up_exps.bias
+create_tensor: loading tensor blk.8.attn_norm.weight
+create_tensor: loading tensor blk.8.post_attention_norm.weight
+create_tensor: loading tensor blk.8.attn_q.weight
+create_tensor: loading tensor blk.8.attn_k.weight
+create_tensor: loading tensor blk.8.attn_v.weight
+create_tensor: loading tensor blk.8.attn_output.weight
+create_tensor: loading tensor blk.8.attn_sinks.weight
+create_tensor: loading tensor blk.8.ffn_gate_inp.weight
+create_tensor: loading tensor blk.8.ffn_gate_exps.weight
+create_tensor: loading tensor blk.8.ffn_down_exps.weight
+create_tensor: loading tensor blk.8.ffn_up_exps.weight
+create_tensor: loading tensor blk.8.attn_q.bias
+create_tensor: loading tensor blk.8.attn_k.bias
+create_tensor: loading tensor blk.8.attn_v.bias
+create_tensor: loading tensor blk.8.attn_output.bias
+create_tensor: loading tensor blk.8.ffn_gate_inp.bias
+create_tensor: loading tensor blk.8.ffn_gate_exps.bias
+create_tensor: loading tensor blk.8.ffn_down_exps.bias
+create_tensor: loading tensor blk.8.ffn_up_exps.bias
+create_tensor: loading tensor blk.9.attn_norm.weight
+create_tensor: loading tensor blk.9.post_attention_norm.weight
+create_tensor: loading tensor blk.9.attn_q.weight
+create_tensor: loading tensor blk.9.attn_k.weight
+create_tensor: loading tensor blk.9.attn_v.weight
+create_tensor: loading tensor blk.9.attn_output.weight
+create_tensor: loading tensor blk.9.attn_sinks.weight
+create_tensor: loading tensor blk.9.ffn_gate_inp.weight
+create_tensor: loading tensor blk.9.ffn_gate_exps.weight
+create_tensor: loading tensor blk.9.ffn_down_exps.weight
+create_tensor: loading tensor blk.9.ffn_up_exps.weight
+create_tensor: loading tensor blk.9.attn_q.bias
+create_tensor: loading tensor blk.9.attn_k.bias
+create_tensor: loading tensor blk.9.attn_v.bias
+create_tensor: loading tensor blk.9.attn_output.bias
+create_tensor: loading tensor blk.9.ffn_gate_inp.bias
+create_tensor: loading tensor blk.9.ffn_gate_exps.bias
+create_tensor: loading tensor blk.9.ffn_down_exps.bias
+create_tensor: loading tensor blk.9.ffn_up_exps.bias
+create_tensor: loading tensor blk.10.attn_norm.weight
+create_tensor: loading tensor blk.10.post_attention_norm.weight
+create_tensor: loading tensor blk.10.attn_q.weight
+create_tensor: loading tensor blk.10.attn_k.weight
+create_tensor: loading tensor blk.10.attn_v.weight
+create_tensor: loading tensor blk.10.attn_output.weight
+create_tensor: loading tensor blk.10.attn_sinks.weight
+create_tensor: loading tensor blk.10.ffn_gate_inp.weight
+create_tensor: loading tensor blk.10.ffn_gate_exps.weight
+create_tensor: loading tensor blk.10.ffn_down_exps.weight
+create_tensor: loading tensor blk.10.ffn_up_exps.weight
+create_tensor: loading tensor blk.10.attn_q.bias
+create_tensor: loading tensor blk.10.attn_k.bias
+create_tensor: loading tensor blk.10.attn_v.bias
+create_tensor: loading tensor blk.10.attn_output.bias
+create_tensor: loading tensor blk.10.ffn_gate_inp.bias
+create_tensor: loading tensor blk.10.ffn_gate_exps.bias
+create_tensor: loading tensor blk.10.ffn_down_exps.bias
+create_tensor: loading tensor blk.10.ffn_up_exps.bias
+create_tensor: loading tensor blk.11.attn_norm.weight
+create_tensor: loading tensor blk.11.post_attention_norm.weight
+create_tensor: loading tensor blk.11.attn_q.weight
+create_tensor: loading tensor blk.11.attn_k.weight
+create_tensor: loading tensor blk.11.attn_v.weight
+create_tensor: loading tensor blk.11.attn_output.weight
+create_tensor: loading tensor blk.11.attn_sinks.weight
+create_tensor: loading tensor blk.11.ffn_gate_inp.weight
+create_tensor: loading tensor blk.11.ffn_gate_exps.weight
+create_tensor: loading tensor blk.11.ffn_down_exps.weight
+create_tensor: loading tensor blk.11.ffn_up_exps.weight
+create_tensor: loading tensor blk.11.attn_q.bias
+create_tensor: loading tensor blk.11.attn_k.bias
+create_tensor: loading tensor blk.11.attn_v.bias
+create_tensor: loading tensor blk.11.attn_output.bias
+create_tensor: loading tensor blk.11.ffn_gate_inp.bias
+create_tensor: loading tensor blk.11.ffn_gate_exps.bias
+create_tensor: loading tensor blk.11.ffn_down_exps.bias
+create_tensor: loading tensor blk.11.ffn_up_exps.bias
+create_tensor: loading tensor blk.12.attn_norm.weight
+create_tensor: loading tensor blk.12.post_attention_norm.weight
+create_tensor: loading tensor blk.12.attn_q.weight
+create_tensor: loading tensor blk.12.attn_k.weight
+create_tensor: loading tensor blk.12.attn_v.weight
+create_tensor: loading tensor blk.12.attn_output.weight
+create_tensor: loading tensor blk.12.attn_sinks.weight
+create_tensor: loading tensor blk.12.ffn_gate_inp.weight
+create_tensor: loading tensor blk.12.ffn_gate_exps.weight
+create_tensor: loading tensor blk.12.ffn_down_exps.weight
+create_tensor: loading tensor blk.12.ffn_up_exps.weight
+create_tensor: loading tensor blk.12.attn_q.bias
+create_tensor: loading tensor blk.12.attn_k.bias
+create_tensor: loading tensor blk.12.attn_v.bias
+create_tensor: loading tensor blk.12.attn_output.bias
+create_tensor: loading tensor blk.12.ffn_gate_inp.bias
+create_tensor: loading tensor blk.12.ffn_gate_exps.bias
+create_tensor: loading tensor blk.12.ffn_down_exps.bias
+create_tensor: loading tensor blk.12.ffn_up_exps.bias
+create_tensor: loading tensor blk.13.attn_norm.weight
+create_tensor: loading tensor blk.13.post_attention_norm.weight
+create_tensor: loading tensor blk.13.attn_q.weight
+create_tensor: loading tensor blk.13.attn_k.weight
+create_tensor: loading tensor blk.13.attn_v.weight
+create_tensor: loading tensor blk.13.attn_output.weight
+create_tensor: loading tensor blk.13.attn_sinks.weight
+create_tensor: loading tensor blk.13.ffn_gate_inp.weight
+create_tensor: loading tensor blk.13.ffn_gate_exps.weight
+create_tensor: loading tensor blk.13.ffn_down_exps.weight
+create_tensor: loading tensor blk.13.ffn_up_exps.weight
+create_tensor: loading tensor blk.13.attn_q.bias
+create_tensor: loading tensor blk.13.attn_k.bias
+create_tensor: loading tensor blk.13.attn_v.bias
+create_tensor: loading tensor blk.13.attn_output.bias
+create_tensor: loading tensor blk.13.ffn_gate_inp.bias
+create_tensor: loading tensor blk.13.ffn_gate_exps.bias
+create_tensor: loading tensor blk.13.ffn_down_exps.bias
+create_tensor: loading tensor blk.13.ffn_up_exps.bias
+create_tensor: loading tensor blk.14.attn_norm.weight
+create_tensor: loading tensor blk.14.post_attention_norm.weight
+create_tensor: loading tensor blk.14.attn_q.weight
+create_tensor: loading tensor blk.14.attn_k.weight
+create_tensor: loading tensor blk.14.attn_v.weight
+create_tensor: loading tensor blk.14.attn_output.weight
+create_tensor: loading tensor blk.14.attn_sinks.weight
+create_tensor: loading tensor blk.14.ffn_gate_inp.weight
+create_tensor: loading tensor blk.14.ffn_gate_exps.weight
+create_tensor: loading tensor blk.14.ffn_down_exps.weight
+create_tensor: loading tensor blk.14.ffn_up_exps.weight
+create_tensor: loading tensor blk.14.attn_q.bias
+create_tensor: loading tensor blk.14.attn_k.bias
+create_tensor: loading tensor blk.14.attn_v.bias
+create_tensor: loading tensor blk.14.attn_output.bias
+create_tensor: loading tensor blk.14.ffn_gate_inp.bias
+create_tensor: loading tensor blk.14.ffn_gate_exps.bias
+create_tensor: loading tensor blk.14.ffn_down_exps.bias
+create_tensor: loading tensor blk.14.ffn_up_exps.bias
+create_tensor: loading tensor blk.15.attn_norm.weight
+create_tensor: loading tensor blk.15.post_attention_norm.weight
+create_tensor: loading tensor blk.15.attn_q.weight
+create_tensor: loading tensor blk.15.attn_k.weight
+create_tensor: loading tensor blk.15.attn_v.weight
+create_tensor: loading tensor blk.15.attn_output.weight
+create_tensor: loading tensor blk.15.attn_sinks.weight
+create_tensor: loading tensor blk.15.ffn_gate_inp.weight
+create_tensor: loading tensor blk.15.ffn_gate_exps.weight
+create_tensor: loading tensor blk.15.ffn_down_exps.weight
+create_tensor: loading tensor blk.15.ffn_up_exps.weight
+create_tensor: loading tensor blk.15.attn_q.bias
+create_tensor: loading tensor blk.15.attn_k.bias
+create_tensor: loading tensor blk.15.attn_v.bias
+create_tensor: loading tensor blk.15.attn_output.bias
+create_tensor: loading tensor blk.15.ffn_gate_inp.bias
+create_tensor: loading tensor blk.15.ffn_gate_exps.bias
+create_tensor: loading tensor blk.15.ffn_down_exps.bias
+create_tensor: loading tensor blk.15.ffn_up_exps.bias
+create_tensor: loading tensor blk.16.attn_norm.weight
+create_tensor: loading tensor blk.16.post_attention_norm.weight
+create_tensor: loading tensor blk.16.attn_q.weight
+create_tensor: loading tensor blk.16.attn_k.weight
+create_tensor: loading tensor blk.16.attn_v.weight
+create_tensor: loading tensor blk.16.attn_output.weight
+create_tensor: loading tensor blk.16.attn_sinks.weight
+create_tensor: loading tensor blk.16.ffn_gate_inp.weight
+create_tensor: loading tensor blk.16.ffn_gate_exps.weight
+create_tensor: loading tensor blk.16.ffn_down_exps.weight
+create_tensor: loading tensor blk.16.ffn_up_exps.weight
+create_tensor: loading tensor blk.16.attn_q.bias
+create_tensor: loading tensor blk.16.attn_k.bias
+create_tensor: loading tensor blk.16.attn_v.bias
+create_tensor: loading tensor blk.16.attn_output.bias
+create_tensor: loading tensor blk.16.ffn_gate_inp.bias
+create_tensor: loading tensor blk.16.ffn_gate_exps.bias
+create_tensor: loading tensor blk.16.ffn_down_exps.bias
+create_tensor: loading tensor blk.16.ffn_up_exps.bias
+create_tensor: loading tensor blk.17.attn_norm.weight
+create_tensor: loading tensor blk.17.post_attention_norm.weight
+create_tensor: loading tensor blk.17.attn_q.weight
+create_tensor: loading tensor blk.17.attn_k.weight
+create_tensor: loading tensor blk.17.attn_v.weight
+create_tensor: loading tensor blk.17.attn_output.weight
+create_tensor: loading tensor blk.17.attn_sinks.weight
+create_tensor: loading tensor blk.17.ffn_gate_inp.weight
+create_tensor: loading tensor blk.17.ffn_gate_exps.weight
+create_tensor: loading tensor blk.17.ffn_down_exps.weight
+create_tensor: loading tensor blk.17.ffn_up_exps.weight
+create_tensor: loading tensor blk.17.attn_q.bias
+create_tensor: loading tensor blk.17.attn_k.bias
+create_tensor: loading tensor blk.17.attn_v.bias
+create_tensor: loading tensor blk.17.attn_output.bias
+create_tensor: loading tensor blk.17.ffn_gate_inp.bias
+create_tensor: loading tensor blk.17.ffn_gate_exps.bias
+create_tensor: loading tensor blk.17.ffn_down_exps.bias
+create_tensor: loading tensor blk.17.ffn_up_exps.bias
+create_tensor: loading tensor blk.18.attn_norm.weight
+create_tensor: loading tensor blk.18.post_attention_norm.weight
+create_tensor: loading tensor blk.18.attn_q.weight
+create_tensor: loading tensor blk.18.attn_k.weight
+create_tensor: loading tensor blk.18.attn_v.weight
+create_tensor: loading tensor blk.18.attn_output.weight
+create_tensor: loading tensor blk.18.attn_sinks.weight
+create_tensor: loading tensor blk.18.ffn_gate_inp.weight
+create_tensor: loading tensor blk.18.ffn_gate_exps.weight
+create_tensor: loading tensor blk.18.ffn_down_exps.weight
+create_tensor: loading tensor blk.18.ffn_up_exps.weight
+create_tensor: loading tensor blk.18.attn_q.bias
+create_tensor: loading tensor blk.18.attn_k.bias
+create_tensor: loading tensor blk.18.attn_v.bias
+create_tensor: loading tensor blk.18.attn_output.bias
+create_tensor: loading tensor blk.18.ffn_gate_inp.bias
+create_tensor: loading tensor blk.18.ffn_gate_exps.bias
+create_tensor: loading tensor blk.18.ffn_down_exps.bias
+create_tensor: loading tensor blk.18.ffn_up_exps.bias
+create_tensor: loading tensor blk.19.attn_norm.weight
+create_tensor: loading tensor blk.19.post_attention_norm.weight
+create_tensor: loading tensor blk.19.attn_q.weight
+create_tensor: loading tensor blk.19.attn_k.weight
+create_tensor: loading tensor blk.19.attn_v.weight
+create_tensor: loading tensor blk.19.attn_output.weight
+create_tensor: loading tensor blk.19.attn_sinks.weight
+create_tensor: loading tensor blk.19.ffn_gate_inp.weight
+create_tensor: loading tensor blk.19.ffn_gate_exps.weight
+create_tensor: loading tensor blk.19.ffn_down_exps.weight
+create_tensor: loading tensor blk.19.ffn_up_exps.weight
+create_tensor: loading tensor blk.19.attn_q.bias
+create_tensor: loading tensor blk.19.attn_k.bias
+create_tensor: loading tensor blk.19.attn_v.bias
+create_tensor: loading tensor blk.19.attn_output.bias
+create_tensor: loading tensor blk.19.ffn_gate_inp.bias
+create_tensor: loading tensor blk.19.ffn_gate_exps.bias
+create_tensor: loading tensor blk.19.ffn_down_exps.bias
+create_tensor: loading tensor blk.19.ffn_up_exps.bias
+create_tensor: loading tensor blk.20.attn_norm.weight
+create_tensor: loading tensor blk.20.post_attention_norm.weight
+create_tensor: loading tensor blk.20.attn_q.weight
+create_tensor: loading tensor blk.20.attn_k.weight
+create_tensor: loading tensor blk.20.attn_v.weight
+create_tensor: loading tensor blk.20.attn_output.weight
+create_tensor: loading tensor blk.20.attn_sinks.weight
+create_tensor: loading tensor blk.20.ffn_gate_inp.weight
+create_tensor: loading tensor blk.20.ffn_gate_exps.weight
+create_tensor: loading tensor blk.20.ffn_down_exps.weight
+create_tensor: loading tensor blk.20.ffn_up_exps.weight
+create_tensor: loading tensor blk.20.attn_q.bias
+create_tensor: loading tensor blk.20.attn_k.bias
+create_tensor: loading tensor blk.20.attn_v.bias
+create_tensor: loading tensor blk.20.attn_output.bias
+create_tensor: loading tensor blk.20.ffn_gate_inp.bias
+create_tensor: loading tensor blk.20.ffn_gate_exps.bias
+create_tensor: loading tensor blk.20.ffn_down_exps.bias
+create_tensor: loading tensor blk.20.ffn_up_exps.bias
+create_tensor: loading tensor blk.21.attn_norm.weight
+create_tensor: loading tensor blk.21.post_attention_norm.weight
+create_tensor: loading tensor blk.21.attn_q.weight
+create_tensor: loading tensor blk.21.attn_k.weight
+create_tensor: loading tensor blk.21.attn_v.weight
+create_tensor: loading tensor blk.21.attn_output.weight
+create_tensor: loading tensor blk.21.attn_sinks.weight
+create_tensor: loading tensor blk.21.ffn_gate_inp.weight
+create_tensor: loading tensor blk.21.ffn_gate_exps.weight
+create_tensor: loading tensor blk.21.ffn_down_exps.weight
+create_tensor: loading tensor blk.21.ffn_up_exps.weight
+create_tensor: loading tensor blk.21.attn_q.bias
+create_tensor: loading tensor blk.21.attn_k.bias
+create_tensor: loading tensor blk.21.attn_v.bias
+create_tensor: loading tensor blk.21.attn_output.bias
+create_tensor: loading tensor blk.21.ffn_gate_inp.bias
+create_tensor: loading tensor blk.21.ffn_gate_exps.bias
+create_tensor: loading tensor blk.21.ffn_down_exps.bias
+create_tensor: loading tensor blk.21.ffn_up_exps.bias
+create_tensor: loading tensor blk.22.attn_norm.weight
+create_tensor: loading tensor blk.22.post_attention_norm.weight
+create_tensor: loading tensor blk.22.attn_q.weight
+create_tensor: loading tensor blk.22.attn_k.weight
+create_tensor: loading tensor blk.22.attn_v.weight
+create_tensor: loading tensor blk.22.attn_output.weight
+create_tensor: loading tensor blk.22.attn_sinks.weight
+create_tensor: loading tensor blk.22.ffn_gate_inp.weight
+create_tensor: loading tensor blk.22.ffn_gate_exps.weight
+create_tensor: loading tensor blk.22.ffn_down_exps.weight
+create_tensor: loading tensor blk.22.ffn_up_exps.weight
+create_tensor: loading tensor blk.22.attn_q.bias
+create_tensor: loading tensor blk.22.attn_k.bias
+create_tensor: loading tensor blk.22.attn_v.bias
+create_tensor: loading tensor blk.22.attn_output.bias
+create_tensor: loading tensor blk.22.ffn_gate_inp.bias
+create_tensor: loading tensor blk.22.ffn_gate_exps.bias
+create_tensor: loading tensor blk.22.ffn_down_exps.bias
+create_tensor: loading tensor blk.22.ffn_up_exps.bias
+create_tensor: loading tensor blk.23.attn_norm.weight
+create_tensor: loading tensor blk.23.post_attention_norm.weight
+create_tensor: loading tensor blk.23.attn_q.weight
+create_tensor: loading tensor blk.23.attn_k.weight
+create_tensor: loading tensor blk.23.attn_v.weight
+create_tensor: loading tensor blk.23.attn_output.weight
+create_tensor: loading tensor blk.23.attn_sinks.weight
+create_tensor: loading tensor blk.23.ffn_gate_inp.weight
+create_tensor: loading tensor blk.23.ffn_gate_exps.weight
+create_tensor: loading tensor blk.23.ffn_down_exps.weight
+create_tensor: loading tensor blk.23.ffn_up_exps.weight
+create_tensor: loading tensor blk.23.attn_q.bias
+create_tensor: loading tensor blk.23.attn_k.bias
+create_tensor: loading tensor blk.23.attn_v.bias
+create_tensor: loading tensor blk.23.attn_output.bias
+create_tensor: loading tensor blk.23.ffn_gate_inp.bias
+create_tensor: loading tensor blk.23.ffn_gate_exps.bias
+create_tensor: loading tensor blk.23.ffn_down_exps.bias
+create_tensor: loading tensor blk.23.ffn_up_exps.bias
+load_tensors: tensor 'token_embd.weight' (q8_0) (and 0 others) cannot be used with preferred buffer type CUDA_Host, using CPU instead
+load_tensors: offloading 24 repeating layers to GPU
+load_tensors: offloading output layer to GPU
+load_tensors: offloaded 25/25 layers to GPU
+load_tensors:        CUDA0 model buffer size = 10949.38 MiB
+load_tensors:   CPU_Mapped model buffer size =   586.82 MiB
+................................................................................
+llama_context: constructing llama_context
+llama_context: n_seq_max     = 1
+llama_context: n_ctx         = 32768
+llama_context: n_ctx_per_seq = 32768
+llama_context: n_batch       = 2048
+llama_context: n_ubatch      = 512
+llama_context: causal_attn   = 1
+llama_context: flash_attn    = auto
+llama_context: kv_unified    = false
+llama_context: freq_base     = 150000.0
+llama_context: freq_scale    = 0.03125
+llama_context: n_ctx_per_seq (32768) < n_ctx_train (131072) -- the full capacity of the model will not be utilized
+set_abort_callback: call
+llama_context:  CUDA_Host  output buffer size =     0.77 MiB
+create_memory: n_ctx = 32768 (padded)
+llama_kv_cache_iswa: creating non-SWA KV cache, size = 32768 cells
+llama_kv_cache: layer   0: filtered
+llama_kv_cache: layer   1: dev = CUDA0
+llama_kv_cache: layer   2: filtered
+llama_kv_cache: layer   3: dev = CUDA0
+llama_kv_cache: layer   4: filtered
+llama_kv_cache: layer   5: dev = CUDA0
+llama_kv_cache: layer   6: filtered
+llama_kv_cache: layer   7: dev = CUDA0
+llama_kv_cache: layer   8: filtered
+llama_kv_cache: layer   9: dev = CUDA0
+llama_kv_cache: layer  10: filtered
+llama_kv_cache: layer  11: dev = CUDA0
+llama_kv_cache: layer  12: filtered
+llama_kv_cache: layer  13: dev = CUDA0
+llama_kv_cache: layer  14: filtered
+llama_kv_cache: layer  15: dev = CUDA0
+llama_kv_cache: layer  16: filtered
+llama_kv_cache: layer  17: dev = CUDA0
+llama_kv_cache: layer  18: filtered
+llama_kv_cache: layer  19: dev = CUDA0
+llama_kv_cache: layer  20: filtered
+llama_kv_cache: layer  21: dev = CUDA0
+llama_kv_cache: layer  22: filtered
+llama_kv_cache: layer  23: dev = CUDA0
+llama_kv_cache:      CUDA0 KV buffer size =   768.00 MiB
+llama_kv_cache: size =  768.00 MiB ( 32768 cells,  12 layers,  1/1 seqs), K (f16):  384.00 MiB, V (f16):  384.00 MiB
+llama_kv_cache_iswa: creating     SWA KV cache, size = 768 cells
+llama_kv_cache: layer   0: dev = CUDA0
+llama_kv_cache: layer   1: filtered
+llama_kv_cache: layer   2: dev = CUDA0
+llama_kv_cache: layer   3: filtered
+llama_kv_cache: layer   4: dev = CUDA0
+llama_kv_cache: layer   5: filtered
+llama_kv_cache: layer   6: dev = CUDA0
+llama_kv_cache: layer   7: filtered
+llama_kv_cache: layer   8: dev = CUDA0
+llama_kv_cache: layer   9: filtered
+llama_kv_cache: layer  10: dev = CUDA0
+llama_kv_cache: layer  11: filtered
+llama_kv_cache: layer  12: dev = CUDA0
+llama_kv_cache: layer  13: filtered
+llama_kv_cache: layer  14: dev = CUDA0
+llama_kv_cache: layer  15: filtered
+llama_kv_cache: layer  16: dev = CUDA0
+llama_kv_cache: layer  17: filtered
+llama_kv_cache: layer  18: dev = CUDA0
+llama_kv_cache: layer  19: filtered
+llama_kv_cache: layer  20: dev = CUDA0
+llama_kv_cache: layer  21: filtered
+llama_kv_cache: layer  22: dev = CUDA0
+llama_kv_cache: layer  23: filtered
+llama_kv_cache:      CUDA0 KV buffer size =    18.00 MiB
+llama_kv_cache: size =   18.00 MiB (   768 cells,  12 layers,  1/1 seqs), K (f16):    9.00 MiB, V (f16):    9.00 MiB
+llama_context: enumerating backends
+llama_context: backend_ptrs.size() = 2
+llama_context: max_nodes = 3672
+llama_context: reserving full memory module
+llama_context: worst-case: n_tokens = 512, n_seqs = 1, n_outputs = 0
+graph_reserve: reserving a graph for ubatch with n_tokens =    1, n_seqs =  1, n_outputs =    0
+llama_context: Flash Attention was auto, set to enabled
+graph_reserve: reserving a graph for ubatch with n_tokens =  512, n_seqs =  1, n_outputs =  512
+graph_reserve: reserving a graph for ubatch with n_tokens =    1, n_seqs =  1, n_outputs =    1
+graph_reserve: reserving a graph for ubatch with n_tokens =  512, n_seqs =  1, n_outputs =  512
+llama_context:      CUDA0 compute buffer size =   398.38 MiB
+llama_context:  CUDA_Host compute buffer size =    71.15 MiB
+llama_context: graph nodes  = 1352
+llama_context: graph splits = 2
+clear_adapter_lora: call
+common_init_from_params: added <|endoftext|> logit bias = -inf
+common_init_from_params: added <|return|> logit bias = -inf
+common_init_from_params: added <|call|> logit bias = -inf
+common_init_from_params: setting dry_penalty_last_n to ctx_size = 32768
+common_init_from_params: warming up the model with an empty run - please wait ... (--no-warmup to disable)
+set_warmup: value = 1
+set_warmup: value = 0
+main: llama threadpool init, n_threads = 6
+attach_threadpool: call
+main: chat template is available, enabling conversation mode (disable it with -no-cnv)
+main: chat template example:
+<|start|>system<|message|>You are ChatGPT, a large language model trained by OpenAI.
+Knowledge cutoff: 2024-06
+Current date: 2025-10-02
+
+Reasoning: medium
+
+# Valid channels: analysis, commentary, final. Channel must be included for every message.<|end|><|start|>developer<|message|># Instructions
+
+You are a helpful assistant<|end|><|start|>user<|message|>Hello<|end|><|start|>assistant<|channel|>final<|message|>Hi there<|end|><|start|>user<|message|>How are you?<|end|><|start|>assistant
+
+system_info: n_threads = 6 (n_threads_batch = 6) / 12 | CUDA : ARCHS = 500,610,700,750,800,860,890 | USE_GRAPHS = 1 | PEER_MAX_BATCH_SIZE = 128 | CPU : SSE3 = 1 | SSSE3 = 1 | AVX = 1 | AVX2 = 1 | F16C = 1 | FMA = 1 | BMI2 = 1 | LLAMAFILE = 1 | OPENMP = 1 | REPACK = 1 | 
+
+n_ctx: 32768, add_bos: 0
+formatted: '<|start|>system<|message|>You are ChatGPT, a large language model trained by OpenAI.
+Knowledge cutoff: 2024-06
+Current date: 2025-10-02
+
+Reasoning: medium
+
+# Valid channels: analysis, commentary, final. Channel must be included for every message.<|end|><|start|>developer<|message|># Instructions
+
+You are a scientific advisor!<|end|>'
+formatted: '<|start|>user<|message|>Why is the sky blue?<|end|><|start|>assistant'
+tokenize the prompt
+prompt: "<|start|>system<|message|>You are ChatGPT, a large language model trained by OpenAI.
+Knowledge cutoff: 2024-06
+Current date: 2025-10-02
+
+Reasoning: medium
+
+# Valid channels: analysis, commentary, final. Channel must be included for every message.<|end|><|start|>developer<|message|># Instructions
+
+You are a scientific advisor!<|end|><|start|>user<|message|>Why is the sky blue?<|end|><|start|>assistant"
+tokens: [ '<|start|>':200006, 'system':17360, '<|message|>':200008, 'You':3575, ' are':553, ' Chat':17554, 'GPT':162016, ',':11, ' a':261, ' large':4410, ' language':6439, ' model':2359, ' trained':22203, ' by':656, ' Open':7788, 'AI':17527, '.
+':558, 'Knowledge':87447, ' cutoff':100594, ':':25, ' ':220, '202':1323, '4':19, '-':12, '06':3218, '
+':198, 'Current':6576, ' date':3521, ':':25, ' ':220, '202':1323, '5':20, '-':12, '10':702, '-':12, '02':3286, '
+
+':279, 'Reason':30377, 'ing':289, ':':25, ' medium':14093, '
+
+':279, '#':2, ' Valid':13888, ' channels':18403, ':':25, ' analysis':8450, ',':11, ' commentary':49159, ',':11, ' final':1721, '.':13, ' Channel':21030, ' must':2804, ' be':413, ' included':7360, ' for':395, ' every':1753, ' message':3176, '.':13, '<|end|>':200007, '<|start|>':200006, 'developer':77944, '<|message|>':200008, '#':2, ' Instructions':68406, '
+
+':279, 'You':3575, ' are':553, ' a':261, ' scientific':19950, ' advisor':50262, '!':0, '<|end|>':200007, '<|start|>':200006, 'user':1428, '<|message|>':200008, 'Why':13903, ' is':382, ' the':290, ' sky':17307, ' blue':9861, '?':30, '<|end|>':200007, '<|start|>':200006, 'assistant':173781 ]
+recalculate the cached logits (check): embd_inp.size() 86, n_matching_session_tokens 0, embd_inp.size() 86, session_tokens.size() 0
+main: prompt: 'Why is the sky blue?'
+main: number of tokens in prompt = 86
+200006 -> '<|start|>'
+ 17360 -> 'system'
+200008 -> '<|message|>'
+  3575 -> 'You'
+   553 -> ' are'
+ 17554 -> ' Chat'
+162016 -> 'GPT'
+    11 -> ','
+   261 -> ' a'
+  4410 -> ' large'
+  6439 -> ' language'
+  2359 -> ' model'
+ 22203 -> ' trained'
+   656 -> ' by'
+  7788 -> ' Open'
+ 17527 -> 'AI'
+   558 -> '.
+'
+ 87447 -> 'Knowledge'
+100594 -> ' cutoff'
+    25 -> ':'
+   220 -> ' '
+  1323 -> '202'
+    19 -> '4'
+    12 -> '-'
+  3218 -> '06'
+   198 -> '
+'
+  6576 -> 'Current'
+  3521 -> ' date'
+    25 -> ':'
+   220 -> ' '
+  1323 -> '202'
+    20 -> '5'
+    12 -> '-'
+   702 -> '10'
+    12 -> '-'
+  3286 -> '02'
+   279 -> '
+
+'
+ 30377 -> 'Reason'
+   289 -> 'ing'
+    25 -> ':'
+ 14093 -> ' medium'
+   279 -> '
+
+'
+     2 -> '#'
+ 13888 -> ' Valid'
+ 18403 -> ' channels'
+    25 -> ':'
+  8450 -> ' analysis'
+    11 -> ','
+ 49159 -> ' commentary'
+    11 -> ','
+  1721 -> ' final'
+    13 -> '.'
+ 21030 -> ' Channel'
+  2804 -> ' must'
+   413 -> ' be'
+  7360 -> ' included'
+   395 -> ' for'
+  1753 -> ' every'
+  3176 -> ' message'
+    13 -> '.'
+200007 -> '<|end|>'
+200006 -> '<|start|>'
+ 77944 -> 'developer'
+200008 -> '<|message|>'
+     2 -> '#'
+ 68406 -> ' Instructions'
+   279 -> '
+
+'
+  3575 -> 'You'
+   553 -> ' are'
+   261 -> ' a'
+ 19950 -> ' scientific'
+ 50262 -> ' advisor'
+     0 -> '!'
+200007 -> '<|end|>'
+200006 -> '<|start|>'
+  1428 -> 'user'
+200008 -> '<|message|>'
+ 13903 -> 'Why'
+   382 -> ' is'
+   290 -> ' the'
+ 17307 -> ' sky'
+  9861 -> ' blue'
+    30 -> '?'
+200007 -> '<|end|>'
+200006 -> '<|start|>'
+173781 -> 'assistant'
+
+main: interactive mode on.
+sampler seed: 1385940975
+sampler params: 
+	repeat_last_n = 64, repeat_penalty = 1.000, frequency_penalty = 0.000, presence_penalty = 0.000
+	dry_multiplier = 0.000, dry_base = 1.750, dry_allowed_length = 2, dry_penalty_last_n = 32768
+	top_k = 40, top_p = 0.950, min_p = 0.050, xtc_probability = 0.000, xtc_threshold = 0.100, typical_p = 1.000, top_n_sigma = -1.000, temp = 0.800
+	mirostat = 0, mirostat_lr = 0.100, mirostat_ent = 5.000
+sampler chain: logits -> logit-bias -> penalties -> dry -> top-n-sigma -> top-k -> typical -> top-p -> min-p -> xtc -> temp-ext -> dist 
+generate: n_ctx = 32768, n_batch = 2048, n_predict = -1, n_keep = 0
+
+== Running in interactive mode. ==
+ - Press Ctrl+C to interject at any time.
+ - Press Return to return control to the AI.
+ - To return control without starting a new line, end your input with '/'.
+ - If you want to submit another line, end your input with '\'.
+
+embd_inp.size(): 86, n_consumed: 0
+<|start|>system<|message|>You are ChatGPT, a large language model trained by OpenAI.
+Knowledge cutoff: 2024-06
+Current date: 2025-10-02
+
+Reasoning: medium
+
+# Valid channels: analysis, commentary, final. Channel must be included for every message.<|end|><|start|>developer<|message|># Instructions
+
+You are a scientific advisor!<|end|><|start|>user<|message|>Why is the sky blue?<|end|><|start|>assistanteval: [ '<|start|>':200006, 'system':17360, '<|message|>':200008, 'You':3575, ' are':553, ' Chat':17554, 'GPT':162016, ',':11, ' a':261, ' large':4410, ' language':6439, ' model':2359, ' trained':22203, ' by':656, ' Open':7788, 'AI':17527, '.
+':558, 'Knowledge':87447, ' cutoff':100594, ':':25, ' ':220, '202':1323, '4':19, '-':12, '06':3218, '
+':198, 'Current':6576, ' date':3521, ':':25, ' ':220, '202':1323, '5':20, '-':12, '10':702, '-':12, '02':3286, '
+
+':279, 'Reason':30377, 'ing':289, ':':25, ' medium':14093, '
+
+':279, '#':2, ' Valid':13888, ' channels':18403, ':':25, ' analysis':8450, ',':11, ' commentary':49159, ',':11, ' final':1721, '.':13, ' Channel':21030, ' must':2804, ' be':413, ' included':7360, ' for':395, ' every':1753, ' message':3176, '.':13, '<|end|>':200007, '<|start|>':200006, 'developer':77944, '<|message|>':200008, '#':2, ' Instructions':68406, '
+
+':279, 'You':3575, ' are':553, ' a':261, ' scientific':19950, ' advisor':50262, '!':0, '<|end|>':200007, '<|start|>':200006, 'user':1428, '<|message|>':200008, 'Why':13903, ' is':382, ' the':290, ' sky':17307, ' blue':9861, '?':30, '<|end|>':200007, '<|start|>':200006, 'assistant':173781 ]
+n_past = 86
+n_remain: -2
+<|channel|>eval: [ '<|channel|>':200005 ]
+n_past = 87
+n_remain: -3
+analysiseval: [ 'analysis':35644 ]
+n_past = 88
+n_remain: -4
+<|message|>eval: [ '<|message|>':200008 ]
+n_past = 89
+n_remain: -5
+Weeval: [ 'We':2167 ]
+n_past = 90
+n_remain: -6
+ needeval: [ ' need':1309 ]
+n_past = 91
+n_remain: -7
+ toeval: [ ' to':316 ]
+n_past = 92
+n_remain: -8
+ answereval: [ ' answer':6052 ]
+n_past = 93
+n_remain: -9
+ whyeval: [ ' why':4436 ]
+n_past = 94
+n_remain: -10
+ skyeval: [ ' sky':17307 ]
+n_past = 95
+n_remain: -11
+ iseval: [ ' is':382 ]
+n_past = 96
+n_remain: -12
+ blueeval: [ ' blue':9861 ]
+n_past = 97
+n_remain: -13
+,eval: [ ',':11 ]
+n_past = 98
+n_remain: -14
+ presumablyeval: [ ' presumably':82769 ]
+n_past = 99
+n_remain: -15
+ fromeval: [ ' from':591 ]
+n_past = 100
+n_remain: -16
+ aeval: [ ' a':261 ]
+n_past = 101
+n_remain: -17
+ scientificeval: [ ' scientific':19950 ]
+n_past = 102
+n_remain: -18
+ perspectiveeval: [ ' perspective':18418 ]
+n_past = 103
+n_remain: -19
+.eval: [ '.':13 ]
+n_past = 104
+n_remain: -20
+ Theeval: [ ' The':623 ]
+n_past = 105
+n_remain: -21
+ usereval: [ ' user':1825 ]
+n_past = 106
+n_remain: -22
+ sayseval: [ ' says':5003 ]
+n_past = 107
+n_remain: -23
+ "eval: [ ' "':392 ]
+n_past = 108
+n_remain: -24
+Whyeval: [ 'Why':13903 ]
+n_past = 109
+n_remain: -25
+ iseval: [ ' is':382 ]
+n_past = 110
+n_remain: -26
+ theeval: [ ' the':290 ]
+n_past = 111
+n_remain: -27
+ skyeval: [ ' sky':17307 ]
+n_past = 112
+n_remain: -28
+ blueeval: [ ' blue':9861 ]
+n_past = 113
+n_remain: -29
+?"eval: [ '?"':16842 ]
+n_past = 114
+n_remain: -30
+ Theeval: [ ' The':623 ]
+n_past = 115
+n_remain: -31
+ systemeval: [ ' system':2420 ]
+n_past = 116
+n_remain: -32
+ sayseval: [ ' says':5003 ]
+n_past = 117
+n_remain: -33
+ weeval: [ ' we':581 ]
+n_past = 118
+n_remain: -34
+ areeval: [ ' are':553 ]
+n_past = 119
+n_remain: -35
+ Chateval: [ ' Chat':17554 ]
+n_past = 120
+n_remain: -36
+GPTeval: [ 'GPT':162016 ]
+n_past = 121
+n_remain: -37
+,eval: [ ',':11 ]
+n_past = 122
+n_remain: -38
+ andeval: [ ' and':326 ]
+n_past = 123
+n_remain: -39
+ developereval: [ ' developer':24261 ]
+n_past = 124
+n_remain: -40
+ sayseval: [ ' says':5003 ]
+n_past = 125
+n_remain: -41
+ "eval: [ ' "':392 ]
+n_past = 126
+n_remain: -42
+Youeval: [ 'You':3575 ]
+n_past = 127
+n_remain: -43
+ areeval: [ ' are':553 ]
+n_past = 128
+n_remain: -44
+ aeval: [ ' a':261 ]
+n_past = 129
+n_remain: -45
+ scientificeval: [ ' scientific':19950 ]
+n_past = 130
+n_remain: -46
+ advisoreval: [ ' advisor':50262 ]
+n_past = 131
+n_remain: -47
+!".eval: [ '!".':157665 ]
+n_past = 132
+n_remain: -48
+ Soeval: [ ' So':2632 ]
+n_past = 133
+n_remain: -49
+ weeval: [ ' we':581 ]
+n_past = 134
+n_remain: -50
+ shouldeval: [ ' should':1757 ]
+n_past = 135
+n_remain: -51
+ giveeval: [ ' give':3644 ]
+n_past = 136
+n_remain: -52
+ aeval: [ ' a':261 ]
+n_past = 137
+n_remain: -53
+ scientificallyeval: [ ' scientifically':129828 ]
+n_past = 138
+n_remain: -54
+ accurateeval: [ ' accurate':16360 ]
+n_past = 139
+n_remain: -55
+ explanationeval: [ ' explanation':30547 ]
+n_past = 140
+n_remain: -56
+:eval: [ ':':25 ]
+n_past = 141
+n_remain: -57
+ Rayeval: [ ' Ray':19781 ]
+n_past = 142
+n_remain: -58
+leigheval: [ 'leigh':104153 ]
+n_past = 143
+n_remain: -59
+ scatteringeval: [ ' scattering':109445 ]
+n_past = 144
+n_remain: -60
+,eval: [ ',':11 ]
+n_past = 145
+n_remain: -61
+ scatteringeval: [ ' scattering':109445 ]
+n_past = 146
+n_remain: -62
+ ofeval: [ ' of':328 ]
+n_past = 147
+n_remain: -63
+ sunlighteval: [ ' sunlight':55414 ]
+n_past = 148
+n_remain: -64
+ byeval: [ ' by':656 ]
+n_past = 149
+n_remain: -65
+ aireval: [ ' air':3693 ]
+n_past = 150
+n_remain: -66
+ moleculeseval: [ ' molecules':53785 ]
+n_past = 151
+n_remain: -67
+,eval: [ ',':11 ]
+n_past = 152
+n_remain: -68
+ shortereval: [ ' shorter':37168 ]
+n_past = 153
+n_remain: -69
+ wavelengthseval: [ ' wavelengths':183230 ]
+n_past = 154
+n_remain: -70
+ scattereval: [ ' scatter':36731 ]
+n_past = 155
+n_remain: -71
+ moreeval: [ ' more':945 ]
+n_past = 156
+n_remain: -72
+,eval: [ ',':11 ]
+n_past = 157
+n_remain: -73
+ leadingeval: [ ' leading':8117 ]
+n_past = 158
+n_remain: -74
+ toeval: [ ' to':316 ]
+n_past = 159
+n_remain: -75
+ blueeval: [ ' blue':9861 ]
+n_past = 160
+n_remain: -76
+ appearanceeval: [ ' appearance':16814 ]
+n_past = 161
+n_remain: -77
+.eval: [ '.':13 ]
+n_past = 162
+n_remain: -78
+ Alsoeval: [ ' Also':8820 ]
+n_past = 163
+n_remain: -79
+ mentioneval: [ ' mention':8633 ]
+n_past = 164
+n_remain: -80
+ theeval: [ ' the':290 ]
+n_past = 165
+n_remain: -81
+ compositioneval: [ ' composition':27524 ]
+n_past = 166
+n_remain: -82
+ ofeval: [ ' of':328 ]
+n_past = 167
+n_remain: -83
+ atmosphereeval: [ ' atmosphere':22137 ]
+n_past = 168
+n_remain: -84
+,eval: [ ',':11 ]
+n_past = 169
+n_remain: -85
+ scatteringeval: [ ' scattering':109445 ]
+n_past = 170
+n_remain: -86
+,eval: [ ',':11 ]
+n_past = 171
+n_remain: -87
+ etceval: [ ' etc':5178 ]
+n_past = 172
+n_remain: -88
+.eval: [ '.':13 ]
+n_past = 173
+n_remain: -89
+ Perhapseval: [ ' Perhaps':30391 ]
+n_past = 174
+n_remain: -90
+ alsoeval: [ ' also':1217 ]
+n_past = 175
+n_remain: -91
+ mentioneval: [ ' mention':8633 ]
+n_past = 176
+n_remain: -92
+ twilighteval: [ ' twilight':176912 ]
+n_past = 177
+n_remain: -93
+ colorseval: [ ' colors':10803 ]
+n_past = 178
+n_remain: -94
+,eval: [ ',':11 ]
+n_past = 179
+n_remain: -95
+ etceval: [ ' etc':5178 ]
+n_past = 180
+n_remain: -96
+.eval: [ '.':13 ]
+n_past = 181
+n_remain: -97
+ Keepeval: [ ' Keep':16835 ]
+n_past = 182
+n_remain: -98
+ iteval: [ ' it':480 ]
+n_past = 183
+n_remain: -99
+ conciseeval: [ ' concise':82463 ]
+n_past = 184
+n_remain: -100
+ buteval: [ ' but':889 ]
+n_past = 185
+n_remain: -101
+ thorougheval: [ ' thorough':21182 ]
+n_past = 186
+n_remain: -102
+.eval: [ '.':13 ]
+n_past = 187
+n_remain: -103
+ Noeval: [ ' No':3004 ]
+n_past = 188
+n_remain: -104
+ policyeval: [ ' policy':7562 ]
+n_past = 189
+n_remain: -105
+ conflicteval: [ ' conflict':21461 ]
+n_past = 190
+n_remain: -106
+.eval: [ '.':13 ]
+n_past = 191
+n_remain: -107
+ Goodeval: [ ' Good':9700 ]
+n_past = 192
+n_remain: -108
+.eval: [ '.':13 ]
+n_past = 193
+n_remain: -109
+<|end|>eval: [ '<|end|>':200007 ]
+n_past = 194
+n_remain: -110
+<|start|>eval: [ '<|start|>':200006 ]
+n_past = 195
+n_remain: -111
+assistanteval: [ 'assistant':173781 ]
+n_past = 196
+n_remain: -112
+<|channel|>eval: [ '<|channel|>':200005 ]
+n_past = 197
+n_remain: -113
+finaleval: [ 'final':17196 ]
+n_past = 198
+n_remain: -114
+<|message|>eval: [ '<|message|>':200008 ]
+n_past = 199
+n_remain: -115
+Theeval: [ 'The':976 ]
+n_past = 200
+n_remain: -116
+ blueeval: [ ' blue':9861 ]
+n_past = 201
+n_remain: -117
+ appearanceeval: [ ' appearance':16814 ]
+n_past = 202
+n_remain: -118
+ ofeval: [ ' of':328 ]
+n_past = 203
+n_remain: -119
+ theeval: [ ' the':290 ]
+n_past = 204
+n_remain: -120
+ daytimeeval: [ ' daytime':83941 ]
+n_past = 205
+n_remain: -121
+ skyeval: [ ' sky':17307 ]
+n_past = 206
+n_remain: -122
+ iseval: [ ' is':382 ]
+n_past = 207
+n_remain: -123
+ aeval: [ ' a':261 ]
+n_past = 208
+n_remain: -124
+ classiceval: [ ' classic':13686 ]
+n_past = 209
+n_remain: -125
+ resulteval: [ ' result':1534 ]
+n_past = 210
+n_remain: -126
+ ofeval: [ ' of':328 ]
+n_past = 211
+n_remain: -127
+ **eval: [ ' **':6240 ]
+n_past = 212
+n_remain: -128
+Rayeval: [ 'Ray':37513 ]
+n_past = 213
+n_remain: -129
+leigheval: [ 'leigh':104153 ]
+n_past = 214
+n_remain: -130
+ scatteringeval: [ ' scattering':109445 ]
+n_past = 215
+n_remain: -131
+**eval: [ '**':410 ]
+n_past = 216
+n_remain: -132
+—eval: [ '—':2322 ]
+n_past = 217
+n_remain: -133
+theeval: [ 'the':3086 ]
+n_past = 218
+n_remain: -134
+ preferentialeval: [ ' preferential':167918 ]
+n_past = 219
+n_remain: -135
+ scatteringeval: [ ' scattering':109445 ]
+n_past = 220
+n_remain: -136
+ ofeval: [ ' of':328 ]
+n_past = 221
+n_remain: -137
+ shortereval: [ ' shorter':37168 ]
+n_past = 222
+n_remain: -138
+‑eval: [ '‑':50005 ]
+n_past = 223
+n_remain: -139
+weval: [ 'w':86 ]
+n_past = 224
+n_remain: -140
+avelengtheval: [ 'avelength':61609 ]
+n_past = 225
+n_remain: -141
+ lighteval: [ ' light':4207 ]
+n_past = 226
+n_remain: -142
+ byeval: [ ' by':656 ]
+n_past = 227
+n_remain: -143
+ moleculeseval: [ ' molecules':53785 ]
+n_past = 228
+n_remain: -144
+ andeval: [ ' and':326 ]
+n_past = 229
+n_remain: -145
+ veryeval: [ ' very':1869 ]
+n_past = 230
+n_remain: -146
+ smalleval: [ ' small':3291 ]
+n_past = 231
+n_remain: -147
+ particleseval: [ ' particles':30285 ]
+n_past = 232
+n_remain: -148
+ ineval: [ ' in':306 ]
+n_past = 233
+n_remain: -149
+ Eartheval: [ ' Earth':16464 ]
+n_past = 234
+n_remain: -150
+’seval: [ '’s':802 ]
+n_past = 235
+n_remain: -151
+ atmosphereeval: [ ' atmosphere':22137 ]
+n_past = 236
+n_remain: -152
+.
+
+eval: [ '.
+
+':364 ]
+n_past = 237
+n_remain: -153
+###eval: [ '###':31639 ]
+n_past = 238
+n_remain: -154
+ eval: [ ' ':220 ]
+n_past = 239
+n_remain: -155
+1eval: [ '1':16 ]
+n_past = 240
+n_remain: -156
+.eval: [ '.':13 ]
+n_past = 241
+n_remain: -157
+ Suneval: [ ' Sun':11628 ]
+n_past = 242
+n_remain: -158
+lighteval: [ 'light':6038 ]
+n_past = 243
+n_remain: -159
+ iseval: [ ' is':382 ]
+n_past = 244
+n_remain: -160
+ whiteeval: [ ' white':6461 ]
+n_past = 245
+n_remain: -161
+
+eval: [ '
+':198 ]
+n_past = 246
+n_remain: -162
+Suneval: [ 'Sun':30112 ]
+n_past = 247
+n_remain: -163
+lighteval: [ 'light':6038 ]
+n_past = 248
+n_remain: -164
+ (eval: [ ' (':350 ]
+n_past = 249
+n_remain: -165
+oreval: [ 'or':267 ]
+n_past = 250
+n_remain: -166
+ anyeval: [ ' any':1062 ]
+n_past = 251
+n_remain: -167
+ stareval: [ ' star':8253 ]
+n_past = 252
+n_remain: -168
+’seval: [ '’s':802 ]
+n_past = 253
+n_remain: -169
+ lighteval: [ ' light':4207 ]
+n_past = 254
+n_remain: -170
+)eval: [ ')':8 ]
+n_past = 255
+n_remain: -171
+ iseval: [ ' is':382 ]
+n_past = 256
+n_remain: -172
+ essentiallyeval: [ ' essentially':29212 ]
+n_past = 257
+n_remain: -173
+ aeval: [ ' a':261 ]
+n_past = 258
+n_remain: -174
+ mixeval: [ ' mix':9762 ]
+n_past = 259
+n_remain: -175
+ ofeval: [ ' of':328 ]
+n_past = 260
+n_remain: -176
+ alleval: [ ' all':722 ]
+n_past = 261
+n_remain: -177
+ visibleeval: [ ' visible':15263 ]
+n_past = 262
+n_remain: -178
+ wavelengthseval: [ ' wavelengths':183230 ]
+n_past = 263
+n_remain: -179
+,eval: [ ',':11 ]
+n_past = 264
+n_remain: -180
+ whicheval: [ ' which':1118 ]
+n_past = 265
+n_remain: -181
+ combineeval: [ ' combine':21700 ]
+n_past = 266
+n_remain: -182
+ toeval: [ ' to':316 ]
+n_past = 267
+n_remain: -183
+ appeareval: [ ' appear':7680 ]
+n_past = 268
+n_remain: -184
+ whiteeval: [ ' white':6461 ]
+n_past = 269
+n_remain: -185
+ toeval: [ ' to':316 ]
+n_past = 270
+n_remain: -186
+ oureval: [ ' our':1039 ]
+n_past = 271
+n_remain: -187
+ eyeseval: [ ' eyes':9623 ]
+n_past = 272
+n_remain: -188
+.eval: [ '.':13 ]
+n_past = 273
+n_remain: -189
+ Theeval: [ ' The':623 ]
+n_past = 274
+n_remain: -190
+ visibleeval: [ ' visible':15263 ]
+n_past = 275
+n_remain: -191
+ spectrumeval: [ ' spectrum':31822 ]
+n_past = 276
+n_remain: -192
+ rangeseval: [ ' ranges':33269 ]
+n_past = 277
+n_remain: -193
+ fromeval: [ ' from':591 ]
+n_past = 278
+n_remain: -194
+ abouteval: [ ' about':1078 ]
+n_past = 279
+n_remain: -195
+ eval: [ ' ':220 ]
+n_past = 280
+n_remain: -196
+400eval: [ '400':4812 ]
+n_past = 281
+n_remain: -197
+ eval: [ ' ':35971 ]
+n_past = 282
+n_remain: -198
+nmeval: [ 'nm':36370 ]
+n_past = 283
+n_remain: -199
+ (eval: [ ' (':350 ]
+n_past = 284
+n_remain: -200
+vioeval: [ 'vio':42150 ]
+n_past = 285
+n_remain: -201
+leteval: [ 'let':1347 ]
+n_past = 286
+n_remain: -202
+)eval: [ ')':8 ]
+n_past = 287
+n_remain: -203
+ toeval: [ ' to':316 ]
+n_past = 288
+n_remain: -204
+ eval: [ ' ':220 ]
+n_past = 289
+n_remain: -205
+700eval: [ '700':9534 ]
+n_past = 290
+n_remain: -206
+ eval: [ ' ':35971 ]
+n_past = 291
+n_remain: -207
+nmeval: [ 'nm':36370 ]
+n_past = 292
+n_remain: -208
+ (eval: [ ' (':350 ]
+n_past = 293
+n_remain: -209
+redeval: [ 'red':1291 ]
+n_past = 294
+n_remain: -210
+).
+
+eval: [ ').
+
+':3991 ]
+n_past = 295
+n_remain: -211
+###eval: [ '###':31639 ]
+n_past = 296
+n_remain: -212
+ eval: [ ' ':220 ]
+n_past = 297
+n_remain: -213
+2eval: [ '2':17 ]
+n_past = 298
+n_remain: -214
+.eval: [ '.':13 ]
+n_past = 299
+n_remain: -215
+ Interactioneval: [ ' Interaction':81011 ]
+n_past = 300
+n_remain: -216
+ witheval: [ ' with':483 ]
+n_past = 301
+n_remain: -217
+ atmosphericeval: [ ' atmospheric':72500 ]
+n_past = 302
+n_remain: -218
+ moleculeseval: [ ' molecules':53785 ]
+n_past = 303
+n_remain: -219
+
+eval: [ '
+':198 ]
+n_past = 304
+n_remain: -220
+Wheneval: [ 'When':5958 ]
+n_past = 305
+n_remain: -221
+ sunlighteval: [ ' sunlight':55414 ]
+n_past = 306
+n_remain: -222
+ enterseval: [ ' enters':53753 ]
+n_past = 307
+n_remain: -223
+ theeval: [ ' the':290 ]
+n_past = 308
+n_remain: -224
+ atmosphereeval: [ ' atmosphere':22137 ]
+n_past = 309
+n_remain: -225
+ iteval: [ ' it':480 ]
+n_past = 310
+n_remain: -226
+ encounterseval: [ ' encounters':62652 ]
+n_past = 311
+n_remain: -227
+ nitrogeneval: [ ' nitrogen':68141 ]
+n_past = 312
+n_remain: -228
+,eval: [ ',':11 ]
+n_past = 313
+n_remain: -229
+ oxygeneval: [ ' oxygen':34398 ]
+n_past = 314
+n_remain: -230
+,eval: [ ',':11 ]
+n_past = 315
+n_remain: -231
+ watereval: [ ' water':3411 ]
+n_past = 316
+n_remain: -232
+ vaporeval: [ ' vapor':46102 ]
+n_past = 317
+n_remain: -233
+,eval: [ ',':11 ]
+n_past = 318
+n_remain: -234
+ andeval: [ ' and':326 ]
+n_past = 319
+n_remain: -235
+ othereval: [ ' other':1273 ]
+n_past = 320
+n_remain: -236
+ moleculeseval: [ ' molecules':53785 ]
+n_past = 321
+n_remain: -237
+ thateval: [ ' that':484 ]
+n_past = 322
+n_remain: -238
+ areeval: [ ' are':553 ]
+n_past = 323
+n_remain: -239
+ fareval: [ ' far':4150 ]
+n_past = 324
+n_remain: -240
+ smallereval: [ ' smaller':13679 ]
+n_past = 325
+n_remain: -241
+ thaneval: [ ' than':1572 ]
+n_past = 326
+n_remain: -242
+ theeval: [ ' the':290 ]
+n_past = 327
+n_remain: -243
+ wavelengtheval: [ ' wavelength':79731 ]
+n_past = 328
+n_remain: -244
+ ofeval: [ ' of':328 ]
+n_past = 329
+n_remain: -245
+ visibleeval: [ ' visible':15263 ]
+n_past = 330
+n_remain: -246
+ lighteval: [ ' light':4207 ]
+n_past = 331
+n_remain: -247
+ (eval: [ ' (':350 ]
+n_past = 332
+n_remain: -248
+oneval: [ 'on':263 ]
+n_past = 333
+n_remain: -249
+ theeval: [ ' the':290 ]
+n_past = 334
+n_remain: -250
+ ordereval: [ ' order':2569 ]
+n_past = 335
+n_remain: -251
+ ofeval: [ ' of':328 ]
+n_past = 336
+n_remain: -252
+ eval: [ ' ':220 ]
+n_past = 337
+n_remain: -253
+0eval: [ '0':15 ]
+n_past = 338
+n_remain: -254
+.eval: [ '.':13 ]
+n_past = 339
+n_remain: -255
+1eval: [ '1':16 ]
+n_past = 340
+n_remain: -256
+ eval: [ ' ':35971 ]
+n_past = 341
+n_remain: -257
+µeval: [ 'µ':39621 ]
+n_past = 342
+n_remain: -258
+meval: [ 'm':76 ]
+n_past = 343
+n_remain: -259
+).eval: [ ').':741 ]
+n_past = 344
+n_remain: -260
+ Foreval: [ ' For':2214 ]
+n_past = 345
+n_remain: -261
+ sucheval: [ ' such':2238 ]
+n_past = 346
+n_remain: -262
+ scattereval: [ ' scatter':36731 ]
+n_past = 347
+n_remain: -263
+erseval: [ 'ers':409 ]
+n_past = 348
+n_remain: -264
+ theeval: [ ' the':290 ]
+n_past = 349
+n_remain: -265
+ scatteringeval: [ ' scattering':109445 ]
+n_past = 350
+n_remain: -266
+ crosseval: [ ' cross':8088 ]
+n_past = 351
+n_remain: -267
+‑eval: [ '‑':50005 ]
+n_past = 352
+n_remain: -268
+sectioneval: [ 'section':6471 ]
+n_past = 353
+n_remain: -269
+ followseval: [ ' follows':18183 ]
+n_past = 354
+n_remain: -270
+ theeval: [ ' the':290 ]
+n_past = 355
+n_remain: -271
+ **eval: [ ' **':6240 ]
+n_past = 356
+n_remain: -272
+Rayeval: [ 'Ray':37513 ]
+n_past = 357
+n_remain: -273
+leigheval: [ 'leigh':104153 ]
+n_past = 358
+n_remain: -274
+ laweval: [ ' law':3954 ]
+n_past = 359
+n_remain: -275
+**eval: [ '**':410 ]
+n_past = 360
+n_remain: -276
+:
+
+eval: [ ':
+
+':1402 ]
+n_past = 361
+n_remain: -277
+\eval: [ '\':59 ]
+n_past = 362
+n_remain: -278
+[
+eval: [ '[
+':20070 ]
+n_past = 363
+n_remain: -279
+\seval: [ '\s':76048 ]
+n_past = 364
+n_remain: -280
+igmaeval: [ 'igma':21086 ]
+n_past = 365
+n_remain: -281
+(\eval: [ '(\':23074 ]
+n_past = 366
+n_remain: -282
+lambdaeval: [ 'lambda':35280 ]
+n_past = 367
+n_remain: -283
+)eval: [ ')':8 ]
+n_past = 368
+n_remain: -284
+ \eval: [ ' \':2381 ]
+n_past = 369
+n_remain: -285
+proeval: [ 'pro':823 ]
+n_past = 370
+n_remain: -286
+ptoeval: [ 'pto':74872 ]
+n_past = 371
+n_remain: -287
+ \eval: [ ' \':2381 ]
+n_past = 372
+n_remain: -288
+fraceval: [ 'frac':63757 ]
+n_past = 373
+n_remain: -289
+{eval: [ '{':90 ]
+n_past = 374
+n_remain: -290
+1eval: [ '1':16 ]
+n_past = 375
+n_remain: -291
+}{eval: [ '}{':29124 ]
+n_past = 376
+n_remain: -292
+\eval: [ '\':59 ]
+n_past = 377
+n_remain: -293
+lambdaeval: [ 'lambda':35280 ]
+n_past = 378
+n_remain: -294
+^eval: [ '^':61 ]
+n_past = 379
+n_remain: -295
+4eval: [ '4':19 ]
+n_past = 380
+n_remain: -296
+}
+eval: [ '}
+':739 ]
+n_past = 381
+n_remain: -297
+\eval: [ '\':59 ]
+n_past = 382
+n_remain: -298
+]
+
+eval: [ ']
+
+':3144 ]
+n_past = 383
+n_remain: -299
+whereeval: [ 'where':4522 ]
+n_past = 384
+n_remain: -300
+ \eval: [ ' \':2381 ]
+n_past = 385
+n_remain: -301
+(\eval: [ '(\':23074 ]
+n_past = 386
+n_remain: -302
+sigmaeval: [ 'sigma':78581 ]
+n_past = 387
+n_remain: -303
+\eval: [ '\':59 ]
+n_past = 388
+n_remain: -304
+)eval: [ ')':8 ]
+n_past = 389
+n_remain: -305
+ iseval: [ ' is':382 ]
+n_past = 390
+n_remain: -306
+ theeval: [ ' the':290 ]
+n_past = 391
+n_remain: -307
+ scatteringeval: [ ' scattering':109445 ]
+n_past = 392
+n_remain: -308
+ crosseval: [ ' cross':8088 ]
+n_past = 393
+n_remain: -309
+‑eval: [ '‑':50005 ]
+n_past = 394
+n_remain: -310
+sectioneval: [ 'section':6471 ]
+n_past = 395
+n_remain: -311
+ andeval: [ ' and':326 ]
+n_past = 396
+n_remain: -312
+ \eval: [ ' \':2381 ]
+n_past = 397
+n_remain: -313
+(\eval: [ '(\':23074 ]
+n_past = 398
+n_remain: -314
+lambdaeval: [ 'lambda':35280 ]
+n_past = 399
+n_remain: -315
+\eval: [ '\':59 ]
+n_past = 400
+n_remain: -316
+)eval: [ ')':8 ]
+n_past = 401
+n_remain: -317
+ iseval: [ ' is':382 ]
+n_past = 402
+n_remain: -318
+ theeval: [ ' the':290 ]
+n_past = 403
+n_remain: -319
+ wavelengtheval: [ ' wavelength':79731 ]
+n_past = 404
+n_remain: -320
+.eval: [ '.':13 ]
+n_past = 405
+n_remain: -321
+ Thiseval: [ ' This':1328 ]
+n_past = 406
+n_remain: -322
+ inverseeval: [ ' inverse':53743 ]
+n_past = 407
+n_remain: -323
+‑eval: [ '‑':50005 ]
+n_past = 408
+n_remain: -324
+foureval: [ 'four':61745 ]
+n_past = 409
+n_remain: -325
+theval: [ 'th':404 ]
+n_past = 410
+n_remain: -326
+‑eval: [ '‑':50005 ]
+n_past = 411
+n_remain: -327
+powereval: [ 'power':22295 ]
+n_past = 412
+n_remain: -328
+ dependenceeval: [ ' dependence':73027 ]
+n_past = 413
+n_remain: -329
+ meanseval: [ ' means':4748 ]
+n_past = 414
+n_remain: -330
+ thateval: [ ' that':484 ]
+n_past = 415
+n_remain: -331
+ violeteval: [ ' violet':117320 ]
+n_past = 416
+n_remain: -332
+ andeval: [ ' and':326 ]
+n_past = 417
+n_remain: -333
+ blueeval: [ ' blue':9861 ]
+n_past = 418
+n_remain: -334
+ lighteval: [ ' light':4207 ]
+n_past = 419
+n_remain: -335
+ (eval: [ ' (':350 ]
+n_past = 420
+n_remain: -336
+≈eval: [ '≈':171441 ]
+n_past = 421
+n_remain: -337
+ eval: [ ' ':35971 ]
+n_past = 422
+n_remain: -338
+400eval: [ '400':4812 ]
+n_past = 423
+n_remain: -339
+–eval: [ '–':1585 ]
+n_past = 424
+n_remain: -340
+500eval: [ '500':3234 ]
+n_past = 425
+n_remain: -341
+ eval: [ ' ':35971 ]
+n_past = 426
+n_remain: -342
+nmeval: [ 'nm':36370 ]
+n_past = 427
+n_remain: -343
+)eval: [ ')':8 ]
+n_past = 428
+n_remain: -344
+ areeval: [ ' are':553 ]
+n_past = 429
+n_remain: -345
+ scatteredeval: [ ' scattered':67096 ]
+n_past = 430
+n_remain: -346
+ abouteval: [ ' about':1078 ]
+n_past = 431
+n_remain: -347
+ eval: [ ' ':220 ]
+n_past = 432
+n_remain: -348
+10eval: [ '10':702 ]
+n_past = 433
+n_remain: -349
+ timeseval: [ ' times':4238 ]
+n_past = 434
+n_remain: -350
+ moreeval: [ ' more':945 ]
+n_past = 435
+n_remain: -351
+ stronglyeval: [ ' strongly':27203 ]
+n_past = 436
+n_remain: -352
+ thaneval: [ ' than':1572 ]
+n_past = 437
+n_remain: -353
+ redeval: [ ' red':3592 ]
+n_past = 438
+n_remain: -354
+ lighteval: [ ' light':4207 ]
+n_past = 439
+n_remain: -355
+ (eval: [ ' (':350 ]
+n_past = 440
+n_remain: -356
+≈eval: [ '≈':171441 ]
+n_past = 441
+n_remain: -357
+ eval: [ ' ':35971 ]
+n_past = 442
+n_remain: -358
+650eval: [ '650':20864 ]
+n_past = 443
+n_remain: -359
+ eval: [ ' ':35971 ]
+n_past = 444
+n_remain: -360
+nmeval: [ 'nm':36370 ]
+n_past = 445
+n_remain: -361
+).
+
+eval: [ ').
+
+':3991 ]
+n_past = 446
+n_remain: -362
+###eval: [ '###':31639 ]
+n_past = 447
+n_remain: -363
+ eval: [ ' ':220 ]
+n_past = 448
+n_remain: -364
+3eval: [ '3':18 ]
+n_past = 449
+n_remain: -365
+.eval: [ '.':13 ]
+n_past = 450
+n_remain: -366
+ Resulteval: [ ' Result':9112 ]
+n_past = 451
+n_remain: -367
+ingeval: [ 'ing':289 ]
+n_past = 452
+n_remain: -368
+ skyeval: [ ' sky':17307 ]
+n_past = 453
+n_remain: -369
+ coloreval: [ ' color':3089 ]
+n_past = 454
+n_remain: -370
+
+eval: [ '
+':198 ]
+n_past = 455
+n_remain: -371
+Becauseeval: [ 'Because':30105 ]
+n_past = 456
+n_remain: -372
+ theeval: [ ' the':290 ]
+n_past = 457
+n_remain: -373
+ shortereval: [ ' shorter':37168 ]
+n_past = 458
+n_remain: -374
+ wavelengthseval: [ ' wavelengths':183230 ]
+n_past = 459
+n_remain: -375
+ areeval: [ ' are':553 ]
+n_past = 460
+n_remain: -376
+ scatteredeval: [ ' scattered':67096 ]
+n_past = 461
+n_remain: -377
+ ineval: [ ' in':306 ]
+n_past = 462
+n_remain: -378
+ alleval: [ ' all':722 ]
+n_past = 463
+n_remain: -379
+ directionseval: [ ' directions':24921 ]
+n_past = 464
+n_remain: -380
+,eval: [ ',':11 ]
+n_past = 465
+n_remain: -381
+ weeval: [ ' we':581 ]
+n_past = 466
+n_remain: -382
+ seeeval: [ ' see':1921 ]
+n_past = 467
+n_remain: -383
+ aeval: [ ' a':261 ]
+n_past = 468
+n_remain: -384
+ diffuseeval: [ ' diffuse':89284 ]
+n_past = 469
+n_remain: -385
+ blueeval: [ ' blue':9861 ]
+n_past = 470
+n_remain: -386
+ gloweval: [ ' glow':57806 ]
+n_past = 471
+n_remain: -387
+ comingeval: [ ' coming':7245 ]
+n_past = 472
+n_remain: -388
+ fromeval: [ ' from':591 ]
+n_past = 473
+n_remain: -389
+ everyeval: [ ' every':1753 ]
+n_past = 474
+n_remain: -390
+ parteval: [ ' part':997 ]
+n_past = 475
+n_remain: -391
+ ofeval: [ ' of':328 ]
+n_past = 476
+n_remain: -392
+ theeval: [ ' the':290 ]
+n_past = 477
+n_remain: -393
+ skyeval: [ ' sky':17307 ]
+n_past = 478
+n_remain: -394
+.eval: [ '.':13 ]
+n_past = 479
+n_remain: -395
+ Theeval: [ ' The':623 ]
+n_past = 480
+n_remain: -396
+ suneval: [ ' sun':7334 ]
+n_past = 481
+n_remain: -397
+ itselfeval: [ ' itself':8807 ]
+n_past = 482
+n_remain: -398
+ remainseval: [ ' remains':14777 ]
+n_past = 483
+n_remain: -399
+ brighteval: [ ' bright':13712 ]
+n_past = 484
+n_remain: -400
+ becauseeval: [ ' because':2236 ]
+n_past = 485
+n_remain: -401
+ theeval: [ ' the':290 ]
+n_past = 486
+n_remain: -402
+ patheval: [ ' path':3104 ]
+n_past = 487
+n_remain: -403
+ lengtheval: [ ' length':5517 ]
+n_past = 488
+n_remain: -404
+ througheval: [ ' through':1819 ]
+n_past = 489
+n_remain: -405
+ theeval: [ ' the':290 ]
+n_past = 490
+n_remain: -406
+ atmosphereeval: [ ' atmosphere':22137 ]
+n_past = 491
+n_remain: -407
+ iseval: [ ' is':382 ]
+n_past = 492
+n_remain: -408
+ shorteval: [ ' short':4022 ]
+n_past = 493
+n_remain: -409
+ ineval: [ ' in':306 ]
+n_past = 494
+n_remain: -410
+ theeval: [ ' the':290 ]
+n_past = 495
+n_remain: -411
+ directioneval: [ ' direction':9262 ]
+n_past = 496
+n_remain: -412
+ ofeval: [ ' of':328 ]
+n_past = 497
+n_remain: -413
+ theeval: [ ' the':290 ]
+n_past = 498
+n_remain: -414
+ suneval: [ ' sun':7334 ]
+n_past = 499
+n_remain: -415
+,eval: [ ',':11 ]
+n_past = 500
+n_remain: -416
+ soeval: [ ' so':813 ]
+n_past = 501
+n_remain: -417
+ onlyeval: [ ' only':1606 ]
+n_past = 502
+n_remain: -418
+ aeval: [ ' a':261 ]
+n_past = 503
+n_remain: -419
+ smalleval: [ ' small':3291 ]
+n_past = 504
+n_remain: -420
+ fractioneval: [ ' fraction':33763 ]
+n_past = 505
+n_remain: -421
+ ofeval: [ ' of':328 ]
+n_past = 506
+n_remain: -422
+ theeval: [ ' the':290 ]
+n_past = 507
+n_remain: -423
+ blueeval: [ ' blue':9861 ]
+n_past = 508
+n_remain: -424
+ lighteval: [ ' light':4207 ]
+n_past = 509
+n_remain: -425
+ iseval: [ ' is':382 ]
+n_past = 510
+n_remain: -426
+ removedeval: [ ' removed':11906 ]
+n_past = 511
+n_remain: -427
+ fromeval: [ ' from':591 ]
+n_past = 512
+n_remain: -428
+ theeval: [ ' the':290 ]
+n_past = 513
+n_remain: -429
+ directeval: [ ' direct':2823 ]
+n_past = 514
+n_remain: -430
+ beameval: [ ' beam':36650 ]
+n_past = 515
+n_remain: -431
+.
+
+eval: [ '.
+
+':364 ]
+n_past = 516
+n_remain: -432
+###eval: [ '###':31639 ]
+n_past = 517
+n_remain: -433
+ eval: [ ' ':220 ]
+n_past = 518
+n_remain: -434
+4eval: [ '4':19 ]
+n_past = 519
+n_remain: -435
+.eval: [ '.':13 ]
+n_past = 520
+n_remain: -436
+ Whyeval: [ ' Why':12587 ]
+n_past = 521
+n_remain: -437
+ iteval: [ ' it':480 ]
+n_past = 522
+n_remain: -438
+ isneval: [ ' isn':11092 ]
+n_past = 523
+n_remain: -439
+’teval: [ '’t':1573 ]
+n_past = 524
+n_remain: -440
+ violeteval: [ ' violet':117320 ]
+n_past = 525
+n_remain: -441
+
+eval: [ '
+':198 ]
+n_past = 526
+n_remain: -442
+Althougheval: [ 'Although':25731 ]
+n_past = 527
+n_remain: -443
+ violeteval: [ ' violet':117320 ]
+n_past = 528
+n_remain: -444
+ lighteval: [ ' light':4207 ]
+n_past = 529
+n_remain: -445
+ iseval: [ ' is':382 ]
+n_past = 530
+n_remain: -446
+ scatteredeval: [ ' scattered':67096 ]
+n_past = 531
+n_remain: -447
+ eveneval: [ ' even':1952 ]
+n_past = 532
+n_remain: -448
+ moreeval: [ ' more':945 ]
+n_past = 533
+n_remain: -449
+ stronglyeval: [ ' strongly':27203 ]
+n_past = 534
+n_remain: -450
+,eval: [ ',':11 ]
+n_past = 535
+n_remain: -451
+ oureval: [ ' our':1039 ]
+n_past = 536
+n_remain: -452
+ eyeseval: [ ' eyes':9623 ]
+n_past = 537
+n_remain: -453
+ areeval: [ ' are':553 ]
+n_past = 538
+n_remain: -454
+ lesseval: [ ' less':3760 ]
+n_past = 539
+n_remain: -455
+ sensitiveeval: [ ' sensitive':24438 ]
+n_past = 540
+n_remain: -456
+ toeval: [ ' to':316 ]
+n_past = 541
+n_remain: -457
+ iteval: [ ' it':480 ]
+n_past = 542
+n_remain: -458
+,eval: [ ',':11 ]
+n_past = 543
+n_remain: -459
+ andeval: [ ' and':326 ]
+n_past = 544
+n_remain: -460
+ someeval: [ ' some':1236 ]
+n_past = 545
+n_remain: -461
+ ofeval: [ ' of':328 ]
+n_past = 546
+n_remain: -462
+ theeval: [ ' the':290 ]
+n_past = 547
+n_remain: -463
+ violeteval: [ ' violet':117320 ]
+n_past = 548
+n_remain: -464
+ iseval: [ ' is':382 ]
+n_past = 549
+n_remain: -465
+ absorbedeval: [ ' absorbed':67950 ]
+n_past = 550
+n_remain: -466
+ byeval: [ ' by':656 ]
+n_past = 551
+n_remain: -467
+ theeval: [ ' the':290 ]
+n_past = 552
+n_remain: -468
+ uppereval: [ ' upper':13057 ]
+n_past = 553
+n_remain: -469
+ atmosphereeval: [ ' atmosphere':22137 ]
+n_past = 554
+n_remain: -470
+ (eval: [ ' (':350 ]
+n_past = 555
+n_remain: -471
+ozeval: [ 'oz':6834 ]
+n_past = 556
+n_remain: -472
+oneeval: [ 'one':690 ]
+n_past = 557
+n_remain: -473
+).eval: [ ').':741 ]
+n_past = 558
+n_remain: -474
+ Thuseval: [ ' Thus':23586 ]
+n_past = 559
+n_remain: -475
+ theeval: [ ' the':290 ]
+n_past = 560
+n_remain: -476
+ skyeval: [ ' sky':17307 ]
+n_past = 561
+n_remain: -477
+ appearseval: [ ' appears':14518 ]
+n_past = 562
+n_remain: -478
+ blueeval: [ ' blue':9861 ]
+n_past = 563
+n_remain: -479
+ rathereval: [ ' rather':7542 ]
+n_past = 564
+n_remain: -480
+ thaneval: [ ' than':1572 ]
+n_past = 565
+n_remain: -481
+ violeteval: [ ' violet':117320 ]
+n_past = 566
+n_remain: -482
+.
+
+eval: [ '.
+
+':364 ]
+n_past = 567
+n_remain: -483
+###eval: [ '###':31639 ]
+n_past = 568
+n_remain: -484
+ eval: [ ' ':220 ]
+n_past = 569
+n_remain: -485
+5eval: [ '5':20 ]
+n_past = 570
+n_remain: -486
+.eval: [ '.':13 ]
+n_past = 571
+n_remain: -487
+ Varieval: [ ' Vari':17670 ]
+n_past = 572
+n_remain: -488
+ationseval: [ 'ations':929 ]
+n_past = 573
+n_remain: -489
+
+eval: [ '
+':198 ]
+n_past = 574
+n_remain: -490
+-eval: [ '-':12 ]
+n_past = 575
+n_remain: -491
+ **eval: [ ' **':6240 ]
+n_past = 576
+n_remain: -492
+Tweval: [ 'Tw':45091 ]
+n_past = 577
+n_remain: -493
+ilighteval: [ 'ilight':62454 ]
+n_past = 578
+n_remain: -494
+**eval: [ '**':410 ]
+n_past = 579
+n_remain: -495
+:eval: [ ':':25 ]
+n_past = 580
+n_remain: -496
+ Aseval: [ ' As':1877 ]
+n_past = 581
+n_remain: -497
+ theeval: [ ' the':290 ]
+n_past = 582
+n_remain: -498
+ suneval: [ ' sun':7334 ]
+n_past = 583
+n_remain: -499
+ setseval: [ ' sets':11982 ]
+n_past = 584
+n_remain: -500
+,eval: [ ',':11 ]
+n_past = 585
+n_remain: -501
+ theeval: [ ' the':290 ]
+n_past = 586
+n_remain: -502
+ lighteval: [ ' light':4207 ]
+n_past = 587
+n_remain: -503
+ travelseval: [ ' travels':50316 ]
+n_past = 588
+n_remain: -504
+ aeval: [ ' a':261 ]
+n_past = 589
+n_remain: -505
+ longereval: [ ' longer':7411 ]
+n_past = 590
+n_remain: -506
+ patheval: [ ' path':3104 ]
+n_past = 591
+n_remain: -507
+ througheval: [ ' through':1819 ]
+n_past = 592
+n_remain: -508
+ theeval: [ ' the':290 ]
+n_past = 593
+n_remain: -509
+ atmosphereeval: [ ' atmosphere':22137 ]
+n_past = 594
+n_remain: -510
+.eval: [ '.':13 ]
+n_past = 595
+n_remain: -511
+ Sceval: [ ' Sc':3380 ]
+n_past = 596
+n_remain: -512
+atteringeval: [ 'attering':59800 ]
+n_past = 597
+n_remain: -513
+ removeseval: [ ' removes':52683 ]
+n_past = 598
+n_remain: -514
+ theeval: [ ' the':290 ]
+n_past = 599
+n_remain: -515
+ shorteval: [ ' short':4022 ]
+n_past = 600
+n_remain: -516
+ wavelengthseval: [ ' wavelengths':183230 ]
+n_past = 601
+n_remain: -517
+ fromeval: [ ' from':591 ]
+n_past = 602
+n_remain: -518
+ theeval: [ ' the':290 ]
+n_past = 603
+n_remain: -519
+ directeval: [ ' direct':2823 ]
+n_past = 604
+n_remain: -520
+ beameval: [ ' beam':36650 ]
+n_past = 605
+n_remain: -521
+,eval: [ ',':11 ]
+n_past = 606
+n_remain: -522
+ leavingeval: [ ' leaving':15021 ]
+n_past = 607
+n_remain: -523
+ theeval: [ ' the':290 ]
+n_past = 608
+n_remain: -524
+ skyeval: [ ' sky':17307 ]
+n_past = 609
+n_remain: -525
+ toeval: [ ' to':316 ]
+n_past = 610
+n_remain: -526
+ appeareval: [ ' appear':7680 ]
+n_past = 611
+n_remain: -527
+ reddisheval: [ ' reddish':188096 ]
+n_past = 612
+n_remain: -528
+ oreval: [ ' or':503 ]
+n_past = 613
+n_remain: -529
+ orangeeval: [ ' orange':26205 ]
+n_past = 614
+n_remain: -530
+.
+eval: [ '.
+':558 ]
+n_past = 615
+n_remain: -531
+-eval: [ '-':12 ]
+n_past = 616
+n_remain: -532
+ **eval: [ ' **':6240 ]
+n_past = 617
+n_remain: -533
+Dusteval: [ 'Dust':164225 ]
+n_past = 618
+n_remain: -534
+ oreval: [ ' or':503 ]
+n_past = 619
+n_remain: -535
+ pollutioneval: [ ' pollution':37460 ]
+n_past = 620
+n_remain: -536
+**eval: [ '**':410 ]
+n_past = 621
+n_remain: -537
+:eval: [ ':':25 ]
+n_past = 622
+n_remain: -538
+ Largereval: [ ' Larger':151191 ]
+n_past = 623
+n_remain: -539
+ particleseval: [ ' particles':30285 ]
+n_past = 624
+n_remain: -540
+ scattereval: [ ' scatter':36731 ]
+n_past = 625
+n_remain: -541
+ lighteval: [ ' light':4207 ]
+n_past = 626
+n_remain: -542
+ moreeval: [ ' more':945 ]
+n_past = 627
+n_remain: -543
+ uniformlyeval: [ ' uniformly':161240 ]
+n_past = 628
+n_remain: -544
+ acrosseval: [ ' across':5251 ]
+n_past = 629
+n_remain: -545
+ wavelengthseval: [ ' wavelengths':183230 ]
+n_past = 630
+n_remain: -546
+ (eval: [ ' (':350 ]
+n_past = 631
+n_remain: -547
+Meval: [ 'M':44 ]
+n_past = 632
+n_remain: -548
+ieeval: [ 'ie':396 ]
+n_past = 633
+n_remain: -549
+ scatteringeval: [ ' scattering':109445 ]
+n_past = 634
+n_remain: -550
+),eval: [ '),':936 ]
+n_past = 635
+n_remain: -551
+ givingeval: [ ' giving':9874 ]
+n_past = 636
+n_remain: -552
+ skieseval: [ ' skies':79186 ]
+n_past = 637
+n_remain: -553
+ aeval: [ ' a':261 ]
+n_past = 638
+n_remain: -554
+ wheval: [ ' wh':471 ]
+n_past = 639
+n_remain: -555
+itereval: [ 'iter':2340 ]
+n_past = 640
+n_remain: -556
+ oreval: [ ' or':503 ]
+n_past = 641
+n_remain: -557
+ hazeval: [ ' haz':18106 ]
+n_past = 642
+n_remain: -558
+iereval: [ 'ier':905 ]
+n_past = 643
+n_remain: -559
+ appearanceeval: [ ' appearance':16814 ]
+n_past = 644
+n_remain: -560
+.
+eval: [ '.
+':558 ]
+n_past = 645
+n_remain: -561
+-eval: [ '-':12 ]
+n_past = 646
+n_remain: -562
+ **eval: [ ' **':6240 ]
+n_past = 647
+n_remain: -563
+Polareval: [ 'Polar':148036 ]
+n_past = 648
+n_remain: -564
+ regionseval: [ ' regions':21043 ]
+n_past = 649
+n_remain: -565
+**eval: [ '**':410 ]
+n_past = 650
+n_remain: -566
+:eval: [ ':':25 ]
+n_past = 651
+n_remain: -567
+ Theeval: [ ' The':623 ]
+n_past = 652
+n_remain: -568
+ Rayeval: [ ' Ray':19781 ]
+n_past = 653
+n_remain: -569
+leigheval: [ 'leigh':104153 ]
+n_past = 654
+n_remain: -570
+ scatteringeval: [ ' scattering':109445 ]
+n_past = 655
+n_remain: -571
+ iseval: [ ' is':382 ]
+n_past = 656
+n_remain: -572
+ theeval: [ ' the':290 ]
+n_past = 657
+n_remain: -573
+ sameeval: [ ' same':2684 ]
+n_past = 658
+n_remain: -574
+,eval: [ ',':11 ]
+n_past = 659
+n_remain: -575
+ buteval: [ ' but':889 ]
+n_past = 660
+n_remain: -576
+ atmosphericeval: [ ' atmospheric':72500 ]
+n_past = 661
+n_remain: -577
+ compositioneval: [ ' composition':27524 ]
+n_past = 662
+n_remain: -578
+ andeval: [ ' and':326 ]
+n_past = 663
+n_remain: -579
+ temperatureeval: [ ' temperature':12088 ]
+n_past = 664
+n_remain: -580
+ differenceseval: [ ' differences':19504 ]
+n_past = 665
+n_remain: -581
+ caneval: [ ' can':665 ]
+n_past = 666
+n_remain: -582
+ altereval: [ ' alter':14183 ]
+n_past = 667
+n_remain: -583
+ theeval: [ ' the':290 ]
+n_past = 668
+n_remain: -584
+ exacteval: [ ' exact':6354 ]
+n_past = 669
+n_remain: -585
+ hueeval: [ ' hue':52422 ]
+n_past = 670
+n_remain: -586
+.
+
+eval: [ '.
+
+':364 ]
+n_past = 671
+n_remain: -587
+Ineval: [ 'In':637 ]
+n_past = 672
+n_remain: -588
+ shorteval: [ ' short':4022 ]
+n_past = 673
+n_remain: -589
+,eval: [ ',':11 ]
+n_past = 674
+n_remain: -590
+ theeval: [ ' the':290 ]
+n_past = 675
+n_remain: -591
+ skyeval: [ ' sky':17307 ]
+n_past = 676
+n_remain: -592
+ iseval: [ ' is':382 ]
+n_past = 677
+n_remain: -593
+ blueeval: [ ' blue':9861 ]
+n_past = 678
+n_remain: -594
+ becauseeval: [ ' because':2236 ]
+n_past = 679
+n_remain: -595
+ theeval: [ ' the':290 ]
+n_past = 680
+n_remain: -596
+ moleculeseval: [ ' molecules':53785 ]
+n_past = 681
+n_remain: -597
+ ineval: [ ' in':306 ]
+n_past = 682
+n_remain: -598
+ oureval: [ ' our':1039 ]
+n_past = 683
+n_remain: -599
+ atmosphereeval: [ ' atmosphere':22137 ]
+n_past = 684
+n_remain: -600
+ scattereval: [ ' scatter':36731 ]
+n_past = 685
+n_remain: -601
+ sunlighteval: [ ' sunlight':55414 ]
+n_past = 686
+n_remain: -602
+,eval: [ ',':11 ]
+n_past = 687
+n_remain: -603
+ andeval: [ ' and':326 ]
+n_past = 688
+n_remain: -604
+ theeval: [ ' the':290 ]
+n_past = 689
+n_remain: -605
+ scatteringeval: [ ' scattering':109445 ]
+n_past = 690
+n_remain: -606
+ efficiencyeval: [ ' efficiency':17456 ]
+n_past = 691
+n_remain: -607
+ dropseval: [ ' drops':32321 ]
+n_past = 692
+n_remain: -608
+ dramaticallyeval: [ ' dramatically':51009 ]
+n_past = 693
+n_remain: -609
+ witheval: [ ' with':483 ]
+n_past = 694
+n_remain: -610
+ increasingeval: [ ' increasing':11293 ]
+n_past = 695
+n_remain: -611
+ wavelengtheval: [ ' wavelength':79731 ]
+n_past = 696
+n_remain: -612
+,eval: [ ',':11 ]
+n_past = 697
+n_remain: -613
+ soeval: [ ' so':813 ]
+n_past = 698
+n_remain: -614
+ blueeval: [ ' blue':9861 ]
+n_past = 699
+n_remain: -615
+ lighteval: [ ' light':4207 ]
+n_past = 700
+n_remain: -616
+ iseval: [ ' is':382 ]
+n_past = 701
+n_remain: -617
+ dispersedeval: [ ' dispersed':142803 ]
+n_past = 702
+n_remain: -618
+ fareval: [ ' far':4150 ]
+n_past = 703
+n_remain: -619
+ moreeval: [ ' more':945 ]
+n_past = 704
+n_remain: -620
+ thaneval: [ ' than':1572 ]
+n_past = 705
+n_remain: -621
+ redeval: [ ' red':3592 ]
+n_past = 706
+n_remain: -622
+ lighteval: [ ' light':4207 ]
+n_past = 707
+n_remain: -623
+.eval: [ '.':13 ]
+n_past = 708
+n_remain: -624
+found an EOG token
+formatted: '<|start|>assistant<|channel|>final<|message|>assistant<|channel|>analysis<|message|>We need to answer why sky is blue, presumably from a scientific perspective. The user says "Why is the sky blue?" The system says we are ChatGPT, and developer says "You are a scientific advisor!". So we should give a scientifically accurate explanation: Rayleigh scattering, scattering of sunlight by air molecules, shorter wavelengths scatter more, leading to blue appearance. Also mention the composition of atmosphere, scattering, etc. Perhaps also mention twilight colors, etc. Keep it concise but thorough. No policy conflict. Good.<|end|><|start|>assistant<|channel|>final<|message|>The blue appearance of the daytime sky is a classic result of **Rayleigh scattering**—the preferential scattering of shorter‑wavelength light by molecules and very small particles in Earth’s atmosphere.
+
+### 1. Sunlight is white
+Sunlight (or any star’s light) is essentially a mix of all visible wavelengths, which combine to appear white to our eyes. The visible spectrum ranges from about 400 nm (violet) to 700 nm (red).
+
+### 2. Interaction with atmospheric molecules
+When sunlight enters the atmosphere it encounters nitrogen, oxygen, water vapor, and other molecules that are far smaller than the wavelength of visible light (on the order of 0.1 µm). For such scatterers the scattering cross‑section follows the **Rayleigh law**:
+
+\[
+\sigma(\lambda) \propto \frac{1}{\lambda^4}
+\]
+
+where \(\sigma\) is the scattering cross‑section and \(\lambda\) is the wavelength. This inverse‑fourth‑power dependence means that violet and blue light (≈ 400–500 nm) are scattered about 10 times more strongly than red light (≈ 650 nm).
+
+### 3. Resulting sky color
+Because the shorter wavelengths are scattered in all directions, we see a diffuse blue glow coming from every part of the sky. The sun itself remains bright because the path length through the atmosphere is short in the direction of the sun, so only a small fraction of the blue light is removed from the direct beam.
+
+### 4. Why it isn’t violet
+Although violet light is scattered even more strongly, our eyes are less sensitive to it, and some of the violet is absorbed by the upper atmosphere (ozone). Thus the sky appears blue rather than violet.
+
+### 5. Variations
+- **Twilight**: As the sun sets, the light travels a longer path through the atmosphere. Scattering removes the short wavelengths from the direct beam, leaving the sky to appear reddish or orange.
+- **Dust or pollution**: Larger particles scatter light more uniformly across wavelengths (Mie scattering), giving skies a whiter or hazier appearance.
+- **Polar regions**: The Rayleigh scattering is the same, but atmospheric composition and temperature differences can alter the exact hue.
+
+In short, the sky is blue because the molecules in our atmosphere scatter sunlight, and the scattering efficiency drops dramatically with increasing wavelength, so blue light is dispersed far more than red light.<|end|>'
+
+waiting for user input
+
+> EOF by user
+
+llama_perf_sampler_print:    sampling time =     191.91 ms /   709 runs   (    0.27 ms per token,  3694.40 tokens per second)
+llama_perf_context_print:        load time =   15362.45 ms
+llama_perf_context_print: prompt eval time =    4032.33 ms /    86 tokens (   46.89 ms per token,    21.33 tokens per second)
+llama_perf_context_print:        eval time =  166914.66 ms /   622 runs   (  268.35 ms per token,     3.73 tokens per second)
+llama_perf_context_print:       total time =  395352.09 ms /   708 tokens
+llama_perf_context_print:    graphs reused =        619
+Interrupted by user
