@@ -1,32 +1,163 @@
+# Claude Code
+
+**Claude Code** by default requires a paid account, the minimal value is currently <b>*$5*</b>.
+In order to use it for free, which still requires you to register at **Anthropic** e.g. with your **Google** account, 
+some configuration changes need to be applied before running **Claude Code**.
+
+Additionally **Claude Code** does not support the standard of the **OpenAI API** interface, so <b>*ClaudeProxy.py*</b> is
+provided here for a translation layer (**Note!** Streaming does not work yet).
+
+## Prerequisites
+
+### Python3
+
+To run <b>*ClaudeProxy.py*</b> a **[Python 3](https://www.python.org/downloads/windows/)** environment is required.
+When available adapt and run <b>*SetupEnvPython3.cmd*</b>:
+
+```
+@SET CURRENTDIRECTORY=%~dp0
+@SET PYTHON=D:\Python\3.13.3
+@SET PYCHARM=D:\Python\PyCharm
+
+@REM Either have directories in python313._pth or in PYTHONPATH environment variable
+@REM See: https://michlstechblog.info/blog/python-install-python-with-pip-on-windows-by-the-embeddable-zip-file/
+@REN %PYTHON%\python313._pth python313._pth.original
+@SET PATH=%PYTHON%;%PYTHON%\Scripts;%PYCHARM%\bin;%PATH%
+@SET PYTHONPATH=%PYTHON%;%PYTHON%\DLLs;%PYTHON%\lib;%PYTHON%\lib\plat-win;%PYTHON%\lib\site-packages
+```
+
+### Bash
+
+**Claude Code** insists in a **Unix** compatible environment which can be **[Git Bash](https://git-scm.com/downloads/win)**.
+After the shell is available adjust the path to <b>*bash.exe*</b> in <b>*SetupEnvClaude*</b> accordingly:
+
+```
+@SET CLAUDE_CODE_GIT_BASH_PATH=X:\Git\bin\bash.exe
+@SET ANTHROPIC_API_KEY=dummy-key
+@SET ANTHROPIC_BASE_URL=http://localhost:8000
+```
+
+### ClaudeProxy.py
+
+The reverse proxy <b>*ClaudeProxy.py*</b> is provided as an interface between **Claude Code** and an **OpenAI API** compatible
+**LLM**.
+Assuming a **Python 3** environment is available, it's development environment was created by:
+
+```
 uv venv ClaudeProxy
-
+.\Scripts\activate
 uv pip install flask
+```
 
+Next you likely need to change the configuration of <b>*ClaudeProxy.py*</b> to specify the **Url** of an **LLM** that provides
+an **OpenAI API** compatible interface: 
 
+```
+# Configuration
+OPENAIAPI_BASE_URL = "http://localhost:8888"  # Use Ollama, Llama.cpp or Fiddler reverse proxy url
+OPENAIAPI_MODEL = "gpt-oss:20b"  # Change to your model
+```
 
-Change Url
+Above example additionally routes the messages via **[Fiddler](https://www.telerik.com/fiddler)**, which is then configured to
+route the messages to an **LLM** e.g. **Llama.cpp** at <b>*http://localhost:10000/*</b>. 
 
-python3 ClaudeProxy.py
+To start <b>*ClaudeProxy.py*</b> activate the virtual Python environment (if not done yet) and launch the reverse proxy:
 
+```
+cd .\ClaudeProxy
+.\Scripts\Acitvate
+Python ClaudeProxy.py
 
+```
 
-Test:
+Running <b>*ClaudeProxy.py*</b> by <b>*Python ClaudeProxy.py*</b> it will provide the following Rest-WebServices to
+validate the installation and connection to a **LLM**:
+
+```
 http://localhost:8000/health
 http://localhost:8000/v1/models
+```
 
-curl -X POST http://localhost:8000/v1/messages -H "Content-Type: application/json" -d "{""model"":""claude-3-sonnet-20240229"",""messages"":\[{""role"":""user"",""content"":""Write a simple hello world function in Python""}]}"
+To test the communication between <b>*ClaudeProxy.py*</b> and **OpenAI API** compatible **LLM** request a <b>*Hello World!*</b>
+program to be composed by the **LLM**.
+Without requesting the **LLM** to stream the answer:
 
+```
+curl -X POST http://localhost:8000/v1/messages -H "Content-Type: application/json" -d "{""model"":""claude-3-sonnet-20240229"",""messages"":[{""role"":""user"",""content"":""Write a simple hello world function in Python""}]}"
+```
 
-
-
-
-PS1:  {'model': 'claude-3-sonnet-20240229','messages': \[{'role': 'user','content': 'Write a simple hello world function in Python'}]}
-
-curl: {"model": "claude-3-sonnet-20240229","messages": \[{"role": "user","content": "Write a simple hello world function in Python"}]}
-
-
-
-{'messages': \[{'content': 'Write a simple hello world function in Python', 'role': 'user'}], 'model': 'gpt-oss:20b', 'stream': False}
+With requesting the **LLM** to stream the answer (**Note!** Streaming does not work yet):
 
 
+```
+curl -X POST http://localhost:8000/v1/messages -H "Content-Type: application/json" -d "{""model"":""claude-3-sonnet-20240229"",""messages"":[{""role"":""user"",""content"":""Write a simple hello world function in Python""}], ""stream"": ""true""}"
+```
 
+## Claude Code Cli
+
+The installation of **Claude Code** requires that **[Node](https://nodejs.org/)** is installed and accessible.
+This repository does not include any **Node** instance, thus download e.g. version <b>*22.15.1*</b> of 
+[Node](https://nodejs.org/dist/v22.15.1/node-v22.15.1-win-x64.zip) and unpack it into a directory e.g. <b>*D:\Node\22.15.1\*</b>.
+
+To run **Node** adapt the following template batch script <b>*SetupEnvNode.cmd*</b> accordingly:
+
+```
+@SET CURRENTDIRECTORY=%~dp0
+@Set NODE=D:\Node\22.15.1
+
+@Set PATH=%NODE%;%PATH%
+```
+
+### Installation
+
+Install **Gemini Cli** with the Node Package Manager:
+
+```
+npm install -g @anthropic-ai/claude-code
+```
+
+### Usage
+
+Initialize **Node** environment and run **Claude Code Cli** by:
+
+```
+SetupEnvClaude.cmd
+Claude
+```
+
+### Proxy
+
+Instead of specifying the **OpenAI API** compatible **LLM** in the <b>*/baseurl*</b> command, you can specify a reverse proxy that forward the requests while also logging them.
+
+#### JavaForwarder
+
+For example, after starting **[JavaForwarder](https://github.com/Warpguru/JavaForwarder)** with:
+
+```
+java -DDUMP=True -DDUMP_WIDTH=32 -jar JavaForwarder.jar 127.0.0.1 1234 8888
+```
+
+and changing the **Llxprt** configuration to:
+
+```
+/baseurl http://127.0.0.1:8888/v1/
+```
+
+the communication between **Llxprt** and the **LLM** exposed by **LMStudio** will be logged in the command prompt **JavaForwarder** was started from.
+
+#### Fiddler
+
+Alternatively you can add the following rule to **[Fiddler](https://www.telerik.com/fiddler)** by invoking the editor for the <b>*OnBeforeRequest*</b> handler from <b>*Rules*</b> <b>*Customize Rules...*</b> to add as the first line:
+
+```
+// Forward traffic to LMStudio llama.cpp server
+if (oSession.host.toLowerCase() == "localhost:8888") oSession.host = "localhost:1234"; 
+```
+
+and changing the **Llxprt** configuration to:
+
+```
+/baseurl http://localhost:8888/v1/
+```
+
+**Fiddler** will now log the communication between **Llxprt** and the **LLM** exposed by **LMStudio**, which can be verified best by switching the viewer to format the body to **Json** format.
