@@ -7,6 +7,8 @@ some configuration changes need to be applied before running **Claude Code**.
 Additionally **Claude Code** does not support the standard of the **OpenAI API** interface, so <b>*ClaudeProxy.py*</b> is
 provided here for a translation layer (**Note!** Streaming does not work yet).
 
+**You set the environment variable ANTHROPIC_BASE_URL to an OpenAI-compatible endpoint and ANTHROPIC_AUTH_TOKEN to the API token for the service.**
+
 ## Prerequisites
 
 ### Python3
@@ -124,40 +126,3 @@ Initialize **Node** environment and run **Claude Code Cli** by:
 SetupEnvClaude.cmd
 Claude
 ```
-
-### Proxy
-
-Instead of specifying the **OpenAI API** compatible **LLM** in the <b>*/baseurl*</b> command, you can specify a reverse proxy that forward the requests while also logging them.
-
-#### JavaForwarder
-
-For example, after starting **[JavaForwarder](https://github.com/Warpguru/JavaForwarder)** with:
-
-```
-java -DDUMP=True -DDUMP_WIDTH=32 -jar JavaForwarder.jar 127.0.0.1 1234 8888
-```
-
-and changing the **Llxprt** configuration to:
-
-```
-/baseurl http://127.0.0.1:8888/v1/
-```
-
-the communication between **Llxprt** and the **LLM** exposed by **LMStudio** will be logged in the command prompt **JavaForwarder** was started from.
-
-#### Fiddler
-
-Alternatively you can add the following rule to **[Fiddler](https://www.telerik.com/fiddler)** by invoking the editor for the <b>*OnBeforeRequest*</b> handler from <b>*Rules*</b> <b>*Customize Rules...*</b> to add as the first line:
-
-```
-// Forward traffic to LMStudio llama.cpp server
-if (oSession.host.toLowerCase() == "localhost:8888") oSession.host = "localhost:1234"; 
-```
-
-and changing the **Llxprt** configuration to:
-
-```
-/baseurl http://localhost:8888/v1/
-```
-
-**Fiddler** will now log the communication between **Llxprt** and the **LLM** exposed by **LMStudio**, which can be verified best by switching the viewer to format the body to **Json** format.

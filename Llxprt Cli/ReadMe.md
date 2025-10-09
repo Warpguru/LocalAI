@@ -90,10 +90,11 @@ Instead of specifying the **OpenAI API** compatible **LLM** in the <b>*/baseurl*
 For example, after starting **[JavaForwarder](https://github.com/Warpguru/JavaForwarder)** with:
 
 ```
-java -DDUMP=True -DDUMP_WIDTH=32 -jar JavaForwarder.jar 127.0.0.1 1234 8888
+java -DDUMP=True -DDUMP_WIDTH=32 -jar JavaForwarder.jar 127.0.0.1 <port> 8888
 ```
 
-and changing the **Llxprt** configuration to:
+where <b>*port*</b> is the port of your **LLM** provider's **OpenAI API** interface (e.g. <b>*10000*</b> for **Llama.cpp** or
+<b>*11434*</b>* for **Ollama**) and changing the **Llxprt** configuration to:
 
 ```
 /baseurl http://127.0.0.1:8888/v1/

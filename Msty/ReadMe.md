@@ -44,10 +44,12 @@ Instead of specifying the **OpenAI API** compatible **LLM** provider e.g. **Olla
 For example, after starting **[JavaForwarder](https://github.com/Warpguru/JavaForwarder)** with:
 
 ```
-java -DDUMP=True -DDUMP_WIDTH=32 -jar JavaForwarder.jar 127.0.0.1 11434 8888
+java -DDUMP=True -DDUMP_WIDTH=32 -jar JavaForwarder.jar 127.0.0.1 <port> 8888
 ```
 
-and adding another <b>*Remote Model Providers*</b> to **MstyStudio**, e.g. <b>*Ollama@JavaForwarder*</b> with the default Url <b>*http://127.0.0.1:8888/*</b>.
+where <b>*port*</b> is the port of your **LLM** provider's **OpenAI API** interface (e.g. <b>*10000*</b> for **Llama.cpp** or
+<b>*11434*</b>* for **Ollama**) and adding another <b>*Remote Model Providers*</b> to **MstyStudio**, e.g. <b>*Ollama@JavaForwarder*</b> 
+with the default Url <b>*http://127.0.0.1:8888/*</b>.
 The communication between **MstyStudio** and the **LLM** exposed by **Ollama** will be logged in the command prompt **JavaForwarder** was started from.
 
 ### Fiddler

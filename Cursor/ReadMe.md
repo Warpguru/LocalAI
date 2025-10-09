@@ -37,6 +37,14 @@ Theoretically **Cursor** supports other **LLM**s too including **Open AI API** c
 but still uses the built-in models (even when they are all deselected).
 This topic is discussed on the internet and no working solutions is available at the moment.
 
+[See also here Method 4: API Proxy Implementation (Advanced)!!!](https://blog.laozhang.ai/development-tools/integrating-cursor-with-laozhang-ai-api/)
+<b>In your Cursor project directory
+Create or edit .env file
+
+OPENAI_API_KEY=your_laozhang_api_key
+OPENAI_API_BASE_URL=https://api.laozhang.ai/v1
+</b>
+
 **Cursor** seems to require a **bash** shell for some actions (at least it logs that when starting it with the <b>*--verbose*</b> option).
 To configure that shell: 
 
@@ -102,10 +110,11 @@ Instead of specifying the **OpenAI API** compatible **LLM** provider e.g. **Olla
 For example, after starting **[JavaForwarder](https://github.com/Warpguru/JavaForwarder)** with:
 
 ```
-java -DDUMP=True -DDUMP_WIDTH=32 -jar JavaForwarder.jar 127.0.0.1 11434 8888
+java -DDUMP=True -DDUMP_WIDTH=32 -jar JavaForwarder.jar 127.0.0.1 <port> 8888
 ```
 
-and defining <b>*http://127.0.0.1:8888/v1</b> as the **OpenAI API** compatible **LLM** as shown above.
+where <b>*port*</b> is the port of your **LLM** provider's **OpenAI API** interface (e.g. <b>*10000*</b> for **Llama.cpp** or
+<b>*11434*</b>* for **Ollama**) and defining <b>*http://127.0.0.1:8888/v1</b> as the **OpenAI API** compatible **LLM** as shown above.
 The communication between **Cursor** and the **LLM** exposed by e.g. **Ollama** will be logged in the command prompt **JavaForwarder** was started from.
 
 ### Fiddler
