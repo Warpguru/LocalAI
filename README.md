@@ -247,3 +247,62 @@ This tool can be used to display details about the **GPU** usage, that is if a *
 if not the **LLM** probably is loaded by the **CPU** which means much less inferencing performance (less <b>*token/s*</b>).
 
 Optionally you can run <b>*NVidia-smi.exe -l n*</b>, where <b>*n*</b> is the refresh rate in seconds. 
+
+### Proxy
+
+Using a reverse **Proxy** such as **[Fiddler](https://www.telerik.com/fiddler)** can be very helpful to trace the communication
+between the front end the user interfaces with the **LLM** and the **LLM** itself.
+It might not be exactly clear what <b>*system prompt*</b> is used when none is explicitly specified, but that prompt massively
+influences the behavior of the **LLM** (e.g. if **Tools** are used).
+
+For example, the <b>*user prompt*</b> to write a simple **Python** application to calculate faculty:
+
+```
+    {
+      "role": "user",
+      "content": "Reason on how to write a Python program to calculate faculty and implement it."
+    }
+```
+
+is accompanied by default by a comprehensive <b>*system prompt*</b> in **Continue Cli**:
+
+```
+      "role": "system",
+      "content": "You are an agent in the Continue CLI. Given the user's prompt, you should use the tools available to you to answer the user's question.
+      
+      Notes:
+      1. IMPORTANT: You should be concise, direct, and to the point, since your responses will be displayed on a command line interface.
+      2. When relevant, share file names and code snippets relevant to the query
+      Here is useful information about the environment you are running in:
+      <env>
+      Working directory: D:\\LocalAI\\Continue\nIs directory a git repo: false
+      Platform: win32
+      Today's date: 2025-10-10
+      </env>
+      
+      As you answer the user's questions, you can use the following context:
+      
+      <context name=\"directoryStructure\">Below is a snapshot of this project's file structure at the start of the conversation. This snapshot will NOT update during the conversation. It skips over .gitignore patterns.
+      
+      ./.gitignore
+      ./ReadMe.md
+      ./SetupEnvCode.cmd
+      ./SetupEnvNode.cmd
+      ./src/main.py
+      ./VSCode.cmd
+      </context>
+      <context name=\"gitStatus\">This is the git status at the start of the conversation. Note that this status is a snapshot in time, and will not update during the conversation.
+      
+      Not a git repository
+      </context>
+      <context name=\"commitSignature\">When creating commits using any CLI or tool, include the following in the commit message:
+      Generated with [Continue](https://continue.dev)
+      
+      Co-Authored-By: Continue <noreply@continue.dev>
+      </context>
+      "
+    },
+```
+
+The  <b>*system prompt*</b> massively influences how the **LLM** acts in the conversation.
+Also, other details like the **LLM** and the configuration parameters used can be easily seen when using a reverse proxy.
