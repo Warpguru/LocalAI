@@ -40,6 +40,21 @@ The built-in <b>*Tools*</b> of **Continue.dev** (e.g. to read or write files) ar
 compatible).
 In order to use the **Agent** mode successfully with a **LLM** a **Python** environment must be available within **VS Code**. 
 
+### Node
+
+**Continue Cli** requires that **[Node](https://nodejs.org/)** is installed and accessible.
+This repository does not include any **Node** instance, thus download e.g. version <b>*22.15.1*</b> of 
+[Node](https://nodejs.org/dist/v22.15.1/node-v22.15.1-win-x64.zip) and unpack it into a directory e.g. <b>*D:\Node\22.15.1\*</b>.
+
+To run **Node** adapt the following template batch script <b>*SetupEnvNode.cmd*</b> accordingly:
+
+```
+@SET CURRENTDIRECTORY=%~dp0
+@Set NODE=D:\Node\22.15.1
+
+@Set PATH=%NODE%;%PATH%
+```
+
 ## Continue.dev
 
 ### Installation
@@ -117,12 +132,67 @@ You can anytime access <b>*config.yaml*</b> also by:
 3. Select the <b>*Agents*</b> icon in the icon menubar
 4. On <b>*Local Agent*</b> click <b>*Settings*</b>
 
-### Proxy
+## Continue Cli
+
+At the time of writing **[Continue Cli](https://docs.continue.dev/guides/cli)** is in beta and it shares its configuration with
+**Continue.dev** (so at least when you want to start with an existing configuration **Continue.dev** must be run and configured before).
+
+### Installation
+
+Install **Continue Cli** with the Node Package Manager:
+
+```
+npm install -g @google/gemini-cli
+```
+
+**Continue Cli** can be run in interactive mode (similar to **Gemini Cli** or **Llxpert Cli**:
+
+```
+cn
+```
+
+or in headless mode:
+
+```
+cn -p "Generate a conventional commit name for the current git changes"
+```
+
+### Configuration
+
+**Continue Cli** can use the same configuration as **Continue.dev**, which is typically persisted in <b>*.\Users\Continue\.continue\config.yaml*</b>.
+However **Continue Cli** by default uses **LLM** available on the **[Continue Hub](https://hub.continue.dev/)**, for which you can
+register by logging in with your e.g. **Google** account.
+
+When **Continue Cli** has been started in interactive mode, by default it uses **LLM**s available on the **Continue Hub**
+with a limited amount of free tokens.
+So you might invoke the <b>*/config*</b> command and switch from <b>*[Personal] Default Assistant*</b> to <b>*[Personal] Local config.yaml*</b>
+and press enter:
+
+```
+Select Configuration            
+                                                                                                                                                                           
+  ➤ [Personal] Local config.yaml
+    [Personal] Default Assistant ✔
+    Create new assistant (opens web)
+    
+  ↑/↓ to navigate, Enter to select, Esc to cancel  
+```
+
+**Continue Cli** will show e.g. the following details about the selected **LLM** (which can be changed with the <b>*/model*</b> command:
+
+```
+ Agent: Local Agent
+ Model: .\Models\gpt-oss-20b\gpt-oss-20b-MXFP4.gguf
+```
+
+**Local Agent** and the mentioned **LLM** were the ones configured in **Continue.dev** about when using **Llama.cpp** as the **LLM** provider.
+
+## Proxy
 
 Instead of specifying the **OpenAI API** compatible **LLM** in the <b>*apiBase*</b> key, you can specify a reverse proxy that forwards
 the requests while also logging them (as shown in the examples above).
 
-#### JavaForwarder
+### JavaForwarder
 
 For example, after starting **[JavaForwarder](https://github.com/Warpguru/JavaForwarder)** with:
 
@@ -131,15 +201,15 @@ java -DDUMP=True -DDUMP_WIDTH=32 -jar JavaForwarder.jar 127.0.0.1 <port> 8888
 ```
 
 where <b>*port*</b> is the port of your **LLM** provider's **OpenAI API** interface (e.g. <b>*10000*</b> for **Llama.cpp** or
-<b>*11434* </b>* for **Ollama**) and changing the **Continue.dev** configuration to:
+<b>*11434*</b> for **Ollama**) and changing the **Continue.dev** configuration to:
 
 ```yaml
    apiBase: http://localhost:8888
 ```
 
-the communication between **Continue.dev** and the **LLM** will be logged in the command prompt **JavaForwarder** was started from.
+the communication between **Continue.dev** or **Continue Cli** and the **LLM** will be logged in the command prompt **JavaForwarder** was started from.
 
-#### Fiddler
+### Fiddler
 
 Alternatively you can add the following rule to **[Fiddler](https://www.telerik.com/fiddler)** by invoking the editor for the <b>*OnBeforeRequest*</b> handler from <b>*Rules*</b> <b>*Customize Rules...*</b> to add as the first line:
 
@@ -149,10 +219,11 @@ if (oSession.host.toLowerCase() == "localhost:8888") oSession.host = "localhost:
 if (oSession.host.toLowerCase() == "127.0.0.1:8888") oSession.host = "localhost:1234"; 
 ```
 
-and changing the **Continue.dev** configuration to:
+and changing the **Continue.dev** configuration to (which can also be used by **Continue Cli**):
 
 ```yaml
    apiBase: http://localhost:8888
 ```
 
-**Fiddler** will now log the communication between **Continue.dev** and the **LLM**, which can be verified best by switching the viewer to format the body to **Json** format.
+**Fiddler** will now log the communication between **Continue.dev** or **Continue Cli** and the **LLM**, 
+which can be verified best by switching the viewer to format the body to **Json** format.
