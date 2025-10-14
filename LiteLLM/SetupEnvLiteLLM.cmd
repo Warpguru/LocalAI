@@ -9,5 +9,3 @@
 @SET DATABASE_URL=postgres://postgres:trust@127.0.0.1:5432/litellm
 @SET PORT=4000
 @SET STORE_MODEL_IN_DB=True
-
-

@@ -1,0 +1,14 @@
+model_list:
+  - model_name: "Ollama Qwen2.5-coder:latest"             
+    litellm_params:
+      model: "ollama/qwen2.5-coder:latest"
+      api_base: "http://localhost:11434"
+  - model_name: "Ollama Llama3.2:3b"
+    litellm_params:
+      model: "ollama/llama3.2:3b"
+      api_base: "http://localhost:11434"
+  - model_name: "Fiddler Gpt-oss-20b"
+    litellm_params:
+      model: "openai/.\\Models\\gpt-oss-20b\\gpt-oss-20b-MXFP4.gguf"
+      api_key: "dummy"
+      api_base: "http://localhost:8888"
