@@ -1,3 +1,8 @@
+# See: https://docs.litellm.ai/docs/proxy/config_settings
+litellm_settings:
+    set_verbose: True
+    json_logs: True
+
 model_list:
   - model_name: "Ollama Qwen2.5-coder:latest"             
     litellm_params:
@@ -12,3 +17,8 @@ model_list:
       model: "openai/.\\Models\\gpt-oss-20b\\gpt-oss-20b-MXFP4.gguf"
       api_key: "dummy"
       api_base: "http://localhost:8888"
+  - model_name: "Watsonx.AI"
+    litellm_params:
+      # all params accepted by litellm.completion()
+      model: watsonx/meta-llama/llama-3-3-70b-instruct
+      api_key: "os.environ/WATSONX_TOKEN" # does os.getenv("WATSONX_TOKEN")
