@@ -155,6 +155,29 @@ curl -L "https://eu-de.ml.cloud.ibm.com/ml/v1/text/generation?version=2023-05-02
 
 **Hint!** If you really execute above call unmodified to your configuration you'll waste your time ;-).
 
+#### Models
+
+To retrieve the **LLM**s currently supported use:
+
+```curl
+curl -X GET "https://eu-de.ml.cloud.ibm.com/ml/v1/foundation_model_specs?version=2024-10-10&filters=function_text_chat"
+```
+
+As of 21.10.2025 the supported models were:
+
+```
+ibm/granite-3-2b-instruct
+ibm/granite-3-3-8b-instruct
+ibm/granite-3-8b-instruct
+ibm/granite-4-h-small
+meta-llama/llama-3-2-11b-vision-instruct
+meta-llama/llama-3-2-90b-vision-instruct
+meta-llama/llama-3-3-70b-instruct
+meta-llama/llama-4-maverick-17b-128e-instruct-fp8
+mistralai/mistral-medium-2505
+mistralai/mistral-small-3-1-24b-instruct-2503
+```
+
 ### LiteLLM
 
 Running **LiteLLM** as a portable application from the current directory requires a configured environment:
@@ -224,7 +247,16 @@ model_list:
   - model_name: "Watsonx.AI"
     litellm_params:
       # all params accepted by litellm.completion()
+      # model: watsonx/ibm/granite-3-2b-instruct
+      # model: watsonx/ibm/granite-3-3-8b-instruct
+      # model: watsonx/ibm/granite-3-8b-instruct
+      # model: watsonx/ibm/granite-4-h-small
+      # model: watsonx/meta-llama/llama-3-2-11b-vision-instruct
+      # model: watsonx/meta-llama/llama-3-2-90b-vision-instruct
       model: watsonx/meta-llama/llama-3-3-70b-instruct
+      # model: watsonx/meta-llama/llama-4-maverick-17b-128e-instruct-fp8
+      # model: watsonx/mistralai/mistral-medium-2505
+      # model: watsonx/mistralai/mistral-small-3-1-24b-instruct-2503
       api_key: "os.environ/WATSONX_TOKEN" # does os.getenv("WATSONX_TOKEN")
 ```
 
