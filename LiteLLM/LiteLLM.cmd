@@ -1,0 +1,1 @@
+@START "LiteLLM" cmd /c ".\LiteLLM-Proxy\.venv\Scripts\litellm.exe --config ./config.yaml --debug --detailed_debug"
