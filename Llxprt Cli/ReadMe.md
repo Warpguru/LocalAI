@@ -8,7 +8,21 @@ trace the communication with tools like **[Fiddler](https://www.telerik.com/fidd
 
 ### Prerequisites
 
-The installation of **GeminiCli** requires that **[Node](https://nodejs.org/)** is installed and accessible.
+In order to use **Llxprt Cli** as a portable application the batch script <b>*SetupEnvLlxprtCli.cmd*</b> sets the required
+virtualization of the environment:
+
+```SetupEnvLlxprtCli.cmd
+@ECHO OFF
+SET CURRENTDIRECTORY=%~dp0
+SET USERPROFILE=%CURRENTDIRECTORY%Users\LlxprtCli
+SET APPDATA=%CURRENTDIRECTORY%Users\LlxprtCli\AppData\Roaming
+IF NOT EXIST "%APPDATA%" MKDIR "%APPDATA%" >NUL
+
+ECHO .
+ECHO To launch Llxprt Cli enter: Llxprt
+```
+
+The installation of **Llxprt Cli** requires that **[Node](https://nodejs.org/)** is installed and accessible.
 This repository does not include any **Node** instance, thus download e.g. version <b>*22.15.1*</b> of 
 [Node](https://nodejs.org/dist/v22.15.1/node-v22.15.1-win-x64.zip) and unpack it into a directory e.g. <b>*D:\Node\22.15.1\*</b>.
 
@@ -31,9 +45,10 @@ npm install -g @vybestack/llxprt-code
 
 ### Usage
 
-Initialize **Node** environment and run **Llxprt Cli** by:
+If not done already initialize **Llxprt Cli** and **Node** environments and then run **Llxprt Cli** by:
 
 ```
+SetupEnvLlxprtCli.cmd
 SetupEnvNode.cmd
 Llxprt
 ```
