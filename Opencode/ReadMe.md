@@ -78,7 +78,7 @@ To use a local **LLM** such as **Llama.cpp** servicing <b>*Gpt-Oss-20b*</> put t
 
 ### Usage
 
-Initialize **Node** and **Opencode** environments and run **Opencode Cli** by:
+If not done already initialize **Opencode** and **Node** environments and then run **Opencode Cli** by:
 
 ```
 SetupEnvOpencode.cmd

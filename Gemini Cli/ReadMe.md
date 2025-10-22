@@ -4,7 +4,7 @@
 
 ### Prerequisites
 
-The installation of **GeminiCli** requires that **[Node](https://nodejs.org/)** is installed and accessible.
+The installation of **Gemini Cli** requires that **[Node](https://nodejs.org/)** is installed and accessible.
 This repository does not include any **Node** instance, thus download e.g. version <b>*22.15.1*</b> of 
 [Node](https://nodejs.org/dist/v22.15.1/node-v22.15.1-win-x64.zip) and unpack it into a directory e.g. <b>*D:\Node\22.15.1\*</b>.
 
@@ -17,6 +17,20 @@ To run **Node** adapt the following template batch script <b>*SetupEnvNode.cmd*<
 @Set PATH=%NODE%;%PATH%
 ```
 
+In order to use **Gemini Cli** as a portable application the batch script <b>*SetupEnvGeminiCli.cmd*</b> sets the required
+virtualization of the environment:
+
+```SetupEnvGeminiCli.cmd
+@ECHO OFF
+SET CURRENTDIRECTORY=%~dp0
+SET USERPROFILE=%CURRENTDIRECTORY%Users\GeminiCli
+SET APPDATA=%CURRENTDIRECTORY%Users\GeminiCli\AppData\Roaming
+IF NOT EXIST "%APPDATA%" MKDIR "%APPDATA%" >NUL
+
+ECHO .
+ECHO To launch Gemini Cli enter: Gemini
+```
+
 ### Installation
 
 Install **Gemini Cli** with the Node Package Manager:
@@ -27,9 +41,10 @@ npm install -g @google/gemini-cli
 
 ### Usage
 
-Initialize **Node** environment and run **Gemini Cli** by:
+If not done already initialize **Gemini Cli** and **Node** environments and then run **Gemini** by:
 
 ```
+SetupEnvGeminiCli.cmd
 SetupEnvNode.cmd
 Gemini
 ```
