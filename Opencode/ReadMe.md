@@ -2,6 +2,16 @@
 
 ## Opencode
 
+After you install it, **Opencode** ships with a set of default large language models (LLMs) that are ready to use right away.
+It also supports any **OpenAI API** compatible LLM provider, whether commercial or open source, including models that run locally
+on your machine.
+
+The tool comes with two built-in modes, <b>*Build*</b> and <b>*Plan*</b>.
+These can be replaced or extended with custom modes, which is especially useful if you want to supply your own **system message**s.
+One thing to keep in mind is that the default modes include heavy **system message**s that invoke various tools.
+This can quickly consume thousands of tokens, potentially slowing down or even breaking local **LLM**s — particularly as there 
+are differences in how *Ollama** and **Llama.cpp** handle **Go** and **Jinja2** template formats. 
+
 ### Prerequisites
 
 The installation of **Opencode** requires that **[Node](https://nodejs.org/)** is installed and accessible.

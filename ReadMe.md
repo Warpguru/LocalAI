@@ -237,6 +237,22 @@ On a clear day, the scattered blue light is evenly distributed in all directions
 Overall, the color of the sky is a beautiful example of how light interacts with our atmosphere and how our perception of color plays a role in the way we experience the world.
 ```
 
+## Issues
+
+### Templates
+
+**LLM** providers typically only support one of two standard **Go** or **Jinja2** template formats which might cause issues
+in connection with the **system message**s, e.g. at the time of writing **Opencode** gets into timeouts when using **Llama.cpp**
+as the **LLM** provider even **Llama.cpp**, or **LiteLLM** supporting a model provided by **Llama.cpp**, despite both being
+**OpenAI API** compatible (an analysis of the messages with **Fiddler** show that **Llama.cpp** indeed does start to
+stream the response, but somehow **Opencode** does not wait for the completion despite increasing the timeout configuration).
+
+**LLM** providers usually support only one of two standard template formats — **Go** or **Jinja2** — which can cause problems with 
+**system message**s.
+For example, at the time of writing **Opencode** times out when using **Llama.cpp** as the LLM provider, even though both 
+**Llama.cpp** and **LiteLLM** (which supports models from **Llama.cpp**) are **OpenAI API** compatible.
+A **Fiddler** analysis shows that **Llama.cpp** does begin streaming the response, but **Opencode** fails to wait for the 
+completion, even after the timeout setting has been increased.
 
 ## Hints
 
