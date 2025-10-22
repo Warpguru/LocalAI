@@ -21,6 +21,12 @@ To create a portable installation of **Ollama**:
    
 3. Deinstall **Ollama** again
 
+To transfer a downloaded model from one Ollama installation to another:
+
+1. Locate <b>*.\Ollama\Models\manifests\registry.ollama.ai\library\<LLM>\*</b> where **<LLM>** is the name of the model and copy this entire directory
+2. In that directory, open the <b>*<Version>*</b> file and format the **JSON** content, which will contain **sh256** digest entries
+3. Locate <b>*.\Ollama\Models\blobs\*</b>, which contains files named <b>*sha256-<hex checksum>*</b>. Here, <b>*<hex checksum>*</b> corresponds to the sh256 digest entries. Copy these 5 files from this location.
+
 ## Usage
 
 Initialize the portable **Ollama** environment and launch it with <b>*SetupEnvOllama.cmd*</b>:
@@ -32,7 +38,8 @@ SET OLLAMA_ORIGINS=*
 SET OLLAMA_HOST=0.0.0.0
 SET OLLAMA_MODELS=%CURRENTDIR%Ollama\Models
 SET USERPROFILE=%CURRENTDIR%\Users\Ollama
-IF NOT EXIST "%USERPROFILE%" MKDIR "%USERPROFILE%" >NUL
+SET APPDATA=%CURRENTDIRECTORY%Users\Ollama\AppData\Roaming
+IF NOT EXIST "%APPDATA%" MKDIR "%APPDATA%" >NUL
 IF NOT EXIST "%OLLAMA_MODELS%" MKDIR "%OLLAMA_MODELS%" >NUL
 
 ECHO If either Ollama or an LLM has not been downloaded yet, refer to ReadMe.md on how to proceed.
