@@ -5,7 +5,7 @@ SET APPDATA=%CURRENTDIR%Users\Llama\AppData\Roaming
 SET LOCALAPPDATA=%CURRENTDIR%Users\Llama\AppData\Local
 IF NOT EXIST %APPDATA% MKDIR %APPDATA% >NUL
 IF NOT EXIST %LOCALAPPDATA% MKDIR %LOCALAPPDATA% >NUL
-IF NOT EXIST %USERPROFILE%Llama.cpp\models MKDIR %USERPROFILE%Llama.cpp\models >NUL
+IF NOT EXIST %CURRENTDIR%\Models MKDIR %CURRENTDIR%\Models >NUL
 
 ECHO If either Llama.cpp or an LLM has not been downloaded yet, refer to ReadMe.md on how to proceed.
 ECHO.
