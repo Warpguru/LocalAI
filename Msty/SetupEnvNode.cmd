@@ -1,0 +1,4 @@
+@SET CURRENTDIRECTORY=%~dp0
+@Set NODE=D:\Node\22.15.1
+
+@Set PATH=%NODE%;%PATH%
