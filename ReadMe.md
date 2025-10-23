@@ -29,7 +29,7 @@ mklink D:\LocalAI\Llama.cpp\Models\gpt-oss-20b\gpt-oss-20b-MXFP4.gguf D:\LocalAI
 
 ### Conversion
 
-An example how to convert a **LLM** in **GGUF** file format is shown in the **[Ollama](../Ollama/Ollama/ReadMe.md)** chapter.
+An example how to convert a **LLM** in **GGUF** file format is shown in the **[Ollama](./Ollama/ReadMe.md)** chapter.
 
 ## Processing
 

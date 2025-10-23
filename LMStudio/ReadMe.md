@@ -2,9 +2,9 @@
 
 ## Installation
 
-To create a portable installation of **LM Studio**:
+To create a portable installation of **[LM Studio](https://lmstudio.ai/)**:
 
-1. Install **[LM Studio](https://lmstudio.ai/)** with the downloaded installer.
+1. Install **[LM Studio](https://lmstudio.ai/)** with the downloaded installer and launch it once.
 2. Copy the **LM Studio** program and configuration to this repository folder (replace <b>*User*</b> with your username):
 
    ```
@@ -18,17 +18,22 @@ To create a portable installation of **LM Studio**:
 
 Initialize the portable **LM Studio** environment and launch it with <b>*SetupEnvLmstudio.cmd*</b>:
 
-```
+```SetupEnvLmstudio.cmd
 @ECHO OFF
 SET CURRENTDIR=%~dp0
-SET USERPROFILE=%CURRENTDIR%Users
-SET LOCALAPPDATA=%CURRENTDIR%Users\AppData\Local
+SET USERPROFILE=%CURRENTDIR%Users\LMStudio
+SET APPDATA=%CURRENTDIR%Users\LMStudio\AppData\Roaming
+SET LOCALAPPDATA=%CURRENTDIR%Users\LMStudio\AppData\Local
+IF NOT EXIST "%APPDATA%" MKDIR "%APPDATA%" >NUL
 IF NOT EXIST "%LOCALAPPDATA%" MKDIR "%LOCALAPPDATA%" >NUL
 
-ECHO %USERPROFILE%\.lmstudio > %CURRENTDIR%Users\.lmstudio-home-pointer
-ECHO Ensure that configuration .\Users\AppData\Roaming\LM Studio\settings.json points to the correct folder for local LLMs: "downloadsFolder": ".\\Users\\.lmstudio\\models"
+ECHO %USERPROFILE%\.lmstudio > %USERPROFILE%\.lmstudio-home-pointer
+ECHO Ensure that configuration .\Users\LMStudio\AppData\Roaming\LM Studio\settings.json points to the correct folder for local LLMs: "downloadsFolder": ".\\Users\\LMStudio\\.lmstudio\\models"
+ECHO.
+ECHO Put downloaded models (e.g. from HuggingFace) into: .\Users\LMStudio\.lmstudio\models\lmstudio-community
 ECHO.
 Start "LM Studio" cmd.exe /K ".\LMStudio\LM Studio"
 ```
 
-After installing **LM Studio** at least one **LLM** needs to be downloaded e.g. from <b>*[LM Studio Models](https://lmstudio.ai/models)*</b>.
+After installing **LM Studio** at least one **LLM** needs to be downloaded e.g. from <b>*[LM Studio Models](https://lmstudio.ai/models)*</b>
+or <b>*[HuggingFace](https://huggingface.co/models)*</b>.

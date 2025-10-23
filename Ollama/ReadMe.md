@@ -74,6 +74,39 @@ For the example above replace <b>*<server>*</b> with e.g. <b>*localhost*</b> if 
 Assuming that the <b>*Granite3.1-dense:8b*</b> and <b>*Mistral:latest*</b> **LLM**s are installed you can use those calls
 as a chat conversation start topic.
 
+## Modelfile
+
+To use a model in **GGUF** format it has to be imported into **Ollama** by the means of a **Modelfile**.
+The **Modelfile** includes configuration that **Ollama** requires in addition to the model weights in the **GGUF** file, e.g.
+to use <b>*GPT-OSS-20B*</b> in **GGUF** format with **Ollama** the **Modelfile** <b>*Modelfile.gpt-oss-20b-GGUF*</b> is
+provided as an example:
+
+```Modelfile.gpt-oss-20b-GGUF
+# Import GPTOSS-20B downloaded with LMStudio
+FROM ..\LMStudio\Users\.lmstudio\models\lmstudio-community\gpt-oss-20b-GGUF\gpt-oss-20b-MXFP4.gguf
+
+# Template: Here the chat_template from the GGUF file needs to be added, otherwise the LLM won't understand you.
+#           HuggingFace provides this: https://huggingface.co/openai/gpt-oss-20b/tree/03fd454aae9be5799e9531726db7f6d0673675cb
+#           However, the format at HuggingFace is Jinja2 template format (also called "Harmony") while Ollama expects Go template format
+#
+#           Ollama provides this: https://ollama.com/library/gpt-oss:20b/blobs/51468a0fd901
+#           However, that means one really can't convert a chat_template from GGUF format files to Ollama modelfile format
+TEMPLATE """
+...
+# Create Ollama LLM by (this makes a copy):
+#   .\ollama\ollama create gpt-oss-20b-GGUF -f .\Modelfile.gpt-oss-20b-GGUF
+# Show hash
+#   .\ollama\ollama show gpt-oss-20b-GGUF --modelfile
+# Replace copy with original GGUF symlink
+#   rm .\Ollama\Models\blobs\sha256-65d06d31a3977d553cb3af137b5c26b5f1e9297a6aaa29ae7caa98788cde53ab
+#   mklink .\Ollama\Models\blobs\sha256-65d06d31a3977d553cb3af137b5c26b5f1e9297a6aaa29ae7caa98788cde53ab ..\LMStudio\Users\.lmstudio\models\lmstudio-community\gpt-oss-20b-GGUF\gpt-oss-20b-MXFP4.gguf 
+```
+
+When importing the model weights from a **GGUF** file using a **Modelfile** to **Ollama**, **Ollama** will also make an exact copy of
+the model weights in the <b>*.\Ollama\Models\blobs*</b> directory.
+As this is a waste of disk space it can be deleted and **mklink** can be used to replace it with a link to the original file
+as documented in the example **Modelfile** above. 
+
 ## GUI
 
 ### Ollama
