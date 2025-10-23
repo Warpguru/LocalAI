@@ -13,10 +13,12 @@ virtualization of the environment:
 
 ```SetupEnvLlxprtCli.cmd
 @ECHO OFF
-SET CURRENTDIRECTORY=%~dp0
-SET USERPROFILE=%CURRENTDIRECTORY%Users\LlxprtCli
-SET APPDATA=%CURRENTDIRECTORY%Users\LlxprtCli\AppData\Roaming
+SET CURRENTDIR=%~dp0
+SET USERPROFILE=%CURRENTDIR%Users\LlxprtCli
+SET APPDATA=%CURRENTDIR%Users\LlxprtCli\AppData\Roaming
+SET LOCALAPPDATA=%CURRENTDIR%Users\LlxprtCli\AppData\Local
 IF NOT EXIST "%APPDATA%" MKDIR "%APPDATA%" >NUL
+IF NOT EXIST "%LOCALAPPDATA%" MKDIR "%LOCALAPPDATA%" >NUL
 
 ECHO .
 ECHO To launch Llxprt Cli enter: Llxprt

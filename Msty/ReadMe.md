@@ -2,9 +2,9 @@
 
 ## Installation
 
-To create a portable installation of **MstyStudio**:
+To create a portable installation of **[MstyStudio](https://msty.ai/)**:
 
-1. Install **[MstyStudio](https://msty.ai/)** with the downloaded installer.
+1. Install **MstyStudio** with the downloaded installer.
 2. Copy the **Msty** program and configuration to this repository folder (replace <b>*User*</b> with your username):
 
    ```
@@ -17,11 +17,14 @@ To create a portable installation of **MstyStudio**:
 
 Initialize the portable **MstyStudio** environment and launch it with <b>*SetupEnvMsty.cmd*</b>:
 
-```
+```SetupEnvMsty.cmd
 @ECHO OFF
 SET CURRENTDIR=%~dp0
 SET USERPROFILE=%CURRENTDIR%Users\MstyStudio
-IF NOT EXIST "%USERPROFILE%" MKDIR "%USERPROFILE%" >NUL
+SET APPDATA=%CURRENTDIR%Users\MstyStudio\AppData\Roaming
+SET LOCALAPPDATA=%CURRENTDIR%Users\MstyStudio\AppData\Local
+IF NOT EXIST "%APPDATA%" MKDIR "%APPDATA%" >NUL
+IF NOT EXIST "%LOCALAPPDATA%" MKDIR "%LOCALAPPDATA%" >NUL
 
 @REM Start GUI in separate process
 ECHO.
