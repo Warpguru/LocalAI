@@ -31,7 +31,7 @@ To transfer a downloaded model from one Ollama installation to another:
 
 Initialize the portable **Ollama** environment and launch it with <b>*SetupEnvOllama.cmd*</b>:
 
-```
+```SetupEnvOllama.cmd
 @ECHO OFF
 SET CURRENTDIR=%~dp0
 SET OLLAMA_ORIGINS=*
@@ -39,7 +39,9 @@ SET OLLAMA_HOST=0.0.0.0
 SET OLLAMA_MODELS=%CURRENTDIR%Ollama\Models
 SET USERPROFILE=%CURRENTDIR%\Users\Ollama
 SET APPDATA=%CURRENTDIRECTORY%Users\Ollama\AppData\Roaming
+SET LOCALAPPDATA=%CURRENTDIR%Users\Ollama\AppData\Local
 IF NOT EXIST "%APPDATA%" MKDIR "%APPDATA%" >NUL
+IF NOT EXIST "%LOCALAPPDATA%" MKDIR "%LOCALAPPDATA%" >NUL
 IF NOT EXIST "%OLLAMA_MODELS%" MKDIR "%OLLAMA_MODELS%" >NUL
 
 ECHO If either Ollama or an LLM has not been downloaded yet, refer to ReadMe.md on how to proceed.

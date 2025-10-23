@@ -4,8 +4,11 @@
 
 ### Llama.cpp
 
-To install **[Llama.cpp](https://github.com/ggml-org/llama.cpp/releases)** download the version that supports <b>*NVIDIA GPU*</b>s (which automatically include <b>*CPU*</b> support), e.g. **[llama-b6367-bin-win-cuda-12.4-x64.zip](https://github.com/ggml-org/llama.cpp/releases/download/b6367/llama-b6367-bin-win-cuda-12.4-x64.zip)**.
-Unpack the archive into the subdirectory <b>*./Llamap.cpp/*</b>.
+To install **[Llama.cpp](https://github.com/ggml-org/llama.cpp/releases)** download the version that supports **CUDA** 
+(which automatically include <b>*CPU*</b> support), e.g. **[llama-b6823-bin-win-cuda-12.4-x64.zip](https://github.com/ggml-org/llama.cpp/releases/download/b6823/llama-b6823-bin-win-cuda-12.4-x64.zip)**.
+To use hardware acceleration with **NVidia** **GPU**s also download the **[CUDA](https://developer.nvidia.com/cuda-toolkit)** runtime
+**[cudart-llama-bin-win-cuda-12.4-x64.zip](https://github.com/ggml-org/llama.cpp/releases/download/b6823/cudart-llama-bin-win-cuda-12.4-x64.zip)**
+Unpack the archives into the subdirectory <b>*./Llamap.cpp/*</b>.
 
 **Llama.cpp** contains multiple programs, the most important for running an **LLM** are:
 
@@ -14,15 +17,15 @@ Unpack the archive into the subdirectory <b>*./Llamap.cpp/*</b>.
 
 Use the batch script <b>*SetupEnvLlama.cmd*</b> to allow **Llama.cpp** running in a portable way (and create the required directories):
 
-```
+```SetupEnvLlama.cmd
 @ECHO OFF
 SET CURRENTDIR=%~dp0
-SET LLAMA_MODELS=%CURRENTDIR%\Models
-SET USERPROFILE=%CURRENTDIR%\Users\Llama
-SET LOCALAPPDATA=%CURRENTDIR%\Users\Llama\data\AppData\Local
-IF NOT EXIST %USERPROFILE% MKDIR %USERPROFILE% >NUL
+SET USERPROFILE=%CURRENTDIR%Users\Llama
+SET APPDATA=%CURRENTDIR%Users\Llama\AppData\Roaming
+SET LOCALAPPDATA=%CURRENTDIR%Users\Llama\AppData\Local
+IF NOT EXIST %APPDATA% MKDIR %APPDATA% >NUL
 IF NOT EXIST %LOCALAPPDATA% MKDIR %LOCALAPPDATA% >NUL
-IF NOT EXIST %LLAMA_MODELS% MKDIR %LLAMA_MODELS% >NUL
+IF NOT EXIST %CURRENTDIR%\Models MKDIR %CURRENTDIR%\Models >NUL
 
 ECHO If either Llama.cpp or an LLM has not been downloaded yet, refer to ReadMe.md on how to proceed.
 ECHO.
