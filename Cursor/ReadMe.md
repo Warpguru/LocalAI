@@ -4,24 +4,31 @@
 
 To create a portable installation of **Cursor**:
 
-1. Download **[Cursor](https://cursor.com/download)** (e.g. <b>*CursorSetup-x64-1.7.38.exe*</b>* and install it with the default settings.
-2. Copy the **Cursor** program and configuration to this repository folder (replace <b>*User*</b> with your username):
+1. Download **[Cursor](https://cursor.com/download)** (e.g. <b>*CursorSetup-x64-1.7.54.exe*</b>* and install it with the default settings
+except registering it as an editor and modifying the path and launch it once
+2. Log in with e.g. your **Google** account
+3. Copy the **Cursor** program and configuration to this repository folder (replace <b>*User*</b> with your username):
 
    ```
-   XCOPY X:\Program Files\Cursor .\Cursor\ /s /e /v
+   XCOPY "X:\Users\<User>\AppData\Local\Programs\cursor" .\Cursor\ /s /e /v
    ```
-3. Deinstall **Cursor** again
+4. Deinstall **Cursor** again
 
 ## Usage
 
 Initialize the portable **Cursor** environment by <b>*SetupEnvCursor.cmd*</b>:
 
-```
+```SetupEnvCursor.cmd
 @ECHO OFF
 SET CURRENTDIR=%~dp0
 SET USERPROFILE=%CURRENTDIR%Users\Cursor
 SET APPDATA=%CURRENTDIR%Users\Cursor\Appdata\Roaming
+SET LOCALAPPDATA=%CURRENTDIR%Users\Cursor\AppData\Local
 IF NOT EXIST "%CURRENTDIR%" MKDIR "%CURRENTDIR%" >NUL
+IF NOT EXIST "%LOCALAPPDATA%" MKDIR "%LOCALAPPDATA%" >NUL
+
+ECHO.
+Start "Cursor" cmd.exe /K ".\Cursor\Cursor"
 ```
 
 Start **Cursor** with the command <b>*.\Cursor\Cursor.exe*</b>.
