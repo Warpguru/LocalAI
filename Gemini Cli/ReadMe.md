@@ -26,11 +26,12 @@ This repository does not include any **Node** instance, thus download e.g. versi
 
 To run **Node** adapt the following template batch script <b>*SetupEnvNode.cmd*</b> accordingly:
 
-```
-@SET CURRENTDIRECTORY=%~dp0
-@Set NODE=D:\Node\22.15.1
+```SetupEnvNode.cmd
+@ECHO OFF
+SET CURRENTDIRECTORY=%~dp0
+SET NODE=D:\Node\22.15.1
 
-@Set PATH=%NODE%;%PATH%
+SET PATH=%NODE%;%PATH%
 ```
 
 ### Installation

@@ -19,10 +19,10 @@ Initialize the portable **MstyStudio** environment and launch it with <b>*SetupE
 
 ```SetupEnvMsty.cmd
 @ECHO OFF
-SET CURRENTDIR=%~dp0
-SET USERPROFILE=%CURRENTDIR%Users\MstyStudio
-SET APPDATA=%CURRENTDIR%Users\MstyStudio\AppData\Roaming
-SET LOCALAPPDATA=%CURRENTDIR%Users\MstyStudio\AppData\Local
+SET CURRENTDIRECTORY=%~dp0
+SET USERPROFILE=%CURRENTDIRECTORY%Users\MstyStudio
+SET APPDATA=%CURRENTDIRECTORY%Users\MstyStudio\AppData\Roaming
+SET LOCALAPPDATA=%CURRENTDIRECTORY%Users\MstyStudio\AppData\Local
 IF NOT EXIST "%APPDATA%" MKDIR "%APPDATA%" >NUL
 IF NOT EXIST "%LOCALAPPDATA%" MKDIR "%LOCALAPPDATA%" >NUL
 

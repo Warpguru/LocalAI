@@ -16,16 +16,17 @@ provided here for a translation layer (**Note!** Streaming does not work yet).
 To run <b>*ClaudeProxy.py*</b> a **[Python 3](https://www.python.org/downloads/windows/)** environment is required.
 When available adapt and run <b>*SetupEnvPython3.cmd*</b>:
 
-```
-@SET CURRENTDIRECTORY=%~dp0
-@SET PYTHON=D:\Python\3.13.3
-@SET PYCHARM=D:\Python\PyCharm
+```SetupEnvPython3.cmd
+@ECHO OFF
+SET CURRENTDIRECTORY=%~dp0
+SET PYTHON=%CD:~0,2%\Python\3.13.3
+SET PYCHARM=%CD:~0,2%\PyCharm
 
-@REM Either have directories in python313._pth or in PYTHONPATH environment variable
-@REM See: https://michlstechblog.info/blog/python-install-python-with-pip-on-windows-by-the-embeddable-zip-file/
-@REN %PYTHON%\python313._pth python313._pth.original
-@SET PATH=%PYTHON%;%PYTHON%\Scripts;%PYCHARM%\bin;%PATH%
-@SET PYTHONPATH=%PYTHON%;%PYTHON%\DLLs;%PYTHON%\lib;%PYTHON%\lib\plat-win;%PYTHON%\lib\site-packages
+REM Either have directories in python313._pth or in PYTHONPATH environment variable
+REM See: https://michlstechblog.info/blog/python-install-python-with-pip-on-windows-by-the-embeddable-zip-file/
+REN %PYTHON%\python313._pth python313._pth.original
+SET PATH=%PYTHON%;%PYTHON%\Scripts;%PYCHARM%\bin;%PATH%
+SET PYTHONPATH=%PYTHON%;%PYTHON%\DLLs;%PYTHON%\lib;%PYTHON%\lib\plat-win;%PYTHON%\lib\site-packages
 ```
 
 ### Bash
@@ -33,10 +34,20 @@ When available adapt and run <b>*SetupEnvPython3.cmd*</b>:
 **Claude Code** insists in a **Unix** compatible environment which can be **[Git Bash](https://git-scm.com/downloads/win)**.
 After the shell is available adjust the path to <b>*bash.exe*</b> in <b>*SetupEnvClaude*</b> accordingly:
 
-```
-@SET CLAUDE_CODE_GIT_BASH_PATH=X:\Git\bin\bash.exe
-@SET ANTHROPIC_API_KEY=dummy-key
-@SET ANTHROPIC_BASE_URL=http://localhost:8000
+```SetupEnvClaude.cmd
+@ECHO OFF
+SET CLAUDE_CODE_GIT_BASH_PATH=D:\Development\Git\bin\bash.exe
+SET ANTHROPIC_API_KEY=dummy-key
+SET ANTHROPIC_BASE_URL=http://localhost:8000
+SET CURRENTDIRECTORY=%~dp0
+SET USERPROFILE=%CURRENTDIRECTORY%Users\Claude
+SET APPDATA=%CURRENTDIRECTORY%Users\Claude\AppData\Roaming
+SET LOCALAPPDATA=%CURRENTDIRECTORY%Users\Claude\AppData\Local
+IF NOT EXIST "%APPDATA%" MKDIR "%APPDATA%" >NUL
+IF NOT EXIST "%LOCALAPPDATA%" MKDIR "%LOCALAPPDATA%" >NUL
+
+ECHO.
+ECHO To launch Claude Code enter: Claude
 ```
 
 ### ClaudeProxy.py
@@ -103,11 +114,12 @@ This repository does not include any **Node** instance, thus download e.g. versi
 
 To run **Node** adapt the following template batch script <b>*SetupEnvNode.cmd*</b> accordingly:
 
-```
-@SET CURRENTDIRECTORY=%~dp0
-@Set NODE=D:\Node\22.15.1
+```SetupEnvNode.cmd
+@ECHO OFF
+SET CURRENTDIRECTORY=%~dp0
+SET NODE=%CD:~0,2%\Node\22.15.1
 
-@Set PATH=%NODE%;%PATH%
+SET PATH=%NODE%;%PATH%
 ```
 
 ### Installation

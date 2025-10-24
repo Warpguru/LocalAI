@@ -13,10 +13,10 @@ virtualization of the environment:
 
 ```SetupEnvLlxprtCli.cmd
 @ECHO OFF
-SET CURRENTDIR=%~dp0
-SET USERPROFILE=%CURRENTDIR%Users\LlxprtCli
-SET APPDATA=%CURRENTDIR%Users\LlxprtCli\AppData\Roaming
-SET LOCALAPPDATA=%CURRENTDIR%Users\LlxprtCli\AppData\Local
+SET CURRENTDIRECTORY=%~dp0
+SET USERPROFILE=%CURRENTDIRECTORY%Users\LlxprtCli
+SET APPDATA=%CURRENTDIRECTORY%Users\LlxprtCli\AppData\Roaming
+SET LOCALAPPDATA=%CURRENTDIRECTORY%Users\LlxprtCli\AppData\Local
 IF NOT EXIST "%APPDATA%" MKDIR "%APPDATA%" >NUL
 IF NOT EXIST "%LOCALAPPDATA%" MKDIR "%LOCALAPPDATA%" >NUL
 
@@ -31,10 +31,11 @@ This repository does not include any **Node** instance, thus download e.g. versi
 To run **Node** adapt the following template batch script <b>*SetupEnvNode.cmd*</b> accordingly:
 
 ```
-@SET CURRENTDIRECTORY=%~dp0
-@Set NODE=D:\Node\22.15.1
+@ECHO OFF
+SET CURRENTDIRECTORY=%~dp0
+SET NODE=%CD:~0,2%\Node\22.15.1
 
-@Set PATH=%NODE%;%PATH%
+SET PATH=%NODE%;%PATH%
 ```
 
 ### Installation

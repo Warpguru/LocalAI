@@ -14,11 +14,11 @@ directory):
 
 ```SetupEnvCode.cmd
 @ECHO OFF
-SET CURRENTDIR=%~dp0
+SET CURRENTDIRECTORY=%~dp0
 SET PATH=X:\VSCode;%PATH%
-SET USERPROFILE=%CURRENTDIR%Users\Continue
-SET APPDATA=%CURRENTDIR%Users\Continue\AppData\Roaming
-SET LOCALAPPDATA=%CURRENTDIR%Users\Continue\AppData\Local
+SET USERPROFILE=%CURRENTDIRECTORY%Users\Continue
+SET APPDATA=%CURRENTDIRECTORY%Users\Continue\AppData\Roaming
+SET LOCALAPPDATA=%CURRENTDIRECTORY%Users\Continue\AppData\Local
 IF NOT EXIST %APPDATA% MKDIR %APPDATA% >NUL
 IF NOT EXIST "%LOCALAPPDATA%" MKDIR "%LOCALAPPDATA%" >NUL
 
@@ -51,10 +51,11 @@ This repository does not include any **Node** instance, thus download e.g. versi
 To run **Node** adapt the following template batch script <b>*SetupEnvNode.cmd*</b> accordingly:
 
 ```
-@SET CURRENTDIRECTORY=%~dp0
-@Set NODE=D:\Node\22.15.1
+@ECHO OFF
+SET CURRENTDIRECTORY=%~dp0
+SET NODE=%CD:~0,2%\Node\22.15.1
 
-@Set PATH=%NODE%;%PATH%
+SET PATH=%NODE%;%PATH%
 ```
 
 ## Continue.dev

@@ -21,15 +21,16 @@ Setting up **PostgreSQL** is outside the scope of this document.
 This guide assumes that **PostgreSQL** has been extracted from  **[postgresql-18.0-2-windows-x64-binaries.zip](https://www.enterprisedb.com/download-postgresql-binaries)** and is running as a portable application with an empty database initialized:
 
 ```SetupEnvPostgres.cmd
-@SET CURRENTDIRECTORY=%~dp0
-@SET POSTGRES=D:\Development\Postgres
+@ECHO OFF
+SET CURRENTDIRECTORY=%~dp0
+SET POSTGRES=D:\Development\Postgres
 
-@SET PATH=%POSTGRES%\bin;%POSTGRES%\pgAdmin 4\runtime;%POSTGRES%\lib\pgxs\src\test\isolation;%POSTGRES%\lib\pgxs\src\test\regress;%POSTGRES%\pgAdmin 4\python;%POSTGRES%\pgAdmin 4\python\Lib\site-packages\distlib;%POSTGRES%\pgAdmin 4\python\Lib\site-packages\pip\_vendor\distlib;%POSTGRES%\pgAdmin 4\python\Lib\site-packages\setuptools;%POSTGRES%\pgAdmin 4\python\Lib\site-packages\winpty;%PATH%
+SET PATH=%POSTGRES%\bin;%POSTGRES%\pgAdmin 4\runtime;%POSTGRES%\lib\pgxs\src\test\isolation;%POSTGRES%\lib\pgxs\src\test\regress;%POSTGRES%\pgAdmin 4\python;%POSTGRES%\pgAdmin 4\python\Lib\site-packages\distlib;%POSTGRES%\pgAdmin 4\python\Lib\site-packages\pip\_vendor\distlib;%POSTGRES%\pgAdmin 4\python\Lib\site-packages\setuptools;%POSTGRES%\pgAdmin 4\python\Lib\site-packages\winpty;%PATH%
 
 REM One-time setup
-initdb -D D:\Development\PostgresData --username=postgres --auth=trust
+REM initdb -D D:\Development\PostgresData --username=postgres --auth=trust
 REM Start database on port 5432
-Start "PGCtl" cmd /c "pg_ctl start -D D:\Development\PostgresData"
+START "PGCtl" cmd /c "pg_ctl start -D D:\Development\PostgresData"
 START "PGAdmin4" cmd /c "pgadmin4"
 ```
 
@@ -41,15 +42,16 @@ To run <b>*ClaudeProxy.py*</b> a **[Python 3](https://www.python.org/downloads/w
 When available adapt and run <b>*SetupEnvPython3.cmd*</b>:
 
 ```SetupEnvPython3.cmd
-@SET CURRENTDIRECTORY=%~dp0
-@SET PYTHON=D:\Python\3.13.3
-@SET PYCHARM=D:\Python\PyCharm
+@ECHO OFF
+SET CURRENTDIRECTORY=%~dp0
+SET PYTHON=%CD:~0,2%\Python\3.13.3
+SET PYCHARM=%CD:~0,2%\PyCharm
 
-@REM Either have directories in python313._pth or in PYTHONPATH environment variable
-@REM See: https://michlstechblog.info/blog/python-install-python-with-pip-on-windows-by-the-embeddable-zip-file/
-@REN %PYTHON%\python313._pth python313._pth.original
-@SET PATH=%PYTHON%;%PYTHON%\Scripts;%PYCHARM%\bin;%PATH%
-@SET PYTHONPATH=%PYTHON%;%PYTHON%\DLLs;%PYTHON%\lib;%PYTHON%\lib\plat-win;%PYTHON%\lib\site-packages
+REM Either have directories in python313._pth or in PYTHONPATH environment variable
+REM See: https://michlstechblog.info/blog/python-install-python-with-pip-on-windows-by-the-embeddable-zip-file/
+REN %PYTHON%\python313._pth python313._pth.original
+SET PATH=%PYTHON%;%PYTHON%\Scripts;%PYCHARM%\bin;%PATH%
+SET PYTHONPATH=%PYTHON%;%PYTHON%\DLLs;%PYTHON%\lib;%PYTHON%\lib\plat-win;%PYTHON%\lib\site-packages
 ```
 
 ### Watsonx.AI
@@ -59,21 +61,20 @@ you need to set up the following environment by running the <b>*SetupEnvWatsonx.
 
 ```SetupEnvWatsonx.cmd
 @ECHO Setting Watsonx url
-@SET WATSONX_URL=https://eu-de.ml.cloud.ibm.com
+SET WATSONX_URL=https://eu-de.ml.cloud.ibm.com
+ECHO Setting IAM Token
+SET WATSONX_APIKEY=f_aAD-O-49bGrGvuQdu36LNKKBCfreIt4tX6qxB0UEW5
+REM IAM Token derived from Apikey
+REM curl -X POST https://iam.cloud.ibm.com/identity/token -H "Content-Type: application/x-www-form-urlencoded" -d "grant_type=urn:ibm:params:oauth:grant-type:apikey&apikey="f_aAD-O-49bGrGvuQdu36LNKKBCfreIt4tX6qxB0UEW5"
 
-@ECHO Setting Apikey
-@SET WATSONX_APIKEY=f_aAD-O-49bGrGvuQdu36LNKKBCfreIt4tX6qxB0UEW5
-@REM IAM Token derived from Apikey
-@REM curl -X POST https://iam.cloud.ibm.com/identity/token -H "Content-Type: application/x-www-form-urlencoded" -d "grant_type=urn:ibm:params:oauth:grant-type:apikey&apikey="f_aAD-O-49bGrGvuQdu36LNKKBCfreIt4tX6qxB0UEW5"
+ECHO Setting IAM Token
+SET WATSONX_TOKEN=eyJraWQiOiIyMDE5MDcyNCIsImFsZyI6IlJTMjU2In0.eyJpYW1faWQiOiJJQk1pZC0wNjAwMDBQRU5HIiwiaWQiOiJJQk1pZC0wNjAwMDBQRU5HIiwicmVhbG1pZCI6IklCTWlkIiwianRpIjoiZDA4Y2ZkMzgtNDhhMy00YjIxLTkyM2UtYTc0NzE3NzQwYjE4IiwiaWRlbnRpZmllciI6IjA2MDAwMFBFTkciLCJnaXZlbl9uYW1lIjoiUm9tYW4iLCJmYW1pbHlfbmFtZSI6IlN0YW5nbCIsIm5hbWUiOiJSb21hbiBTdGFuZ2wiLCJlbWFpbCI6InJvbWFuX3N0YW5nbEBhdC5pYm0uY29tIiwic3ViIjoiUm9tYW5fU3RhbmdsQGF0LmlibS5jb20iLCJhdXRobiI6eyJzdWIiOiJSb21hbl9TdGFuZ2xAYXQuaWJtLmNvbSIsImlhbV9pZCI6IklCTWlkLTA2MDAwMFBFTkciLCJuYW1lIjoiUm9tYW4gU3RhbmdsIiwiZ2l2ZW5fbmFtZSI6IlJvbWFuIiwiZmFtaWx5X25hbWUiOiJTdGFuZ2wiLCJlbWFpbCI6InJvbWFuX3N0YW5nbEBhdC5pYm0uY29tIn0sImFjY291bnQiOnsidmFsaWQiOnRydWUsImJzcyI6IjQ0ODZkMjk5ZTNlYjdkMDg4MGRhZGU0ODFkNmMxZTg3IiwiZnJvemVuIjp0cnVlfSwiaWF0IjoxNzYwOTU1NTM1LCJleHAiOjE3NjA5NTkxMzUsImlzcyI6Imh0dHBzOi8vaWFtLmNsb3VkLmlibS5jb20vaWRlbnRpdHkiLCJncmFudF90eXBlIjoidXJuOmlibTpwYXJhbXM6b2F1dGg6Z3JhbnQtdHlwZTphcGlrZXkiLCJzY29wZSI6ImlibSBvcGVuaWQiLCJjbGllbnRfaWQiOiJkZWZhdWx0IiwiYWNyIjoxLCJhbXIiOlsicHdkIl19.h6iv_UxAd3MVpsdxNo69lu9i3ldG0izRC-YtpC0hl4rbeXfpipRjwNpIZH2C6LgJX7eY7o22-o_pbHaXgcQvpWqcUbZDJ8Qvgzu2ph76LAMBDs1ixT2vb1jxfscWIOuts8zSHrv-eD1k3vv7O3x7uL9tQNXAKS4OOvtMIcktkIJMrokAt4zpuozmJQgwB-4cAh6adFCC6rum-sVpDiSUA5Q7GZlSodfGgjM78J4ux1hQIhGu29P2MtPQHv5lGlm-cVb1YNyC00WtAUtgnxoXMCWCTjnqcxNqq3OOW_u9lkSvi58YPpW2-YkOkeRma3sycpluTcCe816enyOKts_S-Q
 
-@ECHO Setting IAM Token
-@SET WATSONX_TOKEN=eyJraWQiOiIyMDE5MDcyNCIsImFsZyI6IlJTMjU2In0.eyJpYW1faWQiOiJJQk1pZC0wNjAwMDBQRU5HIiwiaWQiOiJJQk1pZC0wNjAwMDBQRU5HIiwicmVhbG1pZCI6IklCTWlkIiwianRpIjoiZDA4Y2ZkMzgtNDhhMy00YjIxLTkyM2UtYTc0NzE3NzQwYjE4IiwiaWRlbnRpZmllciI6IjA2MDAwMFBFTkciLCJnaXZlbl9uYW1lIjoiUm9tYW4iLCJmYW1pbHlfbmFtZSI6IlN0YW5nbCIsIm5hbWUiOiJSb21hbiBTdGFuZ2wiLCJlbWFpbCI6InJvbWFuX3N0YW5nbEBhdC5pYm0uY29tIiwic3ViIjoiUm9tYW5fU3RhbmdsQGF0LmlibS5jb20iLCJhdXRobiI6eyJzdWIiOiJSb21hbl9TdGFuZ2xAYXQuaWJtLmNvbSIsImlhbV9pZCI6IklCTWlkLTA2MDAwMFBFTkciLCJuYW1lIjoiUm9tYW4gU3RhbmdsIiwiZ2l2ZW5fbmFtZSI6IlJvbWFuIiwiZmFtaWx5X25hbWUiOiJTdGFuZ2wiLCJlbWFpbCI6InJvbWFuX3N0YW5nbEBhdC5pYm0uY29tIn0sImFjY291bnQiOnsidmFsaWQiOnRydWUsImJzcyI6IjQ0ODZkMjk5ZTNlYjdkMDg4MGRhZGU0ODFkNmMxZTg3IiwiZnJvemVuIjp0cnVlfSwiaWF0IjoxNzYwOTU1NTM1LCJleHAiOjE3NjA5NTkxMzUsImlzcyI6Imh0dHBzOi8vaWFtLmNsb3VkLmlibS5jb20vaWRlbnRpdHkiLCJncmFudF90eXBlIjoidXJuOmlibTpwYXJhbXM6b2F1dGg6Z3JhbnQtdHlwZTphcGlrZXkiLCJzY29wZSI6ImlibSBvcGVuaWQiLCJjbGllbnRfaWQiOiJkZWZhdWx0IiwiYWNyIjoxLCJhbXIiOlsicHdkIl19.h6iv_UxAd3MVpsdxNo69lu9i3ldG0izRC-YtpC0hl4rbeXfpipRjwNpIZH2C6LgJX7eY7o22-o_pbHaXgcQvpWqcUbZDJ8Qvgzu2ph76LAMBDs1ixT2vb1jxfscWIOuts8zSHrv-eD1k3vv7O3x7uL9tQNXAKS4OOvtMIcktkIJMrokAt4zpuozmJQgwB-4cAh6adFCC6rum-sVpDiSUA5Q7GZlSodfGgjM78J4ux1hQIhGu29P2MtPQHv5lGlm-cVb1YNyC00WtAUtgnxoXMCWCTjnqcxNqq3OOW_u9lkSvi58YPpW2-YkOkeRma3sycpluTcCe816enyOKts_S-Q
+ECHO Setting Watsonx project id
+SET WATSONX_PROJECT_ID=1316f520-6022-4f08-9eae-b53d8707e44f
 
-@ECHO Setting Watsonx project id
-@SET WATSONX_PROJECT_ID=1316f520-6022-4f08-9eae-b53d8707e44f
-
-@ECHO Show supported models
-@curl -X GET "https://eu-de.ml.cloud.ibm.com/ml/v1/foundation_model_specs?version=2024-10-10&filters=function_text_chat"
+ECHO Show supported models
+curl -X GET "https://eu-de.ml.cloud.ibm.com/ml/v1/foundation_model_specs?version=2024-10-10&filters=function_text_chat"
 ```
 
 Configuring **[Watsonx.AI](https://cloud.ibm.com/watsonx/overview)** can be complex, like solving a puzzle with multiple steps.
@@ -183,17 +184,20 @@ mistralai/mistral-small-3-1-24b-instruct-2503
 Running **LiteLLM** as a portable application from the current directory requires a configured environment:
 
 ```SetupEnvLiteLLM.cmd
-@SET CURRENTDIRECTORY=%~dp0
-@SET USERPROFILE=%CURRENTDIRECTORY%Users\LiteLLM
-@SET APPDATA=%CURRENTDIRECTORY%Users\LiteLLM\AppData\Roaming
-@IF NOT EXIST %APPDATA% MKDIR %APPDATA% >NUL
+@ECHO OFF
+SET CURRENTDIRECTORY=%~dp0
+SET USERPROFILE=%CURRENTDIRECTORY%Users\LiteLLM
+SET APPDATA=%CURRENTDIRECTORY%Users\LiteLLM\AppData\Roaming
+SET LOCALAPPDATA=%CURRENTDIRECTORY%Users\Cursor\AppData\Local
+IF NOT EXIST %APPDATA% MKDIR %APPDATA% >NUL
+IF NOT EXIST "%LOCALAPPDATA%" MKDIR "%LOCALAPPDATA%" >NUL
 
-@SET LITELLM_PROXY_URL=http://localhost:4000
-@SET LITELLM_PROXY_API_KEY=sk-1234
-@SET LITELLM_SALT_KEY=sk-1234
-@SET DATABASE_URL=postgres://postgres:trust@127.0.0.1:5432/litellm
-@SET PORT=4000
-@SET STORE_MODEL_IN_DB=True
+SET LITELLM_PROXY_URL=http://localhost:4000
+SET LITELLM_PROXY_API_KEY=sk-1234
+SET LITELLM_SALT_KEY=sk-1234
+SET DATABASE_URL=postgres://postgres:trust@127.0.0.1:5432/litellm
+SET PORT=4000
+SET STORE_MODEL_IN_DB=True
 ```
 
 This setup is for educational purposes only, thus the credentials are visible in plain text.
