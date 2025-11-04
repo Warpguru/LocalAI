@@ -1,0 +1,5 @@
+@ECHO OFF
+SET CURRENTDIRECTORY=%~dp0
+SET GIT=D:\Development\Git\bin
+
+SET PATH=%GIT%;%PATH%
