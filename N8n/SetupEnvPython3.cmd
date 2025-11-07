@@ -2,8 +2,7 @@
 SET CURRENTDIRECTORY=%~dp0
 SET PYTHON=D:\Python\3.11.9
 
-REM Either have directories in python311._pth or in PYTHONPATH environment variable
-REM See: https://michlstechblog.info/blog/python-install-python-with-pip-on-windows-by-the-embeddable-zip-file/
-REN %PYTHON%\python311._pth python311._pth.original
+REM A full Python environment is required (not just the embedded one) and PYTHONPATH must not be set (which would overwrite sys.path)!
+REM Download: https://www.python.org/ftp/python/3.11.9/python-3.11.9-amd64.zip
 SET PATH=%PYTHON%;%PYTHON%\Scripts;%PYCHARM%\bin;%PATH%
-SET PYTHONPATH=%PYTHON%;%PYTHON%\DLLs;%PYTHON%\lib;%PYTHON%\lib\plat-win;%PYTHON%\lib\site-packages
+REM SET PYTHONPATH=%PYTHON%;%PYTHON%\DLLs;%PYTHON%\lib;%PYTHON%\lib\plat-win;%PYTHON%\lib\site-packages

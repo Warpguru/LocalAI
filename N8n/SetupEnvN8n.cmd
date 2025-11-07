@@ -6,7 +6,6 @@ SET LOCALAPPDATA=%CURRENTDIRECTORY%Users\N8n\AppData\Local
 IF NOT EXIST "%APPDATA%" MKDIR "%APPDATA%" >NUL
 IF NOT EXIST "%LOCALAPPDATA%" MKDIR "%LOCALAPPDATA%" >NUL
 
-@uv venv
-@.venv\Scripts\activate
 ECHO.
+ECHO Activate N8N Python virtual environment: .venv\Scrips\activate
 ECHO Start N8N by: npx n8n

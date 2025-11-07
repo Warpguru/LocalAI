@@ -131,6 +131,89 @@ with **N8n**) from the <b>*.\Whisper*</b> subdirectory:
 python -m whisper ".\input\<Video.mkv>" --output_dir .\output --output_format all --model medium
 ```
 
+# WhisperX
+
+Hugging Face token and authorizations:
+https://huggingface.co/
+https://huggingface.co/pyannote/speaker-diarization
+https://huggingface.co/pyannote/speaker-diarization-3.1
+https://huggingface.co/pyannote/segmentation
+https://huggingface.co/pyannote/segmentation-3.0
+
+
+
+D:\LocalAI\N8n\WhisperX>rd /s .venv
+.venv, Are you sure (Y/N)? y
+
+D:\LocalAI\N8n\WhisperX>python -m venv .venv --prompt WhisperX
+
+D:\LocalAI\N8n\WhisperX>notepad .venv\Lib\sitecustomize.py
+
+---
+import sys
+import os
+
+if 'VIRTUAL_ENV' in os.environ:
+    venv = os.environ['VIRTUAL_ENV']
+    site_packages = os.path.join(venv, 'Lib', 'site-packages')
+    sys.path.insert(0, site_packages)
+    sys.path.insert(0, venv)
+    print("Sitecustomize.py adjusted sys.path() ...")
+---
+
+D:\LocalAI\N8n\WhisperX>.venv\Scripts\activate
+
+(WhisperX) D:\LocalAI\N8n\WhisperX>python -c "import sys; print('\n'.join(sys.path))"
+
+D:\LocalAI\N8n\WhisperX\.venv
+D:\LocalAI\N8n\WhisperX\.venv\Lib\site-packages
+D:\Python\3.11.9\python311.zip
+D:\Python\3.11.9\DLLs
+D:\Python\3.11.9\Lib
+D:\Python\3.11.9
+
+
+uv pip install --upgrade pip
+CPU:
+uv pip install torch==2.8.0 torchaudio==2.8.0 --index-url https://download.pytorch.org/whl/cpu
+or GPU:
+uv pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
+
+uv pip install git+https://github.com/m-bain/whisperX.git
+
+Verify if CUDA is installed and used:
+
+uv run python -m torch.utils.collect_env
+for GPU support should return:
+Is CUDA available: True
+CUDA runtime version: 11.8
+GPU models and configuration: ...
+
+uv run python -c "import torch; print(torch.__version__, torch.version.cuda)"
+for GPU support should return:
+torch.__version__ → 2.8.0+cu118
+torch.version.cuda → 11.8
+
+Force reinstall with CUDA version:
+uv run python -m pip uninstall -y torch torchaudio
+uv run python -m pip install --no-cache-dir --force-reinstall torch==2.5.1+cu121 torchaudio==2.5.1+cu121 --index-url https://download.pytorch.org/whl/cu121
+Verify:
+uv run python -c "import torch; print(torch.__version__, 'CUDA:', torch.version.cuda, 'Available:', torch.cuda.is_available())"
+
+
+Execute:
+whisperx "\temp\2025-11-05 10-01-16.mkv" --model "small.en" --compute_type int8  --diarize --output_dir .\output --output_format all
+whisperx .\input\testvideo.mp4 --batch_size 16 --model "medium.en" --compute_type int8 --diarize --diarize_model pyannote/speaker-diarization --align_model "facebook/wav2vec2-base-960h" --max_line_width 48 --max_line_count 1 --hf_token %HF_TOKEN% --output_dir .\output --output_format all
+
+
+set HF_TOKEN=***
+whisperx "\temp\2025-11-05 10-01-16.mkv" --model "small.en" --compute_type int8 --diarize --diarize_model pyannote/speaker-diarization --align_model "facebook/wav2vec2-base-960h" --max_line_width 52 --max_line_count 2 --hf_token %HF_TOKEN% --output_dir .\output --output_format all
+optionally: --diarize_model pyannote/speaker-diarization or --diarize_model pyannote/speaker-diarization@2.1 (to reduce load
+caused by --diarize_model pyannote/speaker-diarization@3.1
+
+Better language models: --model medium.en or large-v3
+Alternative (significant larger) alignment models: facebook/wav2vec2-large-960h-lv60 or jonatasgrosman/wav2vec2-large-xlsr-53-english
+
 # Workflows
 
 See **[N8n](https://n8n.io/)** for more information.
