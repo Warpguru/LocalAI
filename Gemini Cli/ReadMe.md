@@ -2,6 +2,8 @@
 
 ## Gemini Cli
 
+**Warning!** **Gemini CLI** is no longer supported, superseeded by **AntiGravity** and **AntiGravity IDE**.
+
 ### Prerequisites
 
 In order to use **Gemini Cli** as a portable application the batch script <b>*SetupEnvGeminiCli.cmd*</b> sets the required

@@ -1,5 +1,16 @@
 # Claude Code
 
+**!!!!!!**
+
+***
+
+ClaudeProxy.py does not work with HTTP/2 streaming, which is the de-facto standard usecase of LLMs, LiteLLM may be a solution: 
+https://medium.com/@luongnv89/setting-up-claude-code-locally-with-a-powerful-open-source-model-a-step-by-step-guide-for-mac-84cf9ab7302f
+
+***
+
+**!!!!!!**
+
 **Claude Code** by default requires a paid account, the minimal value is currently <b>*$5*</b>.
 In order to use it for free, which still requires you to register at **Anthropic** e.g. with your **Google** account, 
 some configuration changes need to be applied before running **Claude Code**.
