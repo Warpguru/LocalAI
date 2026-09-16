@@ -52,6 +52,8 @@ Install **[Opencode Cli](https://opencode.ai/)** with the Node Package Manager:
 npm i -g opencode-ai
 ```
 
+**Opencode Cli** will update automatically.
+
 ### Configuration
 
 To use a local **LLM** such as **Llama.cpp** servicing <b>*Gpt-Oss-20b*</> put the following configuration in your current directory:
