@@ -152,7 +152,60 @@ In the standalone Cline IDE, navigate to Settings / Providers and configure:
 
 > **Note:** Available models cannot be retrieved automatically via the refresh button (the client does not send the authorization header during discovery, resulting in `401 Unauthorized`). Models must be added manually using the `+` button.
 
-### 5.3 Claude Code CLI — Anthropic API
+### 5.3 OpenCode — OpenAI API Configuration Example
+
+In `opencode.json`, add the ICA provider block under `"providers"`. By omitting `"apiKey"` from `"options"`, `@ai-sdk/openai-compatible` will automatically use the standard `OPENAI_API_KEY` environment variable:
+
+```json
+    "ICA": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "IBM Consulting Advantage (ICA)",
+      "options": {
+        "baseURL": "https://api.servicesessentials.ibm.com/v1"
+      },
+      "models": {
+        "gpt-5.6-terra": {
+          "name": "GPT-5.6 Terra",
+          "limit": {
+            "context": 922000,
+            "output": 128000
+          }
+        },
+        "gpt-5.4": {
+          "name": "GPT-5.4",
+          "limit": {
+            "context": 1050000,
+            "output": 128000
+          }
+        },
+        "gemini-3.7-flash": {
+          "name": "Gemini 3.7 Flash",
+          "limit": {
+            "context": 1048576,
+            "output": 65536
+          }
+        },
+        "claude-sonnet-5": {
+          "name": "Claude Sonnet 5",
+          "limit": {
+            "context": 1000000,
+            "output": 128000
+          }
+        },
+        "ibm/granite-4-h-small": {
+          "name": "IBM Granite 4 H Small",
+          "limit": {
+            "context": 20480,
+            "output": 20480
+          }
+        }
+      }
+    }
+```
+
+> **Note on API Key:** The `OPENAI_API_KEY` environment variable must be set **before** launching OpenCode (e.g., `set OPENAI_API_KEY=sk-...` on Windows or `export OPENAI_API_KEY=sk-...` on Linux/macOS). If not set beforehand, requests will fail with authorization errors until you run `/connect` inside OpenCode, select the `"IBM Consulting Advantage (ICA)"` harness, and provide the key interactively when prompted. Alternatively, you can specify `"apiKey": "<YOUR_API_KEY>"` directly within `"options"`.
+
+### 5.4 Claude Code CLI — Anthropic API
 1. Set the custom base URL and your dedicated Claude Code API key in your environment:
    - **Linux / macOS**:
      ```bash
