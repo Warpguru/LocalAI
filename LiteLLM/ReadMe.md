@@ -206,25 +206,75 @@ This setup is for educational purposes only, thus the credentials are visible in
 
 Open a command prompt and start be calling <b>*SetupEnvLiteLLM.cmd*</b> and <b>*SetupEnvPython3.cmd*</b>.
 Then **LiteLLM** will be installed into a virtual **Python** environment in the subdirectory <b>*LiteLLM-Proxy*</b> with the following
-commands:
+commands (note that this could be version dependent, as of the time of writing [v1.101.0](https://docs.litellm.ai/release_notes/v1.101.0/v1-101-0)
+was used and because LiteLLM now relies on Prisma for database routing, you must pin a legacy client version to maintain compatibility with LiteLLM 1.101.0's engine initialization structure):
 
 ```
 uv init LiteLLM-Proxy
 cd LiteLLM-Proxy
 uv sync
 .venv\scripts\activate
-uv add prisma
-uv add litellm\[proxy]
-
-prisma init
-prisma generate
-python -m prisma generate --schema .\.venv\Lib\site-packages\litellm\proxy\schema.prisma
-python -m prisma migrate deploy --schema .\.venv\Lib\site-packages\litellm\proxy\schema.prisma
+uv add "litellm[proxy]==1.101.0" "prisma==0.11.0" psycopg2-binary psutil
+uv run prisma generate --schema=".venv\Lib\site-packages\litellm\proxy\schema.prisma"
 ```
 
 **Note!** **LiteLLM** ships with limited **Python3** and **Node** runtime environments.
 The steps outlined above ensure that the virtual **Python** environment (in directory <b>*.\vdev\*</b>) is not mixed up
 with the environment included in the installation of **LiteLLM**.
+
+**Warning!**
+	>On native Windows environments, LiteLLM's background diagnostic loop calls os.kill(pid, 0) to check on the Prisma engine process. 
+	>On Windows, this behaves like a termination command, killing the engine process instantly and triggering httpx.ReadError crashes.
+	>To fix this, you must swap out the os.kill call with a safe process-table check using psutil.
+
+### Patching the Windows Engine Watchdog Bug (utils.py)
+
+* Open the following file inside your virtual environment using a text editor:
+
+```
+	.\LiteLLM-Proxy\.venv\Lib\site-packages\litellm\proxy\utils.py
+```
+
+* Search for the target method definition:
+   
+```
+	async def _poll_engine_proc(self) -> None:
+```
+   
+* Locate the while loop containing os.kill:
+   
+```
+	async def _poll_engine_proc(self) -> None:
+		"""poll via os.kill(pid, 0) every 1s.
+      Only used when BOTH waitpid thread and pidfd are unavailable
+      (e.g., PID is not our child process and pidfd_open fails)
+      """
+   		while self._watching_engine and self._engine_pid > 0:
+			try:
+				os.kill(self._engine_pid, 0)
+			except ProcessLookupError:
+```
+   
+4. Modify the code block to match the patched version below:
+
+```
+	async def _poll_engine_proc(self) -> None:
+   		"""poll via os.kill(pid, 0) every 1s.
+      Only used when BOTH waitpid thread and pidfd are unavailable
+      (e.g., PID is not our child process and pidfd_open fails)
+      """
+      import psutil  # Safe portable context import
+      while self._watching_engine and self._engine_pid > 0:
+      		try:
+         		# FIX: Replace broken Windows os.kill signal with safe pid table check
+				if not psutil.pid_exists(self._engine_pid):
+					raise ProcessLookupError
+			except ProcessLookupError:
+```
+
+5. Save and close the file.
+
+### Configuration
 
 As part of this repository a sample <b>*config.yaml*</b> file is included:
 
