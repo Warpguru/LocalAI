@@ -2,6 +2,7 @@
 litellm_settings:
     set_verbose: True
     json_logs: True
+    check_provider_endpoint: true # 👈 Crucial: Forces LiteLLM to fetch the actual active model list from IBM	  
 
 model_list:
   - model_name: "Ollama Qwen2.5-coder:latest"             
@@ -31,3 +32,19 @@ model_list:
       # model: watsonx/mistralai/mistral-medium-2505
       # model: watsonx/mistralai/mistral-small-3-1-24b-instruct-2503
       api_key: "os.environ/WATSONX_TOKEN" # does os.getenv("WATSONX_TOKEN")
+# -------------------------------------------------------------
+# ICA: Dynamic passthrough for Openai-spec (Cline, Open-Code, etc.)
+# -------------------------------------------------------------
+  - model_name: "ica/*" # 👈 Wildcard catch-all for your frontends
+    litellm_params:
+      model: "openai/*" # 👈 Bypasses validation and passes the raw ID straight to IBM
+      api_base: "https://api.nextgen-beta.ica.ibm.com/ica/v1"
+      api_key: "os.environ/IBM_API_KEY" # does os.getenv("IBM_API_KEY")
+# -------------------------------------------------------------
+# ICA: Dynamic passthrough for Claude Code (Anthropic Spec)
+# -------------------------------------------------------------
+  - model_name: "anthropic/*" # 👈 Catches Claude Code native requests
+    litellm_params:
+      model: "anthropic/*"
+      api_base: "https://api.nextgen-beta.ica.ibm.com/ica"
+      api_key: "os.environ/IBM_API_KEY" # does os.getenv("IBM_API_KEY")
