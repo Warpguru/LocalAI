@@ -167,8 +167,8 @@ Average TPS  : 62.34
 
 ## Getting started
 
-For a comprehensive developer agent ecosystem like **Cline** or **OpenCode**, the clear winner among the models you tested is the `unsloth/Qwen3-Coder-30B-A3B-Instruct-GGUF:Q4_K_M`.
-When building complex agentic pipelines—which involve continuous multi-file exploration, executing terminal commands, evaluating code diffs, and self-debugging—your primary bottlenecks are tool-calling logic, context retention, and token generation speed.
+For a comprehensive developer agent ecosystem like **Cline** or **OpenCode**, the clear winner among the models tested is the `unsloth/Qwen3-Coder-30B-A3B-Instruct-GGUF:Q4_K_M`.
+When building complex agentic pipelines-which involve continuous multi-file exploration, executing terminal commands, evaluating code diffs, and self-debugging-your primary bottlenecks are tool-calling logic, context retention, and token generation speed.
 A direct comparison highlights how these models stack up for agentic development tasks:
 
 ### Comparison for Agentic Development (Cline / OpenCode)
@@ -183,18 +183,16 @@ A direct comparison highlights how these models stack up for agentic development
 
 ### Why Qwen3 Coder 30B (A3B) is the Best Choice
 
-   1. The MoE Speed Advantage over Cloudflare:<br/>
-    Because Cline works in loops (e.g., Read File→Search Code→Run Terminal Test→Edit Code), a standard dense model like the 27B or Granite 30B can take 20–30 seconds per loop in this setup, with PCIe transfers adding overhead. The Qwen3 Coder MoE only activates 3.3B parameters per token. This keeps the Cloudflare API response snappy, allowing the agent to execute actions rapidly.
-   2. Native Tool and MCP Support:<br/>
+1. The **MoE** (Mixture of Experts) Speed Advantage over Cloudflare:<br/>
+   Because Cline works in loops (e.g., Read File→Search Code→Run Terminal Test→Edit Code), a standard dense model like the 27B or Granite 30B can take 20–30 seconds per loop in this setup, with PCIe transfers adding overhead. The Qwen3 Coder MoE only activates 3.3B parameters per token. This keeps the Cloudflare API response snappy, allowing the agent to execute actions rapidly.
+2. Native Tool and MCP Support:<br/>
    Cline relies heavily on structured JSON formats to execute actions like write_to_file or execute_command. While DeepSeek-R1-32B has superior raw mathematical logic, its long internal <think> loops often confuse the strict output parsers of tools like Cline, leading to execution errors. Qwen3 Coder is explicitly trained to output precise tool arguments.
-   3. Massive Context Windows for Large Codebases:<br/>
-    The A3B variant handles long context lengths efficiently. As Cline pulls in system logs, file structures, and source files, a smaller model like the Qwen 9B may reach its configured context limit sooner. The 30B MoE can handle these large payloads with minimal degradation, depending on the context settings and available VRAM.
+3. Massive Context Windows for Large Codebases:<br/>
+   The A3B variant handles long context lengths efficiently. As Cline pulls in system logs, file structures, and source files, a smaller model like the Qwen 9B may reach its configured context limit sooner. The 30B MoE can handle these large payloads with minimal degradation, depending on the context settings and available VRAM.
 
 ### The Runner-Up Option
 
-* Keep DeepSeek-R1-Distill-Qwen-32B as your secondary option. It is ideal for complex algorithmic challenges, writing intricate regex, or diagnosing obscure runtime errors. You can manually switch to it when Cline needs deep architectural reasoning rather than rapid file modifications.
-
-Are you running into any JSON parsing errors or context limits in Cline/OpenCode with your current model setup, or would you like assistance optimizing the Ollama system parameters (like num_ctx or temperature) specifically for the Qwen3 Coder model?
+* Use DeepSeek-R1-Distill-Qwen-32B as your secondary option. It is ideal for complex algorithmic challenges, writing intricate regex, or diagnosing obscure runtime errors. You can manually switch to it when Cline needs deep architectural reasoning rather than rapid file modifications.
 
 ---
 
