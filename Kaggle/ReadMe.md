@@ -8,6 +8,20 @@ This guide shows how to use Kaggle's hosted GPUs as a temporary test bench for o
 
 Kaggle access, GPU availability, and usage limits can change, and notebook sessions are temporary. The benchmark reflects general prompts on this specific setup; it is not a measure of coding ability. Public tunnels are unauthenticated, so use them only for temporary experiments and never expose sensitive data.
 
+```mermaid
+sequenceDiagram
+    participant H as Local Harness<br/>(LM Studio/Cline/Opencode/...)
+    participant T as Cloudflare / NGrok Tunnel
+    participant A as OpenAI API on Kaggle<br/>(Ollama)
+    participant G as Kaggle GPUs<br/>(~32GB VRAM)
+    H->>T: Send OpenAI API request<br/>(/v1/*)
+    T->>A: Forward request
+    A->>G: Run model inference
+    G-->>A: Return generated output
+    A-->>T: Return API response
+    T-->>H: Deliver response
+```
+
 ---
 
 ## Registration
