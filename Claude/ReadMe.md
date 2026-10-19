@@ -88,6 +88,31 @@ Claude update
 
 ---
 
+## Cline
+
+### Installation
+
+For **VS Code** install **[Cline](https://marketplace.visualstudio.com/items?itemName=saoudrizwan.claude-dev)** from the Marketplace.
+For **IntelliJ** install **[Cline](https://plugins.jetbrains.com/plugin/28247-cline)** from the Marketplace.
+
+### Configuration
+
+For **VS Code** 
+
+* Select `Bring my own API key`
+* `API Provider`: `OpenAI Compatible`
+* `Base URL`: `https://api.nextgen-beta.ica.ibm.com/ica/v1`
+* `OpenAI Compatible API Key`: `sk-******`
+* Add to `Custom Headers`:
+  - `ANTHROPIC_AUTH_TOKEN` `sk-******` (Claude Code API key from ICA)
+* Select `Use different models for Plan and Act modes`
+* For `Plan Mode`:
+  - `Model ID`: `claude-haiku-4-5` (best choice is `claude-opus-4-*` or `claude-opus-5`, but for unknown reasons the ICA API key does not work)
+* For `Act Mode`:
+  - `Model ID`: `claude-sonnet-5`
+
+---
+
 ## ICA
 
 ### API-key
