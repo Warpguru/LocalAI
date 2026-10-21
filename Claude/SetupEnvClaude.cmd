@@ -1,8 +1,8 @@
 @ECHO OFF
 SET CLAUDE_CODE_GIT_BASH_PATH=D:\Development\Git\bin\bash.exe
-SET ANTHROPIC_BASE_URL=https://api.nextgen-beta.ica.ibm.com/ica
+SET ANTHROPIC_BASE_URL=https://api.servicesessentials.ibm.com
 SET ANTHROPIC_API_KEY=dummy-key
-SET ANTHROPIC_AUTH_TOKEN=sk-WVm0cS8mpXgqkIFYPQ_YTQ
+SET ANTHROPIC_AUTH_TOKEN=sk-QeRfWM0b42OBAXZmXC92ig
 SET ANTHROPIC_MODEL=claude-sonnet-5
 SET ANTHROPIC_DEFAULT_OPUS_MODEL=claude-sonnet-5
 SET ANTHROPIC_DEFAULT_SONNET_MODEL=claude-sonnet-4-6

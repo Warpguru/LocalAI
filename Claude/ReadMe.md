@@ -36,7 +36,7 @@ After the shell is available adjust the path to <b>*bash.exe*</b> in <b>*SetupEn
 ```SetupEnvClaude.cmd
 @ECHO OFF
 SET CLAUDE_CODE_GIT_BASH_PATH=D:\Development\Git\bin\bash.exe
-SET ANTHROPIC_BASE_URL=https://api.nextgen-beta.ica.ibm.com/ica
+SET ANTHROPIC_BASE_URL=https://api.servicesessentials.ibm.com
 SET ANTHROPIC_API_KEY=<your private API key>
 SET ANTHROPIC_AUTH_TOKEN=<your ICA API key>
 SET ANTHROPIC_MODEL=claude-sonnet-5
@@ -101,13 +101,13 @@ For **VS Code**
 
 * Select `Bring my own API key`
 * `API Provider`: `OpenAI Compatible`
-* `Base URL`: `https://api.nextgen-beta.ica.ibm.com/ica/v1`
+* `Base URL`: `https://api.servicesessentials.ibm.com/v1`
 * `OpenAI Compatible API Key`: `sk-******`
 * Add to `Custom Headers`:
   - `ANTHROPIC_AUTH_TOKEN` `sk-******` (Claude Code API key from ICA)
 * Select `Use different models for Plan and Act modes`
 * For `Plan Mode`:
-  - `Model ID`: `claude-haiku-4-5` (best choice is `claude-opus-4-*` or `claude-opus-5`, but for unknown reasons the ICA API key does not work)
+  - `Model ID`: `claude-haiku-4-5` (best choice is `claude-opus-4-*` or `claude-opus-5`, posts in the ICA related **Slack** channel imply that special access needs to be requested for `opus`)
 * For `Act Mode`:
   - `Model ID`: `claude-sonnet-5`
 
