@@ -14,3 +14,4 @@ IF NOT EXIST "%USERPROFILE%\Downloads" MKDIR "%USERPROFILE%\Downloads" >NUL
 
 ECHO.
 ECHO Start Cline IDE by: "Cline-App" .
+ECHO Start Cline CLI by: "Cline-Cli" or "Cline"
