@@ -14,7 +14,7 @@ if "%IBM_API_KEY%"=="" (
 echo ========================================================
 echo 1. Querying OpenAI Compatible API
 echo ========================================================
-curl -s -S -X GET "https://api.nextgen-beta.ica.ibm.com/ica/v1/models" ^
+curl -s -S -X GET "https://api.servicesessentials.ibm.com/v1/models" ^
   -H "Authorization: Bearer %IBM_API_KEY%" ^
   -H "Content-Type: application/json"
 
@@ -23,7 +23,7 @@ echo.
 echo ========================================================
 echo 2. Querying Anthropic API
 echo ========================================================
-curl -s -S -X GET "https://api.nextgen-beta.ica.ibm.com/ica/v1/models" ^
+curl -s -S -X GET "https://api.servicesessentials.ibm.com/v1/models" ^
   -H "x-api-key: %IBM_API_KEY%" ^
   -H "anthropic-version: 2023-06-01" ^
   -H "Content-Type: application/json"

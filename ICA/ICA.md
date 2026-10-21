@@ -2,7 +2,7 @@
 
 This document provides a quick reference for connecting tools, IDE extensions (e.g., Cline, OpenCode, Codex), and CLI harnesses (e.g., Claude Code) to the IBM Consulting Advantage (ICA) API endpoints.
 
-> **Status:** Current as of today (April 2025).
+> **Status:** Current as of today (October 2026).
 
 ---
 
@@ -50,40 +50,67 @@ curl -s -X GET "https://api.servicesessentials.ibm.com/v1/models" \
 
 *(Status as of today)*
 
-| Model ID | API | Mode | Max Input Tokens | Max Output Tokens | Notes |
-|---|---|---|---|---|---|
-| `claude-sonnet-5` | Anthropic | chat | 1,000,000 | 128,000 | Anthropic Claude Sonnet |
-| `claude-sonnet-4-6` | Anthropic | chat | 1,000,000 | 128,000 | Anthropic Claude Sonnet |
-| `claude-opus-5` | Anthropic | chat | 1,000,000 | 128,000 | Anthropic Claude Opus |
-| `claude-opus-4-8` | Anthropic | chat | 1,000,000 | 128,000 | Anthropic Claude Opus |
-| `claude-opus-4-6` | Anthropic | chat | 1,000,000 | 128,000 | Anthropic Claude Opus |
-| `claude-haiku-4-5` | Anthropic | chat | 200,000 | 64,000 | Anthropic Claude Haiku |
-| `gpt-5.6-terra` | OpenAI | chat | 922,000 | 128,000 | OpenAI GPT |
-| `gpt-5.6-sol` | OpenAI | chat | 922,000 | 128,000 | OpenAI GPT |
-| `gpt-5.6-luna` | OpenAI | chat | 922,000 | 128,000 | OpenAI GPT |
-| `gpt-5.4` | OpenAI | chat | 1,050,000 | 128,000 | OpenAI GPT |
-| `gpt-5.1` | OpenAI | chat | 272,000 | 128,000 | OpenAI GPT |
-| `gpt-5.1-chat-gus` | OpenAI | chat | — | — | OpenAI GPT |
-| `gpt-5.4-gus` | OpenAI | chat | — | — | OpenAI GPT |
-| `gpt-5.6-luna-dzus` | OpenAI | chat | — | — | OpenAI GPT |
-| `gpt-5.6-terra-dzus` | OpenAI | chat | — | — | OpenAI GPT |
-| `gemini-3.7-flash` | OpenAI | chat | 1,048,576 | 65,536 | Google Gemini |
-| `gemini-3.6-flash` | OpenAI | chat | 1,048,576 | 65,536 | Google Gemini |
-| `gemini-3.5-flash` | OpenAI | chat | 1,048,576 | 65,535 | Google Gemini |
-| `gemini-2.5-flash` | OpenAI | chat | 1,048,576 | 65,535 | Google Gemini |
-| `gemini-2.5-flash-image` | OpenAI | image_generation | 32,768 | 32,768 | Multimodal / Image Gen |
-| `watsonx-granite-3-8-b` | OpenAI | chat | — | — | IBM Granite |
-| `ibm/granite-4-h-small` | OpenAI | chat | 20,480 | 20,480 | IBM Granite |
-| `meta-llama/llama-3-3-70b-instruct` | OpenAI | chat | — | — | Meta LLaMA |
-| `meta-llama/llama-4-maverick-17b-128e-instruct-fp8` | OpenAI | chat | — | — | Meta LLaMA |
-| `gemma-4-26b-a4b-it` | OpenAI | chat | — | — | Google Gemma |
-| `mistral-medium-2505` | OpenAI | chat | — | — | Mistral AI |
-| `cross-encoder/ms-marco-minilm-l-12-v2` | OpenAI | embedding/ranking | — | — | Cross-encoder Model |
-| `intfloat/multilingual-e5-large` | OpenAI | embedding | — | — | Embedding Model |
-| `TMF-llama3.1-8b:251028_no_sys_prompt` | OpenAI | specialized | — | — | Domain-specific LLaMA |
-| `BIAN-llama3.1-8b:260213_pad_free_assistant_only` | OpenAI | specialized | — | — | Domain-specific LLaMA |
+#### OpenAI-Compatible LLMs
 
----
+| Model ID | Provider | Max Input Tokens | Max Output Tokens |
+|----------|----------|-----------------:|------------------:|
+| `claude-opus-5-5` | Anthropic | 1,000,000 | 128,000 |
+| `claude-sonnet-5-5` | Anthropic | 1,000,000 | 128,000 |
+| `claude-sonnet-5` | Anthropic | 1,000,000 | 128,000 |
+| `claude-sonnet-4-6` | Anthropic | 1,000,000 | 64,000 |
+| `claude-haiku-5-5` | Anthropic | 1,000,000 | 128,000 |
+| `claude-haiku-4-5` | Anthropic | 200,000 | 64,000 |
+| `gpt-6.1-sol` | OpenAI | 922,000 | 128,000 |
+| `gpt-6-luna` | OpenAI | 922,000 | 128,000 |
+| `gpt-5.6-terra` | OpenAI | 922,000 | 128,000 |
+| `gpt-5.6-sol` | OpenAI | 922,000 | 128,000 |
+| `gpt-5.6-luna` | OpenAI | 922,000 | 128,000 |
+| `gpt-5.4` | OpenAI | 1,050,000 | 128,000 |
+| `gpt-5.1` | OpenAI | 272,000 | 128,000 |
+| `gemini-3.7-flash` | Google | 1,048,576 | 65,536 |
+| `gemini-3.6-flash` | Google | 1,048,576 | 65,536 |
+| `gemini-3.5-flash` | Google | 1,048,576 | 65,536 |
+| `gemma-4-26b-a4b-it` | Google | 262,144 | 32,768 |
+| `meta-llama/llama-3-3-70b-instruct` | Meta | 131,072 | 131,072 |
+| `meta-llama/llama-4-maverick-17b-128e-instruct-fp8` | Meta | 131,072 | 8,192 |
+| `nvidia/llama-3.3-nemotron-super` | NVIDIA | 131,072 | 131,072 |
+| `watsonx/mistralai/mistral-medium-2505` | Mistral AI | 128,000 | 128,000 |
+| `ibm/granite-4-h-small` | IBM | 20,480 | 20,480 |
+| `rits/zai-org/glm-5-3` | Z.ai | 1,048,576 | 1,048,576 |
+| `nvidia/nemotron-3.5-lightning` | NVIDIA | — | — |
+| `TMF-llama3.1-8b:251028_no_sys_prompt` | Custom Llama 3.1 | — | — |
+| `BIAN-llama3.1-8b:260213_pad_free_assistant_only` | Custom Llama 3.1 | — | — |
+
+#### Anthropic-Compatible LLMs
+
+| Model ID | Provider | Max Input Tokens | Max Output Tokens |
+|----------|----------|-----------------:|------------------:|
+| `claude-opus-5-5` | Anthropic | 1,000,000 | 128,000 |
+| `claude-sonnet-5-5` | Anthropic | 1,000,000 | 128,000 |
+| `claude-sonnet-5` | Anthropic | 1,000,000 | 128,000 |
+| `claude-sonnet-4-6` | Anthropic | 1,000,000 | 64,000 |
+| `claude-haiku-5-5` | Anthropic | 1,000,000 | 128,000 |
+| `claude-haiku-4-5` | Anthropic | 200,000 | 64,000 |
+| `gpt-6.1-sol` | OpenAI | 922,000 | 128,000 |
+| `gpt-6-luna` | OpenAI | 922,000 | 128,000 |
+| `gpt-5.6-terra` | OpenAI | 922,000 | 128,000 |
+| `gpt-5.6-sol` | OpenAI | 922,000 | 128,000 |
+| `gpt-5.6-luna` | OpenAI | 922,000 | 128,000 |
+| `gpt-5.4` | OpenAI | 1,050,000 | 128,000 |
+| `gpt-5.1` | OpenAI | 272,000 | 128,000 |
+| `gemini-3.7-flash` | Google | 1,048,576 | 65,536 |
+| `gemini-3.6-flash` | Google | 1,048,576 | 65,536 |
+| `gemini-3.5-flash` | Google | 1,048,576 | 65,536 |
+| `gemma-4-26b-a4b-it` | Google | 262,144 | 32,768 |
+| `meta-llama/llama-3-3-70b-instruct` | Meta | 131,072 | 131,072 |
+| `meta-llama/llama-4-maverick-17b-128e-instruct-fp8` | Meta | 131,072 | 8,192 |
+| `nvidia/llama-3.3-nemotron-super` | NVIDIA | 131,072 | 131,072 |
+| `watsonx/mistralai/mistral-medium-2505` | Mistral AI | 128,000 | 128,000 |
+| `ibm/granite-4-h-small` | IBM | 20,480 | 20,480 |
+| `rits/zai-org/glm-5-3` | Z.ai | 1,048,576 | 1,048,576 |
+| `nvidia/nemotron-3.5-lightning` | NVIDIA | — | — |
+| `TMF-llama3.1-8b:251028_no_sys_prompt` | Custom Llama 3.1 | — | — |
+| `BIAN-llama3.1-8b:260213_pad_free_assistant_only` | Custom Llama 3.1 | — | — |
 
 ## 4. AI Chat PoC Example (`ICA_Chat.cmd`)
 
@@ -206,6 +233,7 @@ In `opencode.json`, add the ICA provider block under `"providers"`. By omitting 
 > **Note on API Key:** The `OPENAI_API_KEY` environment variable must be set **before** launching OpenCode (e.g., `set OPENAI_API_KEY=sk-...` on Windows or `export OPENAI_API_KEY=sk-...` on Linux/macOS). If not set beforehand, requests will fail with authorization errors until you run `/connect` inside OpenCode, select the `"IBM Consulting Advantage (ICA)"` harness, and provide the key interactively when prompted. Alternatively, you can specify `"apiKey": "<YOUR_API_KEY>"` directly within `"options"`.
 
 ### 5.4 Claude Code CLI — Anthropic API
+
 1. Set the custom base URL and your dedicated Claude Code API key in your environment:
    - **Linux / macOS**:
      ```bash
