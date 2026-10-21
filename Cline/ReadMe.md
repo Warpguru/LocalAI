@@ -13,7 +13,7 @@ To use the portable installation, the environment needs to be set up first.
 Open a **Command Prompt** and execute the following scripts:
 
 1. `SetupEnvNode.cmd`
-2. `SetupEnvBob.cmd` (ignore the instructions how to launch **Cline** until you have installed both flavours)
+2. `SetupEnvCline.cmd` (ignore the instructions how to launch **Cline** until you have installed both flavours)
 
 ### Cline Desktop
 
@@ -24,7 +24,7 @@ Open a **Command Prompt** and execute the following scripts:
 3. Launch **Cline Desktop**: `Cline-App` (which will execute `".\Users\Cline\AppData\Local\Cline\Cline-App.exe"`).
 4. Select or configure your LLM harnes.
 
-### Cline Shell
+### Cline CLI
 
 The **Cline CLI** is the **CLI** version resembling other terminal-native coding agents such as `Claude Code` or `Codex`.
 It runs on a **Node** server (requires version >=22.15).
@@ -34,3 +34,27 @@ It runs on a **Node** server (requires version >=22.15).
 3. Configure your LLM harness
 
 ---
+
+## ICA
+
+### API-key
+
+To use **Clien** with **[ICA 2.0](https://servicesessentials.ibm.com/launchpad)** create an API keys on 
+[ICA](hhttps://servicesessentials.ibm.com/settings/apikey) and use the `cline` API key (`sk-...`)
+
+For **Cline Desktop**:
+
+* Select `Settings` → `Providers`
+* For the `Model Providers` select `OpenAI compatible`:
+  - `API Key`: `sk-******`
+  - `Base Url`: `https://api.servicesessentials.ibm.com/v1`
+  - Add one or more LLMs at `Models`
+  
+For **Cline CLI**:
+
+* Select `Bring your own provider`
+* Select `OpenAI compatible`:
+  - `Base Url`: `https://api.servicesessentials.ibm.com/v1`
+  - `API Key`: `sk-******`
+  - `Model ID`: `gpt-5.6-terra`
+  
